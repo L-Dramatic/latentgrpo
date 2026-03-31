@@ -8,6 +8,7 @@ from models.codi import CODI
 from models.icot_si import ICoT_SI
 from models.pause import Pause
 from models.semcot import ContempGen, CustomST
+from models.latentgrpo import LatentGRPO
 from data.cot_datasets import load_datasets
 from models.softcot import SoftCoT
 from training.train_coconut import run_coconut_inference, train_coconut_model
@@ -22,6 +23,7 @@ from training.train_semcot import (
     update_reasoning_hidden,
 )
 from training.train_softcot import run_softcot_inference, train_softcot_model
+from training.train_latentgrpo import run_latentgrpo_inference, train_latentgrpo_model
 from utils.logging import Logger
 import utils.utils as utils
 
@@ -52,6 +54,13 @@ def run_baseline(logger, args, train_data, eval_data):
         model = Coconut.from_pretrained(model_path).to(args.device)
         model.eval()
         res = run_coconut_inference(logger, model, eval_data, args)
+    elif args.baseline == "latentgrpo":
+        lr = getattr(args, 'latentgrpo_lr', 1e-4)
+        wd = getattr(args, 'latentgrpo_wd', 0.01)
+        model_path = train_latentgrpo_model(logger, args, train_data, eval_data, lr=lr, wd=wd)
+        model = LatentGRPO.from_pretrained(model_path).to(args.device)
+        model.eval()
+        res = run_latentgrpo_inference(logger, model, eval_data, args)
     model = model.cpu()
     del model
     return res
@@ -122,7 +131,7 @@ def parse_args():
         "--baseline",
         type=str,
         default=None,
-        choices=["pause", "icot_si", "codi", "softcot", "coconut"],
+        choices=["pause", "icot_si", "codi", "softcot", "coconut", "latentgrpo"],
         help="baseline type",
     )
     parser.add_argument("--device", type=int, default=0)
@@ -273,6 +282,50 @@ def parse_args():
         type=str,
         default=None,
         help="ContempGen pretrained model name",
+    )
+    
+    # LatentGRPO specific arguments
+    parser.add_argument(
+        "--latentgrpo_epochs",
+        type=int,
+        default=10,
+        help="Number of training epochs for LatentGRPO",
+    )
+    parser.add_argument(
+        "--latentgrpo_lr",
+        type=float,
+        default=1e-4,
+        help="Learning rate for LatentGRPO projection module",
+    )
+    parser.add_argument(
+        "--latentgrpo_wd",
+        type=float,
+        default=0.01,
+        help="Weight decay for LatentGRPO projection module",
+    )
+    parser.add_argument(
+        "--num_trajectories",
+        type=int,
+        default=4,
+        help="Number of trajectories G for multi-trajectory sampling in LatentGRPO",
+    )
+    parser.add_argument(
+        "--contrastive_lambda",
+        type=float,
+        default=0.1,
+        help="Weight for contrastive loss (lambda) in LatentGRPO",
+    )
+    parser.add_argument(
+        "--contrastive_temperature",
+        type=float,
+        default=0.5,
+        help="Temperature parameter eta for contrastive loss in LatentGRPO",
+    )
+    parser.add_argument(
+        "--kl_beta",
+        type=float,
+        default=0.1,
+        help="Weight beta for KL divergence in LatentGRPO policy loss",
     )
     return parser.parse_args()
 
