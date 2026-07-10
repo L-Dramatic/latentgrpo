@@ -84,7 +84,7 @@ def process_batch(latentgrpo, batch_items, args, epoch=None):
         
         # Compute policy loss (Eq. 6 in paper)
         log_probs_tensor = torch.cat(log_probs_list)
-        policy_loss, kl_loss, _ = latentgrpo.compute_policy_loss(
+        total_loss, policy_loss, kl_loss = latentgrpo.compute_policy_loss(
             log_probs_tensor, advantages, beta=beta
         )
         
@@ -93,7 +93,7 @@ def process_batch(latentgrpo, batch_items, args, epoch=None):
         
         # Total loss (Eq. 7 in paper)
         # L = L_LatentGRPO + lambda * L_cl
-        batch_loss = policy_loss + lambda_cl * contrastive_loss
+        batch_loss = total_loss + lambda_cl * contrastive_loss
         
         # Backward pass
         batch_loss.backward()
@@ -141,7 +141,7 @@ def train_latentgrpo_model(logger, args, train_dataset, eval_dataset, lr=1e-4, w
         indices = list(range(len(train_dataset)))
         random.shuffle(indices)
         
-        batch_size = args.batch_size
+        batch_size = int(args.batch_size)
         for batch_start in tqdm(
             range(0, len(indices), batch_size),
             desc=f"Epoch {epoch + 1}/{num_epochs} - Training",
@@ -295,7 +295,11 @@ def run_latentgrpo_inference(logger, latentgrpo, dataset, args):
                 # Generate answer with specified temperature
                 # Note: Need to temporarily modify generation parameters
                 generated_answer = latentgrpo.generate_answer(
-                    query_embeddings, thoughts, answer_text=None, max_gen_length=50
+                    query_embeddings,
+                    thoughts,
+                    answer_text=None,
+                    max_gen_length=50,
+                    temperature=temp,
                 )
                 gen_time = time.time() - gen_start
                 

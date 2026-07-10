@@ -171,11 +171,11 @@ def parse_args():
     )
     parser.add_argument(
         "--max_seq_len",
-        type=float,
+        type=int,
         default=512,
         help="Max sequence length for tokenization",
     )
-    parser.add_argument("--batch_size", type=float, default=4, help="Batch size")
+    parser.add_argument("--batch_size", type=int, default=4, help="Batch size")
     parser.add_argument(
         "--st_linear_lr",
         "-stllr",

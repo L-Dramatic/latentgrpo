@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 from transformers import AutoModelForCausalLM, AutoTokenizer
 import os
+from utils.utils import get_prompts
 
 
 class LatentGRPO(nn.Module):
@@ -54,7 +55,9 @@ class LatentGRPO(nn.Module):
 
     def save_reference_projection(self):
         """Save a snapshot of the current projection parameters as reference."""
-        self.ref_proj = {k: v.clone() for k, v in self.proj.state_dict().items()}
+        self.ref_proj = {
+            k: v.detach().clone() for k, v in self.proj.state_dict().items()
+        }
 
     def get_input_embeddings(self, text, max_seq_len, device):
         """
@@ -100,13 +103,12 @@ class LatentGRPO(nn.Module):
         
         for k in range(num_thoughts):
             # Get last hidden state from LLM
-            with torch.no_grad():
-                outputs = self.llm_model(
-                    inputs_embeds=current_embeddings,
-                    output_hidden_states=True,
-                )
-                # Get last hidden state
-                h_k = outputs.hidden_states[-1][:, -1, :]  # (batch_size, hidden_dim)
+            outputs = self.llm_model(
+                inputs_embeds=current_embeddings,
+                output_hidden_states=True,
+            )
+            # Get last hidden state
+            h_k = outputs.hidden_states[-1][:, -1, :]  # (batch_size, hidden_dim)
             
             # Project to continuous thought vector
             c_k = self.proj(h_k)  # (batch_size, hidden_dim)
@@ -124,7 +126,14 @@ class LatentGRPO(nn.Module):
         
         return thoughts
 
-    def generate_answer(self, query_embeddings, thoughts, answer_text=None, max_gen_length=50):
+    def generate_answer(
+        self,
+        query_embeddings,
+        thoughts,
+        answer_text=None,
+        max_gen_length=50,
+        temperature=0.7,
+    ):
         """
         Generate answer from query and continuous thoughts.
         
@@ -137,12 +146,23 @@ class LatentGRPO(nn.Module):
         Returns:
             Generated answer and/or log probabilities
         """
-        # Concatenate query embeddings with thoughts
+        # Concatenate query embeddings, latent thoughts, and the answer prompt.
         thought_embeddings = torch.stack(thoughts, dim=1)  # (batch_size, K, hidden_dim)
-        combined_embeddings = torch.cat([query_embeddings, thought_embeddings], dim=1)
+        _, ans_prompt = get_prompts(self.config)
+        ans_prompt_ids = self.llm_tokenizer(
+            ans_prompt,
+            return_tensors="pt",
+            truncation=True,
+            max_length=max_gen_length,
+            add_special_tokens=False,
+        )["input_ids"].to(query_embeddings.device)
+        ans_prompt_embeddings = self.llm_model.get_input_embeddings()(ans_prompt_ids)
+        combined_embeddings = torch.cat(
+            [query_embeddings, thought_embeddings, ans_prompt_embeddings], dim=1
+        )
         
         if answer_text is not None:
-            # Training mode: compute log probability of ground truth answer
+            # Training mode: compute log probability of ground truth answer tokens.
             answer_ids = self.llm_tokenizer(
                 answer_text,
                 return_tensors="pt",
@@ -156,49 +176,63 @@ class LatentGRPO(nn.Module):
             # Concatenate answer embeddings
             full_embeddings = torch.cat([combined_embeddings, answer_embeddings], dim=1)
             
-            # Compute log probabilities
-            attention_mask = torch.ones((1, full_embeddings.shape[1])).long().to(query_embeddings.device)
+            attention_mask = torch.ones(
+                (full_embeddings.shape[0], full_embeddings.shape[1]),
+                dtype=torch.long,
+                device=query_embeddings.device,
+            )
             
-            with torch.no_grad():
-                outputs = self.llm_model(
-                    inputs_embeds=full_embeddings,
-                    attention_mask=attention_mask,
-                )
-                
-            logits = outputs.logits[:, :-1]  # Remove last token
-            target_ids = full_embeddings[:, 1:].long()  # Shift by 1
+            outputs = self.llm_model(
+                inputs_embeds=full_embeddings,
+                attention_mask=attention_mask,
+            )
+            logits = outputs.logits[:, :-1, :]
+
+            labels = torch.full(
+                (full_embeddings.shape[0], combined_embeddings.shape[1]),
+                -100,
+                dtype=torch.long,
+                device=query_embeddings.device,
+            )
+            labels = torch.cat([labels, answer_ids], dim=1)
+            target_ids = labels[:, 1:]
             
-            # Compute log probability
-            log_probs = F.cross_entropy(
+            # Compute answer-token negative log likelihood while ignoring the prefix.
+            token_nll = F.cross_entropy(
                 logits.reshape(-1, logits.size(-1)),
                 target_ids.reshape(-1),
+                ignore_index=-100,
                 reduction='none'
             )
-            log_probs = log_probs.view(target_ids.shape)
+            token_nll = token_nll.view(target_ids.shape)
+            answer_mask = target_ids.ne(-100)
+            answer_nll = (token_nll * answer_mask).sum(dim=1)
             
-            # Mask answer tokens only
-            query_thought_len = combined_embeddings.shape[1]
-            answer_log_probs = log_probs[:, query_thought_len-1:-1].sum(dim=1)
-            
-            return -answer_log_probs  # Return negative log likelihood
+            return -answer_nll
         else:
             # Inference mode: generate answer
-            attention_mask = torch.ones((1, combined_embeddings.shape[1])).long().to(query_embeddings.device)
+            attention_mask = torch.ones(
+                (combined_embeddings.shape[0], combined_embeddings.shape[1]),
+                dtype=torch.long,
+                device=query_embeddings.device,
+            )
             
             with torch.no_grad():
                 generated_ids = self.llm_model.generate(
                     inputs_embeds=combined_embeddings,
                     attention_mask=attention_mask,
-                    max_length=max_gen_length + combined_embeddings.shape[1],
-                    temperature=0.7,
+                    max_new_tokens=max_gen_length,
+                    temperature=temperature,
                     top_p=0.9,
                     do_sample=True,
                     pad_token_id=self.llm_tokenizer.eos_token_id,
                 )
             
             # Extract generated answer
-            prefix_length = combined_embeddings.shape[1]
-            answer_ids = generated_ids[:, prefix_length:]
+            if generated_ids.shape[1] > combined_embeddings.shape[1]:
+                answer_ids = generated_ids[:, combined_embeddings.shape[1]:]
+            else:
+                answer_ids = generated_ids
             answer = self.llm_tokenizer.decode(answer_ids[0], skip_special_tokens=True)
             
             return answer
@@ -219,11 +253,6 @@ class LatentGRPO(nn.Module):
         Returns:
             List of trajectories, each is a list of thought vectors
         """
-        # First, generate the base trajectory without noise
-        base_thoughts = self.generate_continuous_thoughts(
-            query_embeddings, num_thoughts, device, noise_eps=None
-        )
-        
         # Generate noise for each trajectory
         hidden_dim = query_embeddings.shape[-1]
         trajectories = []
@@ -294,7 +323,7 @@ class LatentGRPO(nn.Module):
         rewards_tensor = torch.tensor(rewards, dtype=torch.float32)
         
         mean_reward = rewards_tensor.mean()
-        std_reward = rewards_tensor.std() + 1e-8  # Add epsilon to avoid division by zero
+        std_reward = rewards_tensor.std(unbiased=False).clamp_min(1e-8)
         
         advantages = (rewards_tensor - mean_reward) / std_reward
         
@@ -316,14 +345,20 @@ class LatentGRPO(nn.Module):
         Returns:
             Policy loss
         """
+        advantages = advantages.to(device=log_probs.device, dtype=log_probs.dtype)
+
         # Policy loss term
         policy_loss = -(advantages * log_probs).mean()
         
         # KL divergence term (simplified: use L2 distance between current and ref parameters)
-        kl_loss = 0.0
+        kl_loss = torch.zeros((), device=log_probs.device, dtype=log_probs.dtype)
         if self.ref_proj is not None:
-            for (k, v), (ref_k, ref_v) in zip(self.proj.state_dict().items(), self.ref_proj.items()):
-                kl_loss += F.mse_loss(v, ref_v)
+            for name, param in self.proj.named_parameters():
+                if name in self.ref_proj:
+                    ref_param = self.ref_proj[name].to(
+                        device=param.device, dtype=param.dtype
+                    )
+                    kl_loss = kl_loss + F.mse_loss(param, ref_param)
         
         total_loss = policy_loss + beta * kl_loss
         
