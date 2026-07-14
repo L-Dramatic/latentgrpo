@@ -23,6 +23,9 @@ from .real_models.switch import (
     build_switch_prompt,
     load_public_switch,
 )
+from .switch_checkpoint_identity_smoke import (
+    implementation_hashes as identity_implementation_hashes,
+)
 
 
 def _sha256(path: Path) -> str:
@@ -46,6 +49,17 @@ def implementation_hashes() -> dict[str, str]:
         "eligibility_runner": _sha256(Path(__file__).resolve()),
         "switch_adapter": _sha256(root / "real_models" / "switch.py"),
     }
+
+
+def require_current_identity_artifact(
+    artifact: dict[str, Any], expected_config_sha256: str
+) -> None:
+    if artifact.get("status") != "pass":
+        raise ValueError("paper-final checkpoint identity smoke did not pass")
+    if artifact.get("config_sha256") != expected_config_sha256:
+        raise ValueError("checkpoint identity artifact used a different config")
+    if artifact.get("implementation_sha256") != identity_implementation_hashes():
+        raise ValueError("checkpoint identity artifact used a different implementation")
 
 
 def classify_switch_run(
@@ -205,14 +219,15 @@ def run(
         prerequisites["checkpoint_identity_artifact"]
     )
     identity_artifact = json.loads(identity_path.read_text(encoding="utf-8"))
-    if identity_artifact.get("status") != str(
+    required_identity_status = str(
         prerequisites["checkpoint_identity_required_status"]
-    ):
-        raise ValueError("paper-final checkpoint identity smoke did not pass")
-    if identity_artifact.get("config_sha256") != str(
-        prerequisites["checkpoint_identity_config_sha256"]
-    ):
-        raise ValueError("checkpoint identity artifact used a different config")
+    )
+    if required_identity_status != "pass":
+        raise ValueError("frozen checkpoint identity status must be pass")
+    require_current_identity_artifact(
+        identity_artifact,
+        str(prerequisites["checkpoint_identity_config_sha256"]),
+    )
 
     dataset_config = config["dataset"]
     dataset_path = workspace_root / str(dataset_config["relative_path"])

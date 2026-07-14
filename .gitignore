@@ -51,3 +51,4 @@ artifacts/**/*.pt
 artifacts/**/*.bin
 artifacts/**/*.safetensors
 artifacts/**/traces/
+artifacts/**/*.tar.gz

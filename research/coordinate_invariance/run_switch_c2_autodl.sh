@@ -8,6 +8,8 @@ VENV="${SWITCH_C2_VENV:-${ROOT}/.switch_c2_env}"
 MIN_GPU_GIB="${MIN_GPU_GIB:-78}"
 MIN_DISK_GIB="${MIN_DISK_GIB:-70}"
 FORCE="${FORCE:-0}"
+AUTO_COLLECT="${AUTO_COLLECT:-1}"
+PROJECT_REF="${SWITCH_C2_PROJECT_REF:-switch-c2-frozen-v1}"
 
 CONFIG="${ROOT}/research/coordinate_invariance/configs/switch_c2_scientific_gate_v1.json"
 IDENTITY_CONFIG="${ROOT}/research/coordinate_invariance/configs/switch_checkpoint_identity_smoke_v1.json"
@@ -17,6 +19,7 @@ IDENTITY_ARTIFACT="${ARTIFACTS}/switch_checkpoint_identity_smoke_v1.json"
 ELIGIBILITY_ARTIFACT="${ARTIFACTS}/switch_c2_eligibility_v1.json"
 CALIBRATION_ARTIFACT="${ARTIFACTS}/switch_c2_calibration_v1.json"
 TEST_ARTIFACT="${ARTIFACTS}/switch_c2_test_v1.json"
+COLLECTION_ARTIFACT="${ARTIFACTS}/switch_c2_return_bundle.tar.gz"
 
 export PYTHONPATH="${ROOT}${PYTHONPATH:+:${PYTHONPATH}}"
 export HF_HOME="${ROOT}/_models/hf_home"
@@ -38,6 +41,18 @@ ensure_environment() {
   "${VENV}/bin/python" -m pip install --upgrade pip
   "${VENV}/bin/python" -m pip install -r \
     "${ROOT}/research/coordinate_invariance/requirements-switch-c2.txt"
+}
+
+check_project_revision() {
+  local head
+  local expected
+  git -C "${ROOT}" rev-parse --is-inside-work-tree >/dev/null 2>&1 || \
+    die "workspace is not a git checkout"
+  head="$(git -C "${ROOT}" rev-parse HEAD)"
+  expected="$(git -C "${ROOT}" rev-parse "${PROJECT_REF}^{commit}" 2>/dev/null)" || \
+    die "frozen project ref ${PROJECT_REF} is unavailable"
+  [[ "${head}" == "${expected}" ]] || \
+    die "HEAD ${head} does not match frozen ${PROJECT_REF} (${expected})"
 }
 
 ensure_source() {
@@ -126,6 +141,51 @@ run_local_tests() {
     "${ROOT}/tests/test_switch_c2_protocol.py" -q
 }
 
+collector_python() {
+  if [[ -x "${VENV}/bin/python" ]]; then
+    printf '%s\n' "${VENV}/bin/python"
+  else
+    printf '%s\n' "${PYTHON_BIN}"
+  fi
+}
+
+status_results() {
+  local python_bin
+  python_bin="$(collector_python)"
+  "${python_bin}" "${ROOT}/research/coordinate_invariance/switch_c2_collect.py" \
+    --workspace-root "${ROOT}"
+}
+
+collect_results() {
+  local required_stage="${1:-none}"
+  local python_bin
+  python_bin="$(collector_python)"
+  "${python_bin}" "${ROOT}/research/coordinate_invariance/switch_c2_collect.py" \
+    --workspace-root "${ROOT}" \
+    --require-stage "${required_stage}" \
+    --output "${COLLECTION_ARTIFACT}"
+}
+
+auto_collect_on_exit() {
+  local exit_code="$1"
+  local collection_code=0
+  trap - EXIT
+  if [[ "${AUTO_COLLECT}" == "1" ]]; then
+    set +e
+    collect_results none
+    collection_code=$?
+    set -e
+    if [[ "${collection_code}" != "0" ]]; then
+      printf 'WARNING: automatic C2 evidence collection failed with status %s\n' \
+        "${collection_code}" >&2
+      if [[ "${exit_code}" == "0" ]]; then
+        exit_code=2
+      fi
+    fi
+  fi
+  exit "${exit_code}"
+}
+
 artifact_matches() {
   local artifact="$1"
   local kind="$2"
@@ -147,11 +207,10 @@ def canonical(path):
     return hashlib.sha256(payload).hexdigest()
 
 if kind == pathlib.Path("identity"):
-    from research.coordinate_invariance.switch_checkpoint_identity_smoke import _sha256
-    from research.coordinate_invariance import switch_checkpoint_identity_smoke as module
+    from research.coordinate_invariance.switch_checkpoint_identity_smoke import implementation_hashes
     valid = (
         report.get("config_sha256") == canonical(identity_config_path)
-        and report.get("runner_sha256") == _sha256(pathlib.Path(module.__file__))
+        and report.get("implementation_sha256") == implementation_hashes()
     )
 elif kind == pathlib.Path("eligibility"):
     from research.coordinate_invariance.switch_c2_eligibility_scan import implementation_hashes
@@ -173,6 +232,7 @@ PY
 prepare() {
   cd "${ROOT}"
   mkdir -p "${ARTIFACTS}" "${JOURNALS}" "${HF_HUB_CACHE}"
+  check_project_revision
   ensure_environment
   ensure_source
   check_resources
@@ -265,25 +325,36 @@ run_test() {
 }
 
 case "${STAGE}" in
+  status)
+    status_results
+    ;;
+  collect)
+    collect_results "${REQUIRE_STAGE:-none}"
+    ;;
   prepare)
+    trap 'auto_collect_on_exit $?' EXIT
     prepare
     ;;
   identity)
+    trap 'auto_collect_on_exit $?' EXIT
     prepare
     run_identity
     ;;
   eligibility)
+    trap 'auto_collect_on_exit $?' EXIT
     prepare
     run_identity
     run_eligibility
     ;;
   calibration)
+    trap 'auto_collect_on_exit $?' EXIT
     prepare
     run_identity
     run_eligibility
     run_calibration
     ;;
   test|all)
+    trap 'auto_collect_on_exit $?' EXIT
     prepare
     run_identity
     run_eligibility
@@ -291,6 +362,6 @@ case "${STAGE}" in
     run_test
     ;;
   *)
-    die "stage must be prepare, identity, eligibility, calibration, test, or all"
+    die "stage must be status, collect, prepare, identity, eligibility, calibration, test, or all"
     ;;
 esac

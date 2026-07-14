@@ -37,6 +37,14 @@ def canonical_config_hash(config: dict[str, Any]) -> str:
     return hashlib.sha256(payload).hexdigest()
 
 
+def implementation_hashes() -> dict[str, str]:
+    root = Path(__file__).resolve().parent
+    return {
+        "identity_runner": _sha256(Path(__file__).resolve()),
+        "switch_adapter": _sha256(root / "real_models" / "switch.py"),
+    }
+
+
 def _ids_hash(ids: torch.Tensor) -> str:
     payload = json.dumps(ids.detach().cpu().tolist(), separators=(",", ":")).encode(
         "utf-8"
@@ -241,6 +249,7 @@ def run(config: dict[str, Any], workspace_root: Path) -> dict[str, Any]:
         "evidence_level": "paper-final checkpoint execution identity only",
         "config_sha256": canonical_config_hash(config),
         "runner_sha256": _sha256(Path(__file__)),
+        "implementation_sha256": implementation_hashes(),
         "checkpoint": {
             "base_id": SWITCH_BASE_MODEL_ID,
             "base_revision": bundle.base_revision,

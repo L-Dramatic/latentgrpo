@@ -47,14 +47,35 @@
         "status": "pass"
       },
       "c2_contract": {
+        "project_release_tag": "switch-c2-frozen-v1",
         "checkpoint_identity_config_file_sha256": "8f6f7bcc1edf52db3a39b8bc58585709e7526cbd46d07aa521e305ec379c1519",
         "checkpoint_identity_config_sha256": "e2df1ad9f577c8d44c97e8738575ea383ae1e75287206792aca42c56e8da09b5",
         "scientific_config_file_sha256": "a73759e1e0fed584d33234b1431d7ba282908229ba8217bdd1188a85fcc23800",
         "scientific_config_sha256": "603629a1eab5bc0c68af70fd160904e1dda30c388a5ec4fae312585e46202c9d",
         "prompt_order_artifact_sha256": "ceae806918e9cad16b5225f999591f9f6206f51bceec9076ce5de4449ad8fbc3",
+        "implementation_sha256": {
+          "identity": {
+            "identity_runner": "dc3be7072df4013d2c5f8b829c2d3517f470f4d568db13611012666197fd74aa",
+            "switch_adapter": "10e30f5a602c1ea448bed51a8cfea4e9b4bda89f95a328ea7edd737de663bf2c"
+          },
+          "eligibility": {
+            "eligibility_runner": "94c03bbd53989210065f463b588f668e086062eb0215d0b465fd76d821316cbb",
+            "switch_adapter": "10e30f5a602c1ea448bed51a8cfea4e9b4bda89f95a328ea7edd737de663bf2c"
+          },
+          "scientific": {
+            "scientific_runner": "2ac6016c6ed9265795e1ad0a9ea95945e2b4be68a01a4e32a7c6bfd9596d65c6",
+            "geometry": "e2fc07c1038c0863fdc6287b3c4f2d7cbb14e75ba4a2b796927b3cd982427bb2",
+            "switch_adapter": "10e30f5a602c1ea448bed51a8cfea4e9b4bda89f95a328ea7edd737de663bf2c",
+            "fctr_solver": "fb7486dee657d06d87beb8c5e431c4b15c9fbc27f10aa0c00d8cc450ffe2823c",
+            "charts": "5f9638edf26b9c2a22a85695304c2b1e913d848bef6307a87cc7d573321f7de5",
+            "metrics": "6f6f4c52aefe4d9716e2ce6054044cc4751b1602e653506d5e76fae86f9ea4aa",
+            "statistics": "6219ed60c3c4674af243fb52a2cd397c0d32b8789a78668d8f802f4e358d6678"
+          }
+        },
         "calibration_prompts": 16,
         "test_prompts": 32,
         "strict_holdout_visible_tokens": "33-64",
+        "evidence_bundle": "artifacts/coordinate_invariance/switch_c2_return_bundle.tar.gz",
         "status": "not run"
       },
       "evidence": [

@@ -252,7 +252,7 @@ not support.
 - Protocol: `research/coordinate_invariance/SWITCH_C2_PREREGISTRATION.md`
 - AutoDL handoff:
   `research/coordinate_invariance/AUTODL_SWITCH_C2_RUNBOOK_ZH.md`
-- Local project suite: **124 passed**
+- Local project suite: **130 passed**
 - Scientific status: **Not run**
 
 The implementation now includes a hash-verified paper-final loader, official
@@ -269,3 +269,30 @@ been observed. A high-memory cloud GPU is now authorized for C2 only. The
 frozen runner requires at least 78 GiB visible VRAM; H20 96 GB is preferred.
 This is inference/autodiff measurement, not training. C2 failure stops FCTR;
 C2 success authorizes only a matched-compute estimator before any training.
+
+## 2026-07-15: SWITCH C2 cloud handoff hardening
+
+- Frozen project tag: `switch-c2-frozen-v1`
+- Collection module:
+  `research/coordinate_invariance/switch_c2_collect.py`
+- Return bundle:
+  `artifacts/coordinate_invariance/switch_c2_return_bundle.tar.gz`
+- Local project suite: **130 passed**
+- SWITCH/C2 pinned-dependency suite: **23 passed**
+- Scientific status: **Not run**
+
+The cloud entrypoint now fails before weight download when the checkout does
+not match the frozen project tag. It also reports current stage status and
+automatically creates an integrity-checked return bundle on successful or
+failed stage exit. The bundle records formal artifacts, append-only journals,
+logs, frozen code/configs, Git state, package versions, and GPU metadata with a
+per-file SHA-256 manifest. The collection path itself does not alter prompt
+assignment, metric computation, calibration/test separation, or any
+preregistered threshold.
+
+The final pre-run audit expanded the implementation binding to every local
+behavior-defining dependency used by C2: runner, SWITCH adapter, geometry,
+FCTR solver, charts, categorical-KL metrics, and bootstrap statistics. Identity
+and eligibility now bind both runner and adapter, and downstream phases reject
+stale upstream artifacts. No checkpoint-dependent record existed, so this
+hardening invalidated no observation and changed no scientific threshold.

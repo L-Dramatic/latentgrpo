@@ -29,14 +29,23 @@ C2 是训练前的科学闸门，不是正式训练。它依次执行：
 
 ## 启动
 
-仓库同步到实例后，在仓库根目录执行：
+在实例中检出冻结标签，不要直接运行未来可能变化的 `main`：
+
+```bash
+git clone https://github.com/L-Dramatic/latentgrpo.git
+cd latentgrpo
+git checkout --detach switch-c2-frozen-v1
+```
+
+随后在仓库根目录执行：
 
 ```bash
 bash research/coordinate_invariance/run_switch_c2_autodl.sh prepare
 ```
 
 `prepare` 会创建隔离环境、锁定官方 SWITCH 源码、下载固定版本 MATH-500、
-检查 GPU/磁盘/BF16，并运行 SWITCH/C2 专项测试。它不会下载大模型权重。
+检查项目冻结标签、GPU/磁盘/BF16，并运行 SWITCH/C2 专项测试。它不会下载大模型
+权重。项目版本不匹配 `switch-c2-frozen-v1` 时会在下载前停止，避免错跑代码。
 
 准备通过后，建议在 `tmux` 中分阶段运行：
 
@@ -55,6 +64,12 @@ bash research/coordinate_invariance/run_switch_c2_autodl.sh all \
 ```
 
 首次 `identity` 会下载并逐文件校验基础模型和 adapter。后续阶段复用同一缓存。
+
+查看当前各阶段产物，不会启动模型：
+
+```bash
+bash research/coordinate_invariance/run_switch_c2_autodl.sh status
+```
 
 ## 断点与产物
 
@@ -78,6 +93,30 @@ artifacts/coordinate_invariance/switch_c2_test_v1.json
 
 不要手工编辑 journal 或正式 JSON。若工程代码确需修复，保留旧文件，使用修复后
 自动生成的新 implementation-key journal。
+
+每个执行阶段退出时，无论成功或失败，脚本都会尽力生成：
+
+```text
+artifacts/coordinate_invariance/switch_c2_return_bundle.tar.gz
+```
+
+该回收包包含现有正式 JSON、journal、日志、冻结配置/代码、Git 版本、GPU/软件环境
+和逐文件 SHA-256 清单，并在生成后重新读取校验。使用 `tee` 运行后，再执行一次下面
+的命令，使回收包纳入完整日志：
+
+```bash
+bash research/coordinate_invariance/run_switch_c2_autodl.sh collect
+```
+
+若要在释放实例前强制确认最终 test 产物已经存在且可读：
+
+```bash
+REQUIRE_STAGE=test \
+  bash research/coordinate_invariance/run_switch_c2_autodl.sh collect
+```
+
+下载并核对该回收包后再释放实例。科学 gate 失败也是应当保留的正式证据，不要只
+回收通过的结果。
 
 ## 停止规则
 

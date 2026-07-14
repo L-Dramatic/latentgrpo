@@ -32,6 +32,9 @@ from .real_models.switch import (
     load_public_switch,
 )
 from .statistics import bootstrap_mean
+from .switch_c2_eligibility_scan import (
+    implementation_hashes as eligibility_implementation_hashes,
+)
 from .switch_c2_geometry import (
     chart_euclidean_update,
     consequential_basis,
@@ -70,7 +73,25 @@ def implementation_hashes() -> dict[str, str]:
         "geometry": _sha256(root / "switch_c2_geometry.py"),
         "switch_adapter": _sha256(root / "real_models" / "switch.py"),
         "fctr_solver": _sha256(root / "fctr.py"),
+        "charts": _sha256(root / "charts.py"),
+        "metrics": _sha256(root / "metrics.py"),
+        "statistics": _sha256(root / "statistics.py"),
     }
+
+
+def require_bound_pass_artifact(
+    artifact: dict[str, Any],
+    *,
+    name: str,
+    expected_config_sha256: str,
+    expected_implementation: dict[str, str],
+) -> None:
+    if artifact.get("status") != "pass":
+        raise ValueError(f"{name} artifact did not pass")
+    if artifact.get("config_sha256") != expected_config_sha256:
+        raise ValueError(f"{name} artifact used a different C2 config")
+    if artifact.get("implementation_sha256") != expected_implementation:
+        raise ValueError(f"{name} artifact used a different implementation")
 
 
 def _load_plan(payload: dict[str, Any]) -> SwitchReplayPlan:
@@ -1307,10 +1328,12 @@ def run_phase(
     eligibility_path = eligibility_path.resolve()
     eligibility_sha256 = _sha256(eligibility_path)
     eligibility = json.loads(eligibility_path.read_text(encoding="utf-8"))
-    if eligibility.get("status") != "pass" or eligibility.get(
-        "config_sha256"
-    ) != config_sha256:
-        raise ValueError("eligibility artifact did not pass this frozen C2 config")
+    require_bound_pass_artifact(
+        eligibility,
+        name="eligibility",
+        expected_config_sha256=config_sha256,
+        expected_implementation=eligibility_implementation_hashes(),
+    )
     if phase not in {"calibration", "test"}:
         raise ValueError("phase must be calibration or test")
     calibration = None
@@ -1321,10 +1344,12 @@ def run_phase(
         calibration_path = calibration_path.resolve()
         calibration_sha256 = _sha256(calibration_path)
         calibration = json.loads(calibration_path.read_text(encoding="utf-8"))
-        if calibration.get("status") != "pass" or calibration.get(
-            "config_sha256"
-        ) != config_sha256:
-            raise ValueError("calibration artifact did not pass this frozen C2 config")
+        require_bound_pass_artifact(
+            calibration,
+            name="calibration",
+            expected_config_sha256=config_sha256,
+            expected_implementation=implementation,
+        )
     selected = list(eligibility["scan"][f"selected_{phase}"])
     expected_count = int(config["selection"][f"{phase}_eligible_prompts"])
     if len(selected) != expected_count:

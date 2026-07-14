@@ -12,10 +12,19 @@ from research.coordinate_invariance.real_models.switch import (
     SwitchReplayPlan,
     load_pinned_switch_types,
 )
+from research.coordinate_invariance.switch_c2_eligibility_scan import (
+    implementation_hashes as eligibility_implementation_hashes,
+    require_current_identity_artifact,
+)
 from research.coordinate_invariance.switch_c2_scientific_gate import (
     _analyze_test,
     _measure_prompt,
     _select_calibration,
+    implementation_hashes as scientific_implementation_hashes,
+    require_bound_pass_artifact,
+)
+from research.coordinate_invariance.switch_checkpoint_identity_smoke import (
+    implementation_hashes as identity_implementation_hashes,
 )
 
 
@@ -59,6 +68,76 @@ def _update(gain: float, candidate_kl: float, baseline_kl: float) -> dict:
             },
         },
     }
+
+
+def test_c2_artifacts_bind_all_behavior_defining_implementations() -> None:
+    assert set(identity_implementation_hashes()) == {
+        "identity_runner",
+        "switch_adapter",
+    }
+    assert set(eligibility_implementation_hashes()) == {
+        "eligibility_runner",
+        "switch_adapter",
+    }
+    assert set(scientific_implementation_hashes()) == {
+        "scientific_runner",
+        "geometry",
+        "switch_adapter",
+        "fctr_solver",
+        "charts",
+        "metrics",
+        "statistics",
+    }
+
+
+def test_c2_source_manifest_freezes_current_implementation_hashes() -> None:
+    root = Path(__file__).resolve().parents[1]
+    manifest = json.loads(
+        (root / "research/coordinate_invariance/SOURCE_MANIFEST.json").read_text(
+            encoding="utf-8"
+        )
+    )
+    switch = next(
+        item
+        for item in manifest["architectures"]
+        if item["name"] == "SWITCH Qwen3-8B Phase-3 GRPO"
+    )
+    frozen = switch["c2_contract"]["implementation_sha256"]
+    assert frozen["identity"] == identity_implementation_hashes()
+    assert frozen["eligibility"] == eligibility_implementation_hashes()
+    assert frozen["scientific"] == scientific_implementation_hashes()
+
+
+def test_c2_rejects_stale_upstream_artifacts() -> None:
+    identity = {
+        "status": "pass",
+        "config_sha256": "identity-config",
+        "implementation_sha256": identity_implementation_hashes(),
+    }
+    require_current_identity_artifact(identity, "identity-config")
+    identity["implementation_sha256"] = {}
+    with pytest.raises(ValueError, match="different implementation"):
+        require_current_identity_artifact(identity, "identity-config")
+
+    eligibility = {
+        "status": "pass",
+        "config_sha256": "c2-config",
+        "implementation_sha256": eligibility_implementation_hashes(),
+    }
+    require_bound_pass_artifact(
+        eligibility,
+        name="eligibility",
+        expected_config_sha256="c2-config",
+        expected_implementation=eligibility_implementation_hashes(),
+    )
+    eligibility["implementation_sha256"] = {}
+    with pytest.raises(ValueError, match="different implementation"):
+        require_bound_pass_artifact(
+            eligibility,
+            name="eligibility",
+            expected_config_sha256="c2-config",
+            expected_implementation=eligibility_implementation_hashes(),
+        )
 
 
 def test_calibration_selection_freezes_scale_simple_baseline_and_gain() -> None:

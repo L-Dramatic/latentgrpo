@@ -200,4 +200,15 @@ Every run records model calls, backward calls, visible tokens, wall time, peak
 GPU memory, package versions, config hash, checkpoint revisions, and artifacts.
 The long stages use a read-only detached KV-prefix snapshot. DynamicCache
 restoration and repeated-logit equivalence were tested before execution; each
-journal is bound to both config and implementation hashes.
+journal is bound to both config and implementation hashes. The scientific
+binding covers the runner, SWITCH adapter, C2 geometry, FCTR solver, coordinate
+charts, categorical-KL metrics, and bootstrap statistics. Identity and
+eligibility artifacts bind their runner and SWITCH adapter, and every downstream
+phase rejects an upstream artifact from a different implementation.
+
+The executable release is pinned by Git tag `switch-c2-frozen-v1`. The AutoDL
+entrypoint refuses a different project commit before downloading model weights.
+On every staged exit it creates an integrity-checked evidence bundle containing
+the available formal artifacts, journals, logs, frozen inputs, implementation,
+Git state, package versions, and GPU metadata. Collection is read-only with
+respect to the scientific artifacts and does not alter any metric or gate.
