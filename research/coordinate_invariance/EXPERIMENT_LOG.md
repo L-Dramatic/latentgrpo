@@ -303,3 +303,21 @@ to CRLF under the host Git defaults, so its cross-platform release smoke failed
 before any checkpoint was loaded. Version 2 adds repository-level LF checkout
 rules for scripts, Python, configs, journals, and documentation. Scientific
 implementation files and their frozen SHA-256 values are unchanged.
+
+## 2026-07-15: SWITCH C2 frozen-v2 fresh-clone release smoke
+
+- Artifact:
+  `artifacts/coordinate_invariance/switch_c2_release_smoke_v2.json`
+- Artifact SHA-256:
+  `da0c59e1070ddd429aec43a3c5caa9ffeae69d4989ace36347608e9e8b924c31`
+- Release tag: `switch-c2-frozen-v2`
+- Release commit: `68fdf904635acd9c247beb155597d5c2f491c91c`
+- Status: **Pass**
+- Scientific status: **Not run**
+
+The public tag was cloned at depth one into a new directory on a Windows host
+with `core.autocrlf=true`. The entrypoint resolved to `text=set, eol=lf`, had no
+CRLF bytes, passed `bash -n`, reported the four checkpoint-dependent artifacts
+as absent, and generated a self-verified pre-execution return bundle. This
+proves release transport and evidence collection only; it is not checkpoint or
+method evidence.

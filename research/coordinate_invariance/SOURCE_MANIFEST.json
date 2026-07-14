@@ -48,6 +48,11 @@
       },
       "c2_contract": {
         "project_release_tag": "switch-c2-frozen-v2",
+        "release_smoke": {
+          "artifact": "artifacts/coordinate_invariance/switch_c2_release_smoke_v2.json",
+          "artifact_sha256": "da0c59e1070ddd429aec43a3c5caa9ffeae69d4989ace36347608e9e8b924c31",
+          "status": "pass"
+        },
         "checkpoint_identity_config_file_sha256": "8f6f7bcc1edf52db3a39b8bc58585709e7526cbd46d07aa521e305ec379c1519",
         "checkpoint_identity_config_sha256": "e2df1ad9f577c8d44c97e8738575ea383ae1e75287206792aca42c56e8da09b5",
         "scientific_config_file_sha256": "a73759e1e0fed584d33234b1431d7ba282908229ba8217bdd1188a85fcc23800",

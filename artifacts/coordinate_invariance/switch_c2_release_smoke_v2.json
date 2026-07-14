@@ -1,0 +1,41 @@
+{
+  "schema_version": 1,
+  "experiment_name": "switch_c2_release_smoke_v2",
+  "tested_at_utc": "2026-07-14T18:49:40.2634289Z",
+  "status": "pass",
+  "evidence_level": "fresh public clone and pre-execution entrypoint only",
+  "host": {
+    "git_version": "2.49.0.windows.1",
+    "core_autocrlf": true,
+    "bash_runtime": "WSL"
+  },
+  "superseded_release": {
+    "tag": "switch-c2-frozen-v1",
+    "tag_object": "6d7637a365d017db1f2e7955ad28866570cf198e",
+    "commit": "36a4218a2571849e62b834f29e9645ca28d1ab1a",
+    "status": "fail",
+    "failure": "fresh Windows checkout converted the Bash entrypoint to CRLF"
+  },
+  "validated_release": {
+    "repository": "https://github.com/L-Dramatic/latentgrpo.git",
+    "clone_mode": "depth-1 tag checkout",
+    "tag": "switch-c2-frozen-v2",
+    "tag_object": "cf59241365876c6767b059e281fca3a04eebd287",
+    "commit": "68fdf904635acd9c247beb155597d5c2f491c91c",
+    "detached_head_matches_tag_commit": true,
+    "entrypoint_git_attributes": {
+      "text": "set",
+      "eol": "lf"
+    },
+    "entrypoint_contains_crlf": false,
+    "bash_syntax_check": "pass",
+    "status_entrypoint": "pass",
+    "collection_entrypoint": "pass",
+    "collection_bundle": {
+      "bytes": 156352,
+      "sha256": "37feb2e1410798b09e47be81547d03afabf380bbf472b488b7b0b59f5ac544ff",
+      "scope": "pre-execution bundle; checkpoint-dependent artifacts are absent"
+    }
+  },
+  "scientific_status": "not run"
+}
