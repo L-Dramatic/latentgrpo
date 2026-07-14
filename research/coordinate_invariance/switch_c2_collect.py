@@ -32,6 +32,7 @@ STAGE_REQUIREMENTS = {
 }
 
 FIXED_EVIDENCE = (
+    ".gitattributes",
     "pytest.ini",
     "RESEARCH_IDEA_ARCHIVE.md",
     "artifacts/coordinate_invariance/fctr_coconut_smoke_v1c.json",

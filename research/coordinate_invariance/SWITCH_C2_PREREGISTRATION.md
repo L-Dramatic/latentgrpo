@@ -206,7 +206,7 @@ charts, categorical-KL metrics, and bootstrap statistics. Identity and
 eligibility artifacts bind their runner and SWITCH adapter, and every downstream
 phase rejects an upstream artifact from a different implementation.
 
-The executable release is pinned by Git tag `switch-c2-frozen-v1`. The AutoDL
+The executable release is pinned by Git tag `switch-c2-frozen-v2`. The AutoDL
 entrypoint refuses a different project commit before downloading model weights.
 On every staged exit it creates an integrity-checked evidence bundle containing
 the available formal artifacts, journals, logs, frozen inputs, implementation,

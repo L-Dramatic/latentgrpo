@@ -9,7 +9,7 @@ MIN_GPU_GIB="${MIN_GPU_GIB:-78}"
 MIN_DISK_GIB="${MIN_DISK_GIB:-70}"
 FORCE="${FORCE:-0}"
 AUTO_COLLECT="${AUTO_COLLECT:-1}"
-PROJECT_REF="${SWITCH_C2_PROJECT_REF:-switch-c2-frozen-v1}"
+PROJECT_REF="${SWITCH_C2_PROJECT_REF:-switch-c2-frozen-v2}"
 
 CONFIG="${ROOT}/research/coordinate_invariance/configs/switch_c2_scientific_gate_v1.json"
 IDENTITY_CONFIG="${ROOT}/research/coordinate_invariance/configs/switch_checkpoint_identity_smoke_v1.json"

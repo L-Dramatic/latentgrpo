@@ -252,7 +252,7 @@ not support.
 - Protocol: `research/coordinate_invariance/SWITCH_C2_PREREGISTRATION.md`
 - AutoDL handoff:
   `research/coordinate_invariance/AUTODL_SWITCH_C2_RUNBOOK_ZH.md`
-- Local project suite: **130 passed**
+- Local project suite: **131 passed**
 - Scientific status: **Not run**
 
 The implementation now includes a hash-verified paper-final loader, official
@@ -272,13 +272,13 @@ C2 success authorizes only a matched-compute estimator before any training.
 
 ## 2026-07-15: SWITCH C2 cloud handoff hardening
 
-- Frozen project tag: `switch-c2-frozen-v1`
+- Frozen project tag: `switch-c2-frozen-v2`
 - Collection module:
   `research/coordinate_invariance/switch_c2_collect.py`
 - Return bundle:
   `artifacts/coordinate_invariance/switch_c2_return_bundle.tar.gz`
-- Local project suite: **130 passed**
-- SWITCH/C2 pinned-dependency suite: **23 passed**
+- Local project suite: **131 passed**
+- SWITCH/C2 pinned-dependency suite: **24 passed**
 - Scientific status: **Not run**
 
 The cloud entrypoint now fails before weight download when the checkout does
@@ -296,3 +296,10 @@ FCTR solver, charts, categorical-KL metrics, and bootstrap statistics. Identity
 and eligibility now bind both runner and adapter, and downstream phases reject
 stale upstream artifacts. No checkpoint-dependent record existed, so this
 hardening invalidated no observation and changed no scientific threshold.
+
+The initial `switch-c2-frozen-v1` release tag remains immutable but is
+superseded before execution. A clean Windows clone converted the Bash entrypoint
+to CRLF under the host Git defaults, so its cross-platform release smoke failed
+before any checkpoint was loaded. Version 2 adds repository-level LF checkout
+rules for scripts, Python, configs, journals, and documentation. Scientific
+implementation files and their frozen SHA-256 values are unchanged.

@@ -31,6 +31,18 @@ def _write_artifact(root: Path, relative: str, status: str = "pass") -> None:
     )
 
 
+def test_release_text_policy_keeps_executable_sources_lf() -> None:
+    root = Path(__file__).resolve().parents[1]
+    attributes = (root / ".gitattributes").read_text(encoding="utf-8")
+    for pattern in ("*.sh", "*.py", "*.json", "*.jsonl", "*.md", "*.ini"):
+        assert f"{pattern} text eol=lf" in attributes
+    for relative in (
+        "research/coordinate_invariance/run_switch_c2_autodl.sh",
+        "research/coordinate_invariance/switch_c2_collect.py",
+    ):
+        assert b"\r\n" not in (root / relative).read_bytes()
+
+
 def test_artifact_status_distinguishes_missing_and_unreadable(tmp_path: Path) -> None:
     _write(tmp_path / PRIMARY_ARTIFACTS[0], "not-json")
     _write(tmp_path / PRIMARY_ARTIFACTS[1], "[]")
