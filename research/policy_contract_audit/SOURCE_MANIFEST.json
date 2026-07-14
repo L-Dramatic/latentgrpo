@@ -1,0 +1,170 @@
+{
+  "schema_version": 1,
+  "audited_at": "2026-07-14",
+  "methods": [
+    {
+      "name": "SofT-GRPO",
+      "repository": "https://github.com/zz1358m/SofT-GRPO-master",
+      "commit": "8d3c61380b15c3400818da5ce41c62c293a1bfb4",
+      "paper": "https://arxiv.org/abs/2511.06411",
+      "source_status": "official code and trained checkpoints available",
+      "checkpoints": [
+        {
+          "id": "zz1358m/SofT-GRPO-master",
+          "revision": "128d4dbf8ba0f0765d48d39ab41b51be6e879a12",
+          "subfolder": "saved_weight/Deepeeek-Qwen-1.5B+SofT-GRPO",
+          "reported_weight_bytes": 3554214752,
+          "weight_file_sha256": "eff1ab0b6cca014cc4c766c237672384f2b6eb7f4e871c59d27c5e5a28d6dd93",
+          "weight_file_bytes": 3554214752,
+          "status": "official trained 1.5B checkpoint selected for the compute-compatible cross-method audit"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "The sampler truncates and renormalizes a fixed top-k support, clamps sampled Gumbel noise to [-1.5, 3], forms the soft action, and sorts the stored ids and perturbed scores by executed weight.",
+          "path": "Soft-Thinking+noise+loss-main/sglang_soft_thinking_pkg/python/sglang/srt/layers/sampler.py",
+          "lines": "139-204"
+        },
+        {
+          "claim": "Training reconstructs the executed mixture embedding from stored top-k ids and perturbed scores.",
+          "path": "verl-0.4.x/verl/workers/actor/dp_actor.py",
+          "lines": "146-216"
+        },
+        {
+          "claim": "The latent objective renormalizes current probabilities on stored ids, clamps reconstructed Gumbel margins, applies a current-log-probability component mask, and averages the retained component terms.",
+          "path": "verl-0.4.x/verl/utils/torch_functional.py",
+          "lines": "140-164"
+        }
+      ]
+    },
+    {
+      "name": "LEPO",
+      "repository": "https://github.com/YuyanZhou/lepo",
+      "commit": "0ca191f7304bc435204568dcc8ccc6f9ba1d196d",
+      "paper": "https://arxiv.org/abs/2604.17892v4",
+      "source_status": "official code pinned; code predates paper v4; no public trained checkpoint found on 2026-07-14",
+      "evidence": [
+        {
+          "claim": "Transformers logits processors apply the configured TopK and TopP filters before Gumbel-Softmax; the resulting vector is executed as an embedding and its top-k entries are archived.",
+          "path": "src/models/latent_qwen2.py",
+          "lines": "381-440"
+        },
+        {
+          "claim": "The default proxy id for a latent step is the clean processed-logit argmax.",
+          "path": "src/models/latent_qwen2.py",
+          "lines": "426-429"
+        },
+        {
+          "claim": "The latent prefix uses advantage-weighted top-k soft cross entropy rather than a density ratio for the continuous action.",
+          "path": "src/trainers/lepo_trainer.py",
+          "lines": "350-415"
+        },
+        {
+          "claim": "The soft-label loss sums archived top-k entries; under the released default those entries cover the sampler's entire nonzero support.",
+          "path": "src/utils/functions.py",
+          "lines": "41-55"
+        },
+        {
+          "claim": "The released latent-32 evaluation example points to the public Qwen2.5-3B base model and only comments a local trained-checkpoint path.",
+          "path": "configs/eval/qwen2_3b_aime2024_latent32_gumbel030_temp100.yaml",
+          "lines": "1-5"
+        }
+      ]
+    },
+    {
+      "name": "Latent-GRPO",
+      "repository": "https://github.com/DJC-GO-SOLO/Latent-GRPO",
+      "commit": "c0994fb781a2d180662bb522d8ff3e8638dcf56d",
+      "paper": "https://arxiv.org/abs/2604.27998",
+      "source_status": "official code and trained checkpoints available",
+      "checkpoints": [
+        {
+          "id": "DJCheng/LLaMA3.2-1B-Instruct-Latent-GRPO-Top10",
+          "revision": "0db191bfd8240199db894de4de800788c845cb18",
+          "reported_repository_bytes": 3014249734,
+          "weight_file_sha256": "ab6dcd385f01eb2a2aab4d449a5e922ebbd672c4c3189c01480de80a74379833",
+          "weight_file_bytes": 2996982344,
+          "packaging_note": "tokenizer adds compress_token at id 128256 while embedding and LM-head row count is 128256; audit prompts must not contain this out-of-range added token",
+          "status": "official trained 1B checkpoint selected for the compute-compatible cross-method audit"
+        },
+        {
+          "id": "DJCheng/Qwen2.5-Math-7B-Latent-GRPO-4k-Top10",
+          "revision": "b7e1186dd9778b2dcd2ca415d406acbcb9e2fd97",
+          "reported_repository_bytes": 15247181586,
+          "status": "official trained 7B checkpoint reserved for higher-compute replication"
+        }
+      ],
+      "evidence": [
+        {
+          "claim": "The sampler constructs a dynamic top-p candidate set, clips Gumbels, then selects the perturbed top-k support.",
+          "path": "sglang_latent_reasoning_pkg/python/sglang/srt/layers/sampler.py",
+          "lines": "78-122"
+        },
+        {
+          "claim": "The actor uses the stored perturbed scores to reconstruct the latent mixture embedding.",
+          "path": "verl-0.4.x/verl/workers/actor/dp_actor.py",
+          "lines": "138-229"
+        },
+        {
+          "claim": "The released objective averages selected marginal Gumbel terms and applies an advantage-dependent straight-through gradient flip.",
+          "path": "verl-0.4.x/verl/utils/torch_functional.py",
+          "lines": "133-195"
+        }
+      ]
+    },
+    {
+      "name": "RLPT",
+      "repository": null,
+      "commit": null,
+      "paper": "https://arxiv.org/abs/2602.03195v2",
+      "openreview": "https://openreview.net/forum?id=yrmhzWg3MK",
+      "source_status": "paper-only prior-art audit; no official repository found on 2026-07-14",
+      "evidence": [
+        {
+          "claim": "The paper identifies truncated rollout versus full-vocabulary optimization as an off-policy mismatch for discrete-token LLM RL.",
+          "path": "paper Appendix A.1",
+          "lines": "paper-level evidence"
+        },
+        {
+          "claim": "RLPT stores the behavior-policy Top-K mask and reuses it to compute masked current and old token probabilities on the same support.",
+          "path": "paper Sections 4.1-4.3",
+          "lines": "paper-level evidence"
+        }
+      ]
+    },
+    {
+      "name": "NF-CoT",
+      "repository": null,
+      "commit": null,
+      "paper": "https://arxiv.org/abs/2606.06447v1",
+      "project_page": "https://nf-cot.vercel.app",
+      "source_status": "paper-only audit; project page exposed no code or model link on 2026-07-14",
+      "evidence": [
+        {
+          "claim": "The paper defines tractable normalizing-flow likelihoods for continuous thoughts and applies policy-gradient optimization in that latent space.",
+          "path": "paper Sections 3-4",
+          "lines": "not source-code auditable"
+        }
+      ]
+    },
+    {
+      "name": "Dropout-GRPO",
+      "repository": null,
+      "commit": null,
+      "paper": "https://arxiv.org/abs/2606.10184v1",
+      "source_status": "paper-only positive-control audit; the paper claims a reference implementation, but no official repository URL was discoverable on 2026-07-14",
+      "evidence": [
+        {
+          "claim": "The paper defines the rollout-shared Bernoulli mask as part of an augmented action and replays it from a stored RNG seed during the policy update.",
+          "path": "paper Sections 3.1-3.3",
+          "lines": "not source-code auditable"
+        },
+        {
+          "claim": "The paper proves that its mean-centered group surrogate targets the mask-marginalized expected reward at the old policy, up to a finite-group scale factor.",
+          "path": "paper Theorem 3 and Corollary 4",
+          "lines": "not source-code auditable"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,19 @@
+{
+  "experiment_name": "lpca_lepo_analytic_audit_v1",
+  "sample_count": 30000,
+  "scenario_seeds": [714101, 714102],
+  "vocabulary_size": 128,
+  "top_k": 30,
+  "temperatures": [0.3, 0.5, 1.0],
+  "logit_scales": [0.5, 1.0, 2.0],
+  "policy_drift_scale": 0.05,
+  "clip_epsilon": 0.2,
+  "thresholds": {
+    "exact_score_snr_max": 5.0,
+    "exact_ratio_z_max": 5.0,
+    "archive_tail_mass_mean_min": 1e-8,
+    "proxy_mode_disagreement_min": 0.25,
+    "surrogate_exact_score_gap_mean_min": 0.25,
+    "clip_decision_disagreement_mean_min": 0.01
+  }
+}

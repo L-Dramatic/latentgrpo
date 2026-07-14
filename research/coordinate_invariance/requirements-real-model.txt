@@ -1,0 +1,6 @@
+# Version-locked to the public Coconut checkpoint's reference implementation.
+torch==2.5.1
+numpy==2.1.3
+transformers==4.46.2
+huggingface-hub==0.36.0
+safetensors==0.4.5

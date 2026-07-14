@@ -1,0 +1,417 @@
+{
+  "analysis_name": "public-gpt2-coconut-bcg-pilot-v2-posthoc-prefix-audit",
+  "evidence_level": "post-hoc exploratory confound audit",
+  "grouped_rank": {
+    "isotropic": {
+      "cosine": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.125,
+        "spearman": 0.49034749034749037,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.375
+      },
+      "diagonal_mahalanobis": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.0,
+        "spearman": 0.5485199485199486,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.5
+      },
+      "euclidean": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.0,
+        "spearman": 0.6200772200772201,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.625
+      },
+      "next_token_kl": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.5,
+        "spearman": -0.042438031373625944,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.25
+      },
+      "prefix_kl_h2": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.125,
+        "spearman": 0.8329472329472329,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.625
+      },
+      "prefix_kl_h3": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.125,
+        "spearman": 0.8803088803088803,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.75
+      }
+    },
+    "isotropic:0.5": {
+      "cosine": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": -0.11188811188811189,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "diagonal_mahalanobis": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.06293706293706294,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "euclidean": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.0,
+        "spearman": 0.7622377622377622,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      },
+      "next_token_kl": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": -0.02097902097902098,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "prefix_kl_h2": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.7762237762237763,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      },
+      "prefix_kl_h3": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.8041958041958042,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      }
+    },
+    "isotropic:2": {
+      "cosine": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": -0.02097902097902098,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "diagonal_mahalanobis": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.0,
+        "spearman": 0.3916083916083916,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      },
+      "euclidean": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.14685314685314685,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "next_token_kl": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": -0.31873954309394753,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "prefix_kl_h2": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.7482517482517482,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      },
+      "prefix_kl_h3": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.7482517482517482,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      }
+    },
+    "isotropic:8": {
+      "cosine": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": -0.26573426573426573,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "diagonal_mahalanobis": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.13986013986013987,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "euclidean": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": 0.38461538461538464,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "next_token_kl": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": 0.1174563179317042,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "prefix_kl_h2": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": 0.6643356643356644,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "prefix_kl_h3": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.8531468531468531,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      }
+    },
+    "nearest_peer_interpolation": {
+      "cosine": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.125,
+        "spearman": 0.594079794079794,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.5
+      },
+      "diagonal_mahalanobis": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.125,
+        "spearman": 0.618018018018018,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.625
+      },
+      "euclidean": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.125,
+        "spearman": 0.6481338481338481,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.625
+      },
+      "next_token_kl": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.375,
+        "spearman": 0.10077327955059766,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.375
+      },
+      "prefix_kl_h2": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.125,
+        "spearman": 0.8792792792792793,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.875
+      },
+      "prefix_kl_h3": {
+        "count": 36,
+        "hidden_top_risk_fraction": 0.0,
+        "spearman": 0.9464607464607465,
+        "top_risk_count": 8,
+        "top_risk_recall": 0.875
+      }
+    },
+    "nearest_peer_interpolation:0.05": {
+      "cosine": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": -0.02097902097902098,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "diagonal_mahalanobis": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": -0.013986013986013986,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "euclidean": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": 0.1048951048951049,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "next_token_kl": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": -0.14789099119283972,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "prefix_kl_h2": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.8041958041958042,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      },
+      "prefix_kl_h3": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.9300699300699301,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      }
+    },
+    "nearest_peer_interpolation:0.2": {
+      "cosine": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.006993006993006993,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "diagonal_mahalanobis": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.0,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "euclidean": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.11188811188811189,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "next_token_kl": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": -0.08391608391608392,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "prefix_kl_h2": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.8041958041958042,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      },
+      "prefix_kl_h3": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.9300699300699301,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      }
+    },
+    "nearest_peer_interpolation:0.5": {
+      "cosine": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": -0.20279720279720279,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "diagonal_mahalanobis": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.2727272727272727,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "euclidean": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.3146853146853147,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.3333333333333333
+      },
+      "next_token_kl": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.6666666666666666,
+        "spearman": 0.0979020979020979,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.0
+      },
+      "prefix_kl_h2": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.7482517482517482,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      },
+      "prefix_kl_h3": {
+        "count": 12,
+        "hidden_top_risk_fraction": 0.3333333333333333,
+        "spearman": 0.8531468531468531,
+        "top_risk_count": 3,
+        "top_risk_recall": 0.6666666666666666
+      }
+    }
+  },
+  "pooled_rank": {
+    "cosine": {
+      "count": 72,
+      "hidden_top_risk_fraction": 0.13333333333333333,
+      "spearman": 0.605344395137951,
+      "top_risk_count": 15,
+      "top_risk_recall": 0.5333333333333333
+    },
+    "diagonal_mahalanobis": {
+      "count": 72,
+      "hidden_top_risk_fraction": 0.13333333333333333,
+      "spearman": 0.5583960383304393,
+      "top_risk_count": 15,
+      "top_risk_recall": 0.3333333333333333
+    },
+    "euclidean": {
+      "count": 72,
+      "hidden_top_risk_fraction": 0.13333333333333333,
+      "spearman": 0.6736767637790212,
+      "top_risk_count": 15,
+      "top_risk_recall": 0.6
+    },
+    "next_token_kl": {
+      "count": 72,
+      "hidden_top_risk_fraction": 0.4666666666666667,
+      "spearman": 0.08865136485973456,
+      "top_risk_count": 15,
+      "top_risk_recall": 0.2
+    },
+    "prefix_kl_h2": {
+      "count": 72,
+      "hidden_top_risk_fraction": 0.13333333333333333,
+      "spearman": 0.8829506720689434,
+      "top_risk_count": 15,
+      "top_risk_recall": 0.8
+    },
+    "prefix_kl_h3": {
+      "count": 72,
+      "hidden_top_risk_fraction": 0.06666666666666667,
+      "spearman": 0.9306386262782174,
+      "top_risk_count": 15,
+      "top_risk_recall": 0.8
+    }
+  },
+  "prefix_horizons": [
+    1,
+    2,
+    3
+  ],
+  "protocol_audit": {
+    "all_reference_text_starts_with_hash_delimiter": true,
+    "interpretation": "H=1 is a formatting-token baseline when every continuation begins with the same delimiter. H=2 and longer prefixes are required before claiming delayed behavioral sensitivity.",
+    "reference_continuation_count": 24
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "source_artifact": "E:/LantentGRPO/artifacts/behavioral_geometry/public_gpt2_coconut_bcg_pilot_v2.json",
+  "source_sha256": "d46ee6c77f78565be9441d52af7d9c99a6e217bf34c9bc423b007110f5feb622",
+  "status": "complete"
+}

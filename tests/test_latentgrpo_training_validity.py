@@ -16,9 +16,15 @@ class UnusedAutoClass:
 transformers_stub.AutoModelForCausalLM = UnusedAutoClass
 transformers_stub.AutoTokenizer = UnusedAutoClass
 transformers_stub.set_seed = lambda seed: None
+previous_transformers = sys.modules.get("transformers")
 sys.modules["transformers"] = transformers_stub
-
-from models.latentgrpo import LatentGRPO
+try:
+    from models.latentgrpo import LatentGRPO
+finally:
+    if previous_transformers is None:
+        sys.modules.pop("transformers", None)
+    else:
+        sys.modules["transformers"] = previous_transformers
 
 
 class TinyTokenizer:

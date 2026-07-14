@@ -38,3 +38,16 @@ ENV/
 # OS
 .DS_Store
 Thumbs.db
+
+# Research dependencies and downloaded checkpoints
+_external/
+_models/
+_research_env/
+_switch_preflight_env/
+.switch_c2_env/
+
+# Large or temporary experiment outputs
+artifacts/**/*.pt
+artifacts/**/*.bin
+artifacts/**/*.safetensors
+artifacts/**/traces/

@@ -1,0 +1,199 @@
+{
+  "schema_version": 1,
+  "experiment_name": "switch-fctr-c2-scientific-gate-v1",
+  "frozen_at": "2026-07-15",
+  "prerequisites": {
+    "source_preflight_artifact": "artifacts/coordinate_invariance/switch_c2_source_preflight_v1.json",
+    "source_preflight_artifact_sha256": "3fae56acf8332a10d136e4b897c2653fc5be307a09a4eb5c2c479349bfa88d9b",
+    "coconut_c1_artifact": "artifacts/coordinate_invariance/fctr_coconut_smoke_v1c.json",
+    "coconut_c1_artifact_sha256": "4ed3b83325ea7d9d73f6546058fd2980fc394305bdcab61d9cdec37488e6e495",
+    "checkpoint_identity_config": "research/coordinate_invariance/configs/switch_checkpoint_identity_smoke_v1.json",
+    "checkpoint_identity_config_sha256": "e2df1ad9f577c8d44c97e8738575ea383ae1e75287206792aca42c56e8da09b5",
+    "checkpoint_identity_artifact": "artifacts/coordinate_invariance/switch_checkpoint_identity_smoke_v1.json",
+    "checkpoint_identity_required_status": "pass"
+  },
+  "model": {
+    "source_relative_path": "_external/switch",
+    "source_commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd",
+    "base_id": "Qwen/Qwen3-8B",
+    "base_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "adapter_id": "LARK-Lab/SWITCH-Phase3-GRPO-LoRA-Qwen3-8B",
+    "adapter_revision": "246fee75d774c02a110ea8608ac841a916dd5d35",
+    "attention_implementation": "eager",
+    "dtype": "bfloat16",
+    "cache_relative_path": "_models/hf_home/hub"
+  },
+  "dataset": {
+    "id": "HuggingFaceH4/MATH-500",
+    "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+    "relative_path": "_models/hf_home/hub/datasets--HuggingFaceH4--MATH-500/snapshots/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/test.jsonl",
+    "sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+    "expected_rows": 500,
+    "prompt_order_artifact": "artifacts/coordinate_invariance/switch_c2_prompt_order_v1.json",
+    "prompt_order_artifact_sha256": "ceae806918e9cad16b5225f999591f9f6206f51bceec9076ce5de4449ad8fbc3",
+    "prompt_order_config_sha256": "c0d9b44560055314b1190fcd172fd4230f5468fd62984ef847a1b6c33495d61f"
+  },
+  "prompt": {
+    "suffix": "\nPlease reason step by step, and put your final answer within \\boxed{}.",
+    "add_generation_prompt": true,
+    "enable_thinking": true
+  },
+  "selection": {
+    "scan_limit": 500,
+    "maximum_new_visible_tokens": 1024,
+    "minimum_latent_dwell": 4,
+    "target_block": 0,
+    "target_latent_step": 0,
+    "require_natural_exit": true,
+    "required_post_block_visible_tokens": 64,
+    "reject_switch_boundary_or_eos_in_horizon": true,
+    "reject_max_token_truncation": true,
+    "calibration_eligible_prompts": 16,
+    "test_eligible_prompts": 32,
+    "minimum_test_subjects": 5,
+    "minimum_test_levels": 4
+  },
+  "intervention": {
+    "definition": "replace only the first hidden-state input consumed after the first natural <swi> boundary",
+    "objective_visible_tokens": [1, 8],
+    "secondary_holdout_visible_tokens": [9, 64],
+    "strict_holdout_visible_tokens": [33, 64],
+    "teacher_forced_history": "unperturbed greedy factual continuation",
+    "free_rollout_horizon_after_block": 64
+  },
+  "subspace": {
+    "dimension": 4,
+    "construction": "first axis is the normalized full-hidden gradient of mean factual log likelihood over visible tokens 1-8; three seeded Gaussian axes are projected into its orthogonal complement and QR-orthonormalized",
+    "seed": 71551,
+    "per_prompt_seed": "seed + scan_rank",
+    "minimum_full_gradient_l2": 1e-10,
+    "maximum_basis_orthogonality_error": 1e-5
+  },
+  "charts": {
+    "identity": true,
+    "orthogonal_seed": 71552,
+    "anisotropic_seed": 71553,
+    "condition_numbers": [4.0, 12.0],
+    "maximum_realized_condition_relative_error": 1e-8
+  },
+  "derivatives": {
+    "method": "torch.autograd.functional.jvp with eager attention",
+    "jacobian_dtype": "float64_after_measurement",
+    "finite_difference_seed": 71554,
+    "finite_difference_relative_step_grid": [0.0025, 0.005, 0.01, 0.02],
+    "finite_difference_calibration_prompts": 4,
+    "maximum_median_relative_error": 0.1,
+    "maximum_p90_relative_error": 0.2,
+    "maximum_zero_point_logit_absolute_error": 0.0
+  },
+  "metrics": {
+    "latent_exit_prefix_horizons": [1, 3, 4],
+    "visible_prefix_horizons": [1, 3, 8, 32, 64],
+    "fishback_baseline": "visible_prefix_1",
+    "candidate_method": "visible_prefix_32",
+    "oracle_only": "visible_prefix_64",
+    "semantic_prefix": {
+      "minimum_tokens": 3,
+      "maximum_tokens": 32,
+      "boundary_regex": "(?:\\n|[.!?](?:\\s|$))"
+    },
+    "aggregation": "sum of categorical pullback Fisher terms along the factual shared history",
+    "regularization": {
+      "metric": "calibration-only diagonal activation whitening projected into each prompt subspace",
+      "relative_generalized_ridge": 0.01,
+      "scale": "trace(W^-1 G) / dimension",
+      "variance_estimator": "population variance over the 16 calibration first-latent states",
+      "variance_floor_fraction_of_median": 0.001
+    }
+  },
+  "probe_bank": {
+    "seed": 71555,
+    "paired_native_directions": 12,
+    "relative_hidden_l2_grid": [0.0025, 0.005, 0.01, 0.02],
+    "calibration_selection": "choose one global scale maximizing V32-minus-best-simple prompt-bootstrap Spearman margin subject to numerical controls; ties choose the smallest scale",
+    "primary_actual_risk": "exact summed categorical KL on factual visible tokens 33-64",
+    "secondary_actual_risk": "exact summed categorical KL on factual visible tokens 9-64",
+    "top_risk_fraction": 0.2
+  },
+  "updates": {
+    "objective": "mean factual log likelihood on visible tokens 1-8",
+    "candidate_metrics": [
+      "activation_whitening",
+      "latent_exit_prefix_1",
+      "latent_exit_prefix_3",
+      "latent_exit_prefix_4",
+      "visible_prefix_1",
+      "visible_prefix_3",
+      "visible_prefix_8",
+      "semantic_prefix",
+      "visible_prefix_32",
+      "visible_prefix_64"
+    ],
+    "simple_baseline_selection_order": [
+      "activation_whitening",
+      "latent_exit_prefix_1",
+      "visible_prefix_1",
+      "latent_exit_prefix_3",
+      "visible_prefix_3",
+      "latent_exit_prefix_4",
+      "visible_prefix_8",
+      "semantic_prefix"
+    ],
+    "selection_tie_tolerance": 1e-12,
+    "coordinate_baseline": "Euclidean gradient recomputed in every chart and mapped to the native subspace",
+    "predicted_objective_gain_grid": [0.0001, 0.0003, 0.001, 0.003, 0.01],
+    "calibration_selection": "choose one global gain maximizing V32 strict-holdout KL reduction versus the best simple baseline while preserving objective gain; ties choose the smallest gain",
+    "minimum_calibration_objective_gain_ratio": 0.9,
+    "scalar_retuning": "every direction is normalized to the same native first-order objective gain before exact evaluation",
+    "ordinary_sequence_kl_control": "for every coordinate-Euclidean direction, bisection-retune only its scalar to the calibration-selected exact V8 KL budget",
+    "bisection_iterations": 16,
+    "maximum_relative_hidden_l2": 0.05,
+    "free_rollout_methods": [
+      "coordinate_euclidean_identity",
+      "coordinate_euclidean_condition_12",
+      "visible_prefix_1",
+      "best_simple_calibration",
+      "visible_prefix_32"
+    ]
+  },
+  "statistics": {
+    "bootstrap_unit": "prompt",
+    "bootstrap_samples": 10000,
+    "confidence": 0.95,
+    "seed": 71556,
+    "correlation": "within-prompt Spearman over the paired probe bank, then prompt bootstrap of the mean",
+    "top_risk_recall": "within-prompt overlap at the frozen 20 percent risk fraction, then prompt bootstrap of the mean",
+    "multiple_comparisons": "candidate V32 is compared once against the maximum calibration-selected simple baseline; V64 remains an oracle and is not eligible for selection"
+  },
+  "decision_rules": {
+    "all_identity_precision_transport_controls_must_pass": true,
+    "maximum_projected_gradient_relative_error": 0.01,
+    "maximum_metric_update_transport_relative_error": 0.005,
+    "maximum_orthogonal_euclidean_direction_discrepancy": 0.005,
+    "minimum_exact_kl_retuning_success_fraction": 1.0,
+    "minimum_median_condition12_euclidean_direction_discrepancy": 0.25,
+    "minimum_chart_affected_prompt_fraction": 0.25,
+    "chart_affected_prompt_definition": "the identity and condition-12 coordinate-Euclidean updates differ in at least one free-rollout token within 64 post-block tokens or have strict-holdout symmetric KL at least 0.0001",
+    "chart_affected_min_strict_symmetric_kl": 0.0001,
+    "minimum_v32_spearman_margin_over_best_simple": 0.1,
+    "minimum_v32_spearman_margin_ci_low": 0.03,
+    "minimum_v32_top_risk_recall_margin": 0.1,
+    "maximum_v32_to_best_simple_strict_holdout_kl_ratio": 0.9,
+    "maximum_v32_to_best_simple_strict_holdout_kl_ratio_ci_high": 1.0,
+    "minimum_v32_minus_best_simple_strict_holdout_utility_ci_low": 0.0,
+    "maximum_v32_spearman_gap_to_v64_oracle": 0.05,
+    "simpler_baseline_match_tolerance": 0.03,
+    "required_test_subjects": 5,
+    "required_test_levels": 4
+  },
+  "runtime": {
+    "device": "cuda:0",
+    "seed": 71557,
+    "disable_tf32": true,
+    "record_model_calls": true,
+    "record_backward_calls": true,
+    "record_visible_tokens": true,
+    "record_wall_time": true,
+    "record_peak_cuda_memory": true
+  }
+}

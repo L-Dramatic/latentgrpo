@@ -1,0 +1,168 @@
+{
+  "checkpoints": [
+    {
+      "architecture": [
+        "Qwen2ForCausalLM"
+      ],
+      "config_vocab_size": 151936,
+      "dtype": "bfloat16",
+      "embedding_dim": 1536,
+      "embedding_rows": 151936,
+      "forward": {
+        "finite_logits": true,
+        "repeat_max_abs_error": 0.0,
+        "top_logits": [
+          24.375,
+          22.25,
+          21.5,
+          20.75,
+          19.5
+        ],
+        "top_token_ids": [
+          5338,
+          1249,
+          40,
+          785,
+          32313
+        ],
+        "top_tokens": [
+          "First",
+          "To",
+          "I",
+          "The",
+          "Okay"
+        ]
+      },
+      "gates": {
+        "config_vocab_matches_input_embedding": true,
+        "finite_logits": true,
+        "output_vocab_matches_input_embedding": true,
+        "prompt_ids_in_range": true,
+        "repeatability": true,
+        "weight_bytes_match": true,
+        "weight_sha256_match": true
+      },
+      "id": "zz1358m/SofT-GRPO-master",
+      "local_dir": "E:\\LantentGRPO\\_models\\SofT-GRPO-Qwen-1.5B",
+      "name": "SofT-GRPO-Qwen-1.5B",
+      "output_rows": 151936,
+      "prompt": {
+        "max_id": 151648,
+        "min_id": 13,
+        "sha256": "c5d2a59b213d8ca8abb2ed170f91730df54c962a623156af61164f1be7aba1ba",
+        "token_count": 26
+      },
+      "revision": "128d4dbf8ba0f0765d48d39ab41b51be6e879a12",
+      "runtime": {
+        "cuda_peak_allocated_mib": 3415.04052734375,
+        "forward_seconds": 2.1224677562713623,
+        "hf_device_map": {
+          "": "0"
+        },
+        "input_device": "cuda:0",
+        "load_seconds": 10.050625562667847,
+        "total_seconds": 19.548717260360718
+      },
+      "status": "pass",
+      "tokenizer": {
+        "out_of_range_token_id_count": 0,
+        "out_of_range_token_ids": [],
+        "tokenizer_length": 151665,
+        "tokenizer_max_id": 151664,
+        "tokenizer_min_id": 0
+      },
+      "weight_bytes": 3554214752,
+      "weight_file": "E:\\LantentGRPO\\_models\\SofT-GRPO-Qwen-1.5B\\model.safetensors",
+      "weight_sha256": "eff1ab0b6cca014cc4c766c237672384f2b6eb7f4e871c59d27c5e5a28d6dd93"
+    },
+    {
+      "architecture": [
+        "LlamaForCausalLM"
+      ],
+      "config_vocab_size": 128256,
+      "dtype": "bfloat16",
+      "embedding_dim": 2048,
+      "embedding_rows": 128256,
+      "forward": {
+        "finite_logits": true,
+        "repeat_max_abs_error": 0.0,
+        "top_logits": [
+          27.125,
+          27.125,
+          27.0,
+          27.0,
+          27.0
+        ],
+        "top_token_ids": [
+          24,
+          12,
+          279,
+          21,
+          15
+        ],
+        "top_tokens": [
+          "9",
+          "-",
+          "\u0120the",
+          "6",
+          "0"
+        ]
+      },
+      "gates": {
+        "config_vocab_matches_input_embedding": true,
+        "finite_logits": true,
+        "output_vocab_matches_input_embedding": true,
+        "prompt_ids_in_range": true,
+        "repeatability": true,
+        "weight_bytes_match": true,
+        "weight_sha256_match": true
+      },
+      "id": "DJCheng/LLaMA3.2-1B-Instruct-Latent-GRPO-Top10",
+      "local_dir": "E:\\LantentGRPO\\_models\\Latent-GRPO-Llama-1B",
+      "name": "Latent-GRPO-Llama-1B",
+      "output_rows": 128256,
+      "prompt": {
+        "max_id": 128009,
+        "min_id": 13,
+        "sha256": "d89374c4cc86e4e4aac0ae430a76a46caf954f6e881aec7741423724cb6f3e17",
+        "token_count": 57
+      },
+      "revision": "0db191bfd8240199db894de4de800788c845cb18",
+      "runtime": {
+        "cuda_peak_allocated_mib": 2866.25390625,
+        "forward_seconds": 0.6348474025726318,
+        "hf_device_map": {
+          "": "0"
+        },
+        "input_device": "cuda:0",
+        "load_seconds": 6.7439868450164795,
+        "total_seconds": 13.790352821350098
+      },
+      "status": "pass",
+      "tokenizer": {
+        "out_of_range_token_id_count": 1,
+        "out_of_range_token_ids": [
+          128256
+        ],
+        "tokenizer_length": 128257,
+        "tokenizer_max_id": 128256,
+        "tokenizer_min_id": 0
+      },
+      "weight_bytes": 2996982344,
+      "weight_file": "E:\\LantentGRPO\\_models\\Latent-GRPO-Llama-1B\\model.safetensors",
+      "weight_sha256": "ab6dcd385f01eb2a2aab4d449a5e922ebbd672c4c3189c01480de80a74379833"
+    }
+  ],
+  "config_sha256": "e411ebf5654fa26b6e0d2ced46998050ebc7dcb2909e0a33538c01a65377bf5d",
+  "experiment_name": "lpca_trained_checkpoint_smoke_v1",
+  "interpretation": "A pass establishes only that pinned native checkpoints load without repair, accept the frozen prompt, and produce finite repeatable logits.",
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.9",
+    "seconds": 34.13028144836426,
+    "torch": "2.5.1+cu124",
+    "transformers": "4.55.4"
+  },
+  "status": "pass"
+}

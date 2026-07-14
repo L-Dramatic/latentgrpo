@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment_name": "switch-c2-deterministic-prompt-order-v1",
+  "dataset": {
+    "id": "HuggingFaceH4/MATH-500",
+    "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+    "split": "test",
+    "file": "test.jsonl",
+    "file_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+    "expected_rows": 500
+  },
+  "tokenizer": {
+    "id": "LARK-Lab/SWITCH-Phase3-GRPO-LoRA-Qwen3-8B",
+    "revision": "246fee75d774c02a110ea8608ac841a916dd5d35",
+    "tokenizer_json_sha256": "c43dd6fac5d73912596554c48c00b73bc1128c8b83e5669041b00d5def57e663",
+    "swi_start_id": 151669,
+    "swi_end_id": 151670,
+    "latent_id": 151671,
+    "eos_id": 151645
+  },
+  "prompt": {
+    "suffix": "\nPlease reason step by step, and put your final answer within \\boxed{}.",
+    "add_generation_prompt": true,
+    "enable_thinking": true
+  },
+  "ordering": {
+    "seed": 71531,
+    "key": "sha256(seed NUL unique_id NUL problem)"
+  },
+  "eligibility": {
+    "target_block": 0,
+    "target_latent_step": 0,
+    "minimum_latent_dwell": 4,
+    "require_natural_exit": true,
+    "minimum_visible_tokens_after_block": 64,
+    "reject_switch_or_eos_within_post_block_horizon": true,
+    "maximum_visible_tokens_scanned": 1024,
+    "reject_max_token_truncation": true
+  },
+  "splits": {
+    "calibration_eligible": 16,
+    "test_eligible": 32,
+    "scan_limit": 500,
+    "minimum_test_subjects": 5,
+    "minimum_test_levels": 4
+  }
+}

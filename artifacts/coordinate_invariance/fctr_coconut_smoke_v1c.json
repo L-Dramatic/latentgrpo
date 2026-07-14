@@ -1,0 +1,128 @@
+{
+  "charts": [
+    {
+      "condition_number": 1.0,
+      "euclidean_transport_cosine": 0.9999999999999998,
+      "euclidean_transport_relative_error": 0.0,
+      "fctr_actual_gain_abs_error": 0.0,
+      "fctr_transport_relative_error": 0.0,
+      "gradient_transport_relative_error": 0.0,
+      "jacobian_transport_relative_error": 0.0,
+      "metric_transport_relative_error_max": 0.0,
+      "name": "identity",
+      "noop_logit_max_abs_error": 0.0
+    },
+    {
+      "condition_number": 1.0000000000000002,
+      "euclidean_transport_cosine": 0.9999999999999452,
+      "euclidean_transport_relative_error": 3.3082517773435907e-07,
+      "fctr_actual_gain_abs_error": 1.1421421038937396e-06,
+      "fctr_transport_relative_error": 1.3717145808006102e-05,
+      "gradient_transport_relative_error": 3.4874896283368825e-07,
+      "jacobian_transport_relative_error": 9.732656890181488e-07,
+      "metric_transport_relative_error_max": 1.2584763289876591e-05,
+      "name": "orthogonal-seed-71514",
+      "noop_logit_max_abs_error": 0.0
+    },
+    {
+      "condition_number": 4.000000000000005,
+      "euclidean_transport_cosine": 0.761675980338791,
+      "euclidean_transport_relative_error": 1.2986969051988557,
+      "fctr_actual_gain_abs_error": 9.218296803670256e-07,
+      "fctr_transport_relative_error": 1.986987967956052e-05,
+      "gradient_transport_relative_error": 5.307962704243259e-07,
+      "jacobian_transport_relative_error": 1.0519571015567882e-06,
+      "metric_transport_relative_error_max": 1.9801447087044407e-05,
+      "name": "affine-cond-4-seed-71515",
+      "noop_logit_max_abs_error": 0.0
+    },
+    {
+      "condition_number": 12.000000000000005,
+      "euclidean_transport_cosine": 0.5226602935675502,
+      "euclidean_transport_relative_error": 0.9684987860861233,
+      "fctr_actual_gain_abs_error": 1.9431576478989854e-06,
+      "fctr_transport_relative_error": 5.341525761905142e-06,
+      "gradient_transport_relative_error": 5.633633289702961e-07,
+      "jacobian_transport_relative_error": 1.9729841954282577e-06,
+      "metric_transport_relative_error_max": 0.00012548333795833112,
+      "name": "affine-cond-12-seed-71516",
+      "noop_logit_max_abs_error": 0.0
+    }
+  ],
+  "checkpoint": {
+    "attention_implementation": "eager",
+    "checkpoint_path": "E:\\LantentGRPO\\_models\\gpt2-gsm8k-coconut\\checkpoint_33",
+    "checkpoint_sha256": "f7a9b5fda7c5c2afa972aaa22ac9aef13d6f083e202fe8a09649d810e3593213",
+    "coconut_source_commit": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+    "model_id": "openai-community/gpt2",
+    "model_revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e"
+  },
+  "config_sha256": "f3ce1bacda69040d8190d6e55d3e57bcb159cd2ca2a5610b5e700566333e8245",
+  "evidence_level": "real-checkpoint differentiable integration contract only",
+  "example": {
+    "dataset_index": 0,
+    "dataset_sha256": "d6cdd4c3c48de84873fbfb0f0005d30e9c5527c430feb206608749aa48dfd6e5",
+    "question_sha256": "2b2e3f9639f6fa282a0b0c1d622e0c75cc03797b43268945f32b134da4fee344",
+    "target_ids": [
+      21017,
+      1248,
+      50256
+    ],
+    "target_pass": 3,
+    "target_text": "### 18",
+    "target_tokens": [
+      "###",
+      "\u012018",
+      "<|endoftext|>"
+    ]
+  },
+  "experiment_name": "fctr-public-gpt2-coconut-differentiable-smoke-v1c",
+  "gates": {
+    "anisotropic_euclidean_positive_control": true,
+    "fctr_transport": true,
+    "finite_difference": true,
+    "finite_logits_and_jacobians": true,
+    "gradient_transport": true,
+    "identity_euclidean_control": true,
+    "jacobian_transport": true,
+    "metric_transport": true,
+    "no_op_logits": true,
+    "orthogonal_euclidean_control": true,
+    "valid_pre_eos_target": true
+  },
+  "geometry": {
+    "analytic_directional_derivative": -0.037628854490850815,
+    "base_utility": -0.8076685627176984,
+    "finite_difference": -0.03617567614444539,
+    "finite_difference_relative_error": 0.03861872401028722,
+    "gradient_norm": 0.046601676680011216,
+    "prefix_metric_max_eigenvalues": [
+      3.142391968841407e-13,
+      0.002741217617206193,
+      0.0027412204664632933
+    ],
+    "prefix_metric_min_eigenvalues": [
+      4.805614694110228e-16,
+      8.187720616026642e-06,
+      8.189334555469907e-06
+    ]
+  },
+  "interpretation": "A pass validates differentiable replay and H1/H2/H3 transport in a frozen three-dimensional update subspace. It cannot authorize FCTR because this checkpoint has a trivial visible continuation.",
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "cuda_peak_allocated_mib": 911.53857421875,
+    "device": "cuda:0",
+    "function_evaluations": 27,
+    "model_forward_calls": 270,
+    "python": "3.10.9",
+    "seconds": 33.412313899956644,
+    "torch": "2.5.1+cu124",
+    "transformers": "4.55.4"
+  },
+  "status": "pass",
+  "subspace": {
+    "ambient_dimension": 768,
+    "basis_orthogonality_max_abs_error": 5.485107923419719e-09,
+    "dimension": 3
+  }
+}

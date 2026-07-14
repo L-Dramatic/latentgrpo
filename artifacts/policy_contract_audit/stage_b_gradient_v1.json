@@ -1,0 +1,69 @@
+{
+  "config_sha256": "1605fe744bdca5dad7d4dc1a99b295f80a682c11841bf2c3010ea3999d218f3f",
+  "dataset": {
+    "id": "HuggingFaceH4/MATH-500",
+    "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+    "split": "test"
+  },
+  "evaluated_states": 48,
+  "expected_full_records": 144,
+  "experiment_name": "lpca_stage_b_gradient_v1",
+  "frozen_selected_states": 48,
+  "gates": {
+    "authorize_matched_training": false,
+    "controls": {
+      "action_normalization": true,
+      "finite_rewards": true,
+      "gradient_reliability": true,
+      "importance_sample_size": true,
+      "ratio_normalization": true
+    },
+    "operational_effects": {
+      "gain_sign_disagreement": false,
+      "paired_gain_superiority": false,
+      "positive_rate_superiority": false
+    },
+    "semantic_effects": {
+      "gradient_cosine_gap": true,
+      "gradient_relative_error": true
+    }
+  },
+  "model": {
+    "dtype": "float16",
+    "id": "Qwen/Qwen2.5-3B",
+    "revision": "3aab1f1954e9cc14eb9509a215f9e5ca08227a9b"
+  },
+  "records_path": "artifacts\\policy_contract_audit\\stage_b_gradient_v1_records.jsonl",
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "datasets": "3.6.0",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.9",
+    "seconds": 4169.849949598312,
+    "torch": "2.5.1+cu124",
+    "transformers": "4.55.4"
+  },
+  "status": "fail",
+  "summary": {
+    "action_sum_error_p999": 6.661338147750939e-16,
+    "active_support_size_max": 21,
+    "active_support_size_min": 8,
+    "candidate_ess_fraction_p10": 0.9621513555235199,
+    "candidate_gain_sign_disagreement_mean": 0.0,
+    "candidate_ratio_z_p99": 3.013715900134927,
+    "evaluation_reward_std_median": 0.18024070109053714,
+    "exact_gradient_split_half_cosine_median": 0.44646009984585927,
+    "exact_minus_surrogate_gain_bootstrap_l95": -0.0018676874038937564,
+    "exact_minus_surrogate_gain_mean": -0.0016288528206692809,
+    "exact_positive_rate": 1.0,
+    "exact_positive_rate_advantage": 0.0,
+    "finite_reward_rate": 1.0,
+    "gate_exact_gain_mean": 0.006327020517679579,
+    "gate_surrogate_gain_mean": 0.007955873338348865,
+    "gradient_cosine_median": 0.7948096804244333,
+    "gradient_relative_error_median": 0.7071116995981559,
+    "record_count": 144,
+    "state_count": 48,
+    "surrogate_positive_rate": 1.0
+  }
+}

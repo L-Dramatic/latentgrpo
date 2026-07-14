@@ -1,0 +1,21 @@
+{
+  "experiment_name": "lpca_lepo_source_faithful_audit_v2",
+  "sample_count": 30000,
+  "scenario_seeds": [714201, 714202],
+  "vocabulary_size": 128,
+  "top_k": 30,
+  "top_p": 0.95,
+  "temperatures": [0.3, 0.5, 1.0],
+  "logit_scales": [0.5, 1.0, 2.0],
+  "policy_drift_scale": 0.05,
+  "thresholds": {
+    "archive_mass_error_max": 1e-12,
+    "reconstruction_l1_max": 1e-12,
+    "active_support_size_max": 30,
+    "exact_score_snr_max": 5.0,
+    "exact_ratio_z_max": 5.0,
+    "proxy_mode_disagreement_min": 0.25,
+    "surrogate_score_snr_min": 5.0,
+    "surrogate_exact_score_gap_mean_min": 0.25
+  }
+}

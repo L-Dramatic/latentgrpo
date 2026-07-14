@@ -1,0 +1,86 @@
+{
+  "behavior_identity_errors": {
+    "affine-cond-12-seed-4104": 1.7763568394002505e-15,
+    "identity": 0.0,
+    "orthogonal-seed-4103": 8.881784197001252e-16,
+    "sinh-scale-0.65": 6.661338147750939e-16
+  },
+  "checks": {
+    "anisotropic_neighbor_sensitivity": true,
+    "anisotropic_rank_sensitivity": true,
+    "behavior_identity": true,
+    "coordinate_noise_sensitivity": true,
+    "functional_distance_invariance": true,
+    "nonlinear_interpolation_sensitivity": true,
+    "orthogonal_negative_control": true,
+    "round_trip_exactness": true
+  },
+  "config": {
+    "affine_condition_number": 12.0,
+    "candidate_count": 24,
+    "chart_seed": 4103,
+    "data_seed": 4102,
+    "dimension": 8,
+    "hidden_dimension": 16,
+    "horizon": 4,
+    "model_seed": 4101,
+    "noise_standard_deviation": 0.2,
+    "pair_count": 96,
+    "query_count": 128,
+    "sinh_scale": 0.65,
+    "vocabulary_size": 11
+  },
+  "diagnostics": {
+    "affine-cond-12-seed-4104": {
+      "all_finite": true,
+      "max_abs_round_trip_error": 2.7478019859472624e-15,
+      "relative_l2_round_trip_error": 5.477503043359996e-16
+    },
+    "identity": {
+      "all_finite": true,
+      "max_abs_round_trip_error": 0.0,
+      "relative_l2_round_trip_error": 0.0
+    },
+    "orthogonal-seed-4103": {
+      "all_finite": true,
+      "max_abs_round_trip_error": 9.43689570931383e-16,
+      "relative_l2_round_trip_error": 2.742040238909396e-16
+    },
+    "sinh-scale-0.65": {
+      "all_finite": true,
+      "max_abs_round_trip_error": 4.440892098500626e-16,
+      "relative_l2_round_trip_error": 1.0612106394342808e-16
+    }
+  },
+  "experiment_name": "toy-coordinate-contract-v1",
+  "functional_invariance_errors": {
+    "affine-cond-12-seed-4104": 2.7755575615628914e-16,
+    "identity": 0.0,
+    "orthogonal-seed-4103": 2.220446049250313e-16,
+    "sinh-scale-0.65": 1.1102230246251565e-16
+  },
+  "interpretation": "This gate validates implementation contracts only. It is not evidence that coordinate dependence affects a trained latent reasoning model.",
+  "metrics": {
+    "anisotropic_neighbor_flip_rate": 0.7109375,
+    "anisotropic_ranking_disagreement": 0.280372509057971,
+    "max_behavior_identity_error": 1.7763568394002505e-15,
+    "max_functional_invariance_error": 2.7755575615628914e-16,
+    "max_round_trip_error": 2.7478019859472624e-15,
+    "mean_noise_functional_gap": 0.012908350547083674,
+    "mean_nonlinear_interpolation_gap": 0.0006415536515732979,
+    "orthogonal_neighbor_flip_rate": 0.0
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "status": "pass",
+  "thresholds": {
+    "max_behavior_identity_error": 1e-10,
+    "max_functional_invariance_error": 1e-10,
+    "max_orthogonal_neighbor_flip_rate": 0.0,
+    "max_round_trip_error": 1e-10,
+    "min_anisotropic_neighbor_flip_rate": 0.1,
+    "min_anisotropic_ranking_disagreement": 0.05,
+    "min_noise_functional_gap": 1e-06,
+    "min_nonlinear_interpolation_gap": 1e-06
+  }
+}

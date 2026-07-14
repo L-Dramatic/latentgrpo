@@ -1,0 +1,63 @@
+{
+  "config_sha256": "42ce262f98692a392ea33c04c63a2a941d55590e35def44cfb761a5574790431",
+  "evidence_level": "source and release-metadata contract only",
+  "experiment_name": "switch-c2-source-preflight-v1",
+  "gates": {
+    "adapter_base_family": true,
+    "card_minimum_dwell_4": true,
+    "card_requires_latent_loop": true,
+    "dedicated_latent_driver": true,
+    "forced_end_is_not_sampled": true,
+    "generic_eval_is_plain_generation": true,
+    "latent_noise_disabled": true,
+    "latent_replay_disabled": true,
+    "metadata_hash:README.md": true,
+    "metadata_hash:adapter_config.json": true,
+    "metadata_hash:chat_template.jinja": true,
+    "metadata_hash:tokenizer.json": true,
+    "metadata_hash:tokenizer_config.json": true,
+    "peft_version": true,
+    "source_commit": true,
+    "source_hash:scripts/eval_latent.py": true,
+    "source_hash:scripts/eval_math500.py": true,
+    "source_hash:scripts/train_phase3_grpo.sh": true,
+    "source_hash:src/model/coconut_swi_model.py": true,
+    "source_hash:tests/test_rl_pipeline.py": true,
+    "token_id:eos_id": true,
+    "token_id:latent_id": true,
+    "token_id:swi_end_id": true,
+    "token_id:swi_start_id": true,
+    "tokenizer_length": true
+  },
+  "metadata_hashes": {
+    "README.md": "91a7c0f56bdc309183ede9c77dc781a6b9fb7026d0108411f0abe643c9a3faaf",
+    "adapter_config.json": "5c74470d61ddaa59aec00a76103d9de7c0933b863ce054ac2757e209a7f7a970",
+    "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+    "tokenizer.json": "c43dd6fac5d73912596554c48c00b73bc1128c8b83e5669041b00d5def57e663",
+    "tokenizer_config.json": "d9bf1d78a80bad5eb65b83c2608910e3be00a9d3250c8153a5a393ad1257e1d6"
+  },
+  "observations": {
+    "generic_eval_math500_executes_latent_recurrence": false,
+    "paper_final_latent_noise_enabled": false,
+    "paper_final_latent_replay_enabled": false,
+    "paper_final_minimum_latent_dwell": 4,
+    "rl_source_exit_decision": "argmax over latent-step logits after minimum dwell, followed by a forced </swi> token with sampled_mask=0",
+    "rl_source_samples_swi_end_token": false,
+    "valid_latent_driver": "scripts/eval_latent.py"
+  },
+  "source_commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd",
+  "source_hashes": {
+    "scripts/eval_latent.py": "ee194d3a7aae063a9aefba5d5f88bcb82caf17342abc4fc7dad10f1a9745511f",
+    "scripts/eval_math500.py": "3f42dc4cb73820ec8e3d6732a9c6b62f58cbc04de15f0034ff7de1c8208886d7",
+    "scripts/train_phase3_grpo.sh": "f4fee54c526e957f55691e60905ac0b9c9aedea2ba55a7856978b2ca2225b484",
+    "src/model/coconut_swi_model.py": "3bdd5e66076bbcab1c3e2ee600c16fad749839cda21616b3d094211ba4fa1b27",
+    "tests/test_rl_pipeline.py": "a37dca04ed72a2348e3a4af6006a217f4eca9e90dfe85cff6f40dd4d3489f7bc"
+  },
+  "status": "pass",
+  "token_ids": {
+    "eos_id": 151645,
+    "latent_id": 151671,
+    "swi_end_id": 151670,
+    "swi_start_id": 151669
+  }
+}

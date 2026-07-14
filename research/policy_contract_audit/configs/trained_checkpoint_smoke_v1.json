@@ -1,0 +1,38 @@
+{
+  "experiment_name": "lpca_trained_checkpoint_smoke_v1",
+  "checkpoints": [
+    {
+      "name": "SofT-GRPO-Qwen-1.5B",
+      "id": "zz1358m/SofT-GRPO-master",
+      "revision": "128d4dbf8ba0f0765d48d39ab41b51be6e879a12",
+      "local_dir": "_models/SofT-GRPO-Qwen-1.5B",
+      "weight_file": "model.safetensors",
+      "expected_weight_bytes": 3554214752,
+      "expected_weight_sha256": "eff1ab0b6cca014cc4c766c237672384f2b6eb7f4e871c59d27c5e5a28d6dd93",
+      "dtype": "bfloat16"
+    },
+    {
+      "name": "Latent-GRPO-Llama-1B",
+      "id": "DJCheng/LLaMA3.2-1B-Instruct-Latent-GRPO-Top10",
+      "revision": "0db191bfd8240199db894de4de800788c845cb18",
+      "local_dir": "_models/Latent-GRPO-Llama-1B",
+      "weight_file": "model.safetensors",
+      "expected_weight_bytes": 2996982344,
+      "expected_weight_sha256": "ab6dcd385f01eb2a2aab4d449a5e922ebbd672c4c3189c01480de80a74379833",
+      "dtype": "bfloat16"
+    }
+  ],
+  "prompt": {
+    "system": "Reason step by step and give the final answer clearly.",
+    "user": "What is 17 multiplied by 6?"
+  },
+  "runtime": {
+    "preferred_device": "cuda",
+    "max_prompt_tokens": 256,
+    "max_gpu_memory_mib": 7000,
+    "max_cpu_memory_gib": 32
+  },
+  "gates": {
+    "repeat_max_abs_error_max": 0.0
+  }
+}

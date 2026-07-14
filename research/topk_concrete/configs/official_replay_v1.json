@@ -1,0 +1,27 @@
+{
+  "schema_version": 1,
+  "experiment_name": "latent-grpo-official-sampler-replay-v1",
+  "vocabulary_size": 256,
+  "top_k": 10,
+  "sample_count": 32768,
+  "scenario_seeds": [16101, 16102, 16103, 16104, 16105],
+  "top_p": 0.95,
+  "gumbel_softmax_temperature": 1.0,
+  "noise_scale": 1.0,
+  "clip_lower": -1.5,
+  "clip_upper": 3.0,
+  "use_one_sided_noise": true,
+  "logit_scale": 1.5,
+  "policy_drift_scale": 0.2,
+  "reward_nonlinearity": 0.3,
+  "clip_epsilon": 0.2,
+  "thresholds": {
+    "max_clean_exact_ratio_mean_error": 0.05,
+    "min_clean_selection_correction_log_ratio_rms": 0.1,
+    "min_clean_exact_official_clip_disagreement": 0.05,
+    "min_selected_upper_atom_fraction": 0.1,
+    "min_clipped_unclipped_support_change_rate": 0.1,
+    "min_one_sided_shift_log_ratio_rms": 0.1,
+    "min_mean_reduction_clip_disagreement": 0.05
+  }
+}

@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_name": "fctr-public-gpt2-coconut-differentiable-smoke-v1c",
+  "model_id": "openai-community/gpt2",
+  "model_revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+  "attention_implementation": "eager",
+  "checkpoint_relative_path": "_models/gpt2-gsm8k-coconut/checkpoint_33",
+  "checkpoint_sha256": "f7a9b5fda7c5c2afa972aaa22ac9aef13d6f083e202fe8a09649d810e3593213",
+  "coconut_source_relative_path": "_external/coconut",
+  "coconut_source_commit": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+  "model_cache_relative_path": "_models/hf_home/hub",
+  "dataset_relative_path": "datasets/gsm8k/eval_42.json",
+  "dataset_sha256": "d6cdd4c3c48de84873fbfb0f0005d30e9c5527c430feb206608749aa48dfd6e5",
+  "dataset_index": 0,
+  "num_latents": 6,
+  "target_pass": 3,
+  "collection_seed": 71511,
+  "rollout_seed": 71512,
+  "target_template": "### {answer}",
+  "target_tokens": 3,
+  "subspace": {
+    "dimension": 3,
+    "seed": 71513
+  },
+  "charts": {
+    "orthogonal_seed": 71514,
+    "anisotropic_seed": 71515,
+    "condition_numbers": [4.0, 12.0]
+  },
+  "finite_difference": {
+    "seed": 71517,
+    "epsilon": 0.001
+  },
+  "updates": {
+    "trust_budget": 0.0001,
+    "euclidean_rms_step": 0.01
+  },
+  "runtime": {
+    "device": "cuda:0"
+  },
+  "thresholds": {
+    "max_noop_logit_error": 0.0,
+    "max_finite_difference_relative_error": 0.1,
+    "max_jacobian_transport_relative_error": 0.001,
+    "max_gradient_transport_relative_error": 0.001,
+    "max_metric_transport_relative_error": 0.002,
+    "max_fctr_transport_relative_error": 0.002,
+    "max_control_euclidean_relative_error": 0.001,
+    "min_anisotropic_euclidean_relative_error": 0.1
+  }
+}

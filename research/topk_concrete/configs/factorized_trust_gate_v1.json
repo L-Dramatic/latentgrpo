@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "experiment_name": "ftk-po-factor-separability-v1",
+  "vocabulary_size": 128,
+  "top_k_values": [2, 5, 10],
+  "sample_count": 8192,
+  "calibration_sample_count": 2048,
+  "scenario_seeds": [27101, 27102, 27103, 27104, 27105],
+  "temperature": 1.0,
+  "gumbel_scale": 1.0,
+  "logit_scales": [0.35, 1.25, 2.5],
+  "drift_modes": ["random", "sharpen", "flatten"],
+  "target_joint_kl": 0.03,
+  "calibration_iterations": 16,
+  "maximum_drift_scale": 4.0,
+  "clip_epsilon": 0.2,
+  "thresholds": {
+    "max_target_joint_kl_relative_error": 0.3,
+    "max_factorization_abs_error": 1e-10,
+    "max_kl_chain_abs_error": 1e-10,
+    "max_exact_ratio_mean_error": 0.06,
+    "min_component_kl_tolerance": -0.005,
+    "component_material_share_floor": 0.1,
+    "min_both_components_material_scenario_fraction": 0.75,
+    "hidden_violation_rate_floor": 0.03,
+    "min_hidden_violation_scenario_fraction": 0.6,
+    "min_hidden_violation_rate_mean": 0.05,
+    "min_opposite_sign_rate_mean": 0.25,
+    "min_support_share_interdecile_range": 0.15
+  }
+}

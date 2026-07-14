@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "experiment_name": "toy-coordinate-contract-v1",
+  "dimension": 8,
+  "hidden_dimension": 16,
+  "horizon": 4,
+  "vocabulary_size": 11,
+  "query_count": 128,
+  "candidate_count": 24,
+  "pair_count": 96,
+  "model_seed": 4101,
+  "data_seed": 4102,
+  "chart_seed": 4103,
+  "affine_condition_number": 12.0,
+  "noise_standard_deviation": 0.2,
+  "sinh_scale": 0.65,
+  "thresholds": {
+    "max_round_trip_error": 1e-10,
+    "max_behavior_identity_error": 1e-10,
+    "max_functional_invariance_error": 1e-10,
+    "max_orthogonal_neighbor_flip_rate": 0.0,
+    "min_anisotropic_neighbor_flip_rate": 0.1,
+    "min_anisotropic_ranking_disagreement": 0.05,
+    "min_noise_functional_gap": 1e-6,
+    "min_nonlinear_interpolation_gap": 1e-6
+  }
+}
+

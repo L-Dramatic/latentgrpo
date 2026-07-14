@@ -1,0 +1,51 @@
+{
+  "config_sha256": "1605fe744bdca5dad7d4dc1a99b295f80a682c11841bf2c3010ea3999d218f3f",
+  "dataset": {
+    "id": "HuggingFaceH4/MATH-500",
+    "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+    "split": "test"
+  },
+  "evaluated_states": 1,
+  "expected_full_records": 144,
+  "experiment_name": "lpca_stage_b_gradient_v1",
+  "frozen_selected_states": 48,
+  "gates": null,
+  "model": {
+    "dtype": "float16",
+    "id": "Qwen/Qwen2.5-3B",
+    "revision": "3aab1f1954e9cc14eb9509a215f9e5ca08227a9b"
+  },
+  "records_path": "artifacts\\policy_contract_audit\\stage_b_gradient_v1_preflight_records.jsonl",
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "datasets": "3.6.0",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.9",
+    "seconds": 135.16837882995605,
+    "torch": "2.5.1+cu124",
+    "transformers": "4.55.4"
+  },
+  "status": "preflight",
+  "summary": {
+    "action_sum_error_p999": 4.440892098500626e-16,
+    "active_support_size_max": 13,
+    "active_support_size_min": 13,
+    "candidate_ess_fraction_p10": 0.9691552887812181,
+    "candidate_gain_sign_disagreement_mean": 0.0,
+    "candidate_ratio_z_p99": 1.4260433197542488,
+    "evaluation_reward_std_median": 0.13879065631443654,
+    "exact_gradient_split_half_cosine_median": 0.4086339335909377,
+    "exact_minus_surrogate_gain_bootstrap_l95": -0.0013110990341320284,
+    "exact_minus_surrogate_gain_mean": -0.00048598862398468073,
+    "exact_positive_rate": 1.0,
+    "exact_positive_rate_advantage": 0.0,
+    "finite_reward_rate": 1.0,
+    "gate_exact_gain_mean": 0.004315782636624188,
+    "gate_surrogate_gain_mean": 0.0048017712606088685,
+    "gradient_cosine_median": 0.8310909391517746,
+    "gradient_relative_error_median": 0.5935861536638057,
+    "record_count": 3,
+    "state_count": 1,
+    "surrogate_positive_rate": 1.0
+  }
+}

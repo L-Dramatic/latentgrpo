@@ -1,0 +1,79 @@
+{
+  "checks": {
+    "candidate_sensitivity": true,
+    "forced_history_exact_tokens": true,
+    "identical_latent_exact_logits": true,
+    "identical_latent_zero_joint_kl": true
+  },
+  "config": {
+    "candidate_perturbation_norm": 0.5,
+    "candidate_perturbation_seed": 9104,
+    "collection_seed": 9101,
+    "continuation_horizon": 6,
+    "continuation_seeds": [
+      9102,
+      9103
+    ],
+    "num_latents": 6,
+    "question": "Question: What is 2 + 3?",
+    "sampling_temperature": 0.8,
+    "stop_at_eos": true,
+    "target_pass": 3
+  },
+  "environment": {
+    "device": "cpu",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.9",
+    "torch": "2.5.1+cpu",
+    "torch_threads": 16,
+    "transformers": "4.46.2"
+  },
+  "experiment_name": "public-gpt2-coconut-joint-kl-smoke-v2",
+  "interpretation": "This real-checkpoint integration contract validates same-history teacher forcing and temperature-correct chain-rule joint KL. It does not establish that multi-step geometry beats next-token baselines.",
+  "metrics": {
+    "candidate_compute": {
+      "backward_calls": 0,
+      "custom_counts": {},
+      "generated_tokens": 6,
+      "model_forward_calls": 40,
+      "prompt_tokens": 68,
+      "rollout_calls": 4,
+      "section_wall_time_seconds": {
+        "joint_kl_candidate_force": 1.747075799969025,
+        "joint_kl_reference_sample": 1.766399999964051
+      },
+      "wall_time_seconds": 3.513475799933076
+    },
+    "candidate_mean_first_step_kl": 7.190731894727114e-20,
+    "candidate_mean_tail_kl": 4.281304857063305e-09,
+    "candidate_mean_total_kl": 4.281304857135213e-09,
+    "candidate_per_seed_total_kl": [
+      4.281304857135213e-09,
+      4.281304857135213e-09
+    ],
+    "candidate_per_seed_valid_steps": [
+      3,
+      3
+    ],
+    "control_forced_tokens_exact": true,
+    "control_max_logit_error": 0.0,
+    "control_max_total_kl": 0.0,
+    "control_mean_total_kl": 0.0
+  },
+  "model": {
+    "checkpoint_file": "checkpoint_33",
+    "checkpoint_repo": "connordilgren/gpt2-gsm8k-coconut",
+    "checkpoint_sha256": "f7a9b5fda7c5c2afa972aaa22ac9aef13d6f083e202fe8a09649d810e3593213",
+    "coconut_source_commit": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+    "hidden_dimension": 768,
+    "model_id": "openai-community/gpt2"
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "status": "pass",
+  "thresholds": {
+    "max_control_logit_error": 0.0,
+    "max_control_total_kl": 1e-12,
+    "min_candidate_total_kl": 1e-12
+  }
+}

@@ -1,0 +1,68 @@
+{
+  "checks": {
+    "affine_embedding_exactness": true,
+    "affine_latent_bitwise_recovery": true,
+    "affine_logit_exactness": true,
+    "candidate_sensitivity": true,
+    "identity_embedding_exactness": true,
+    "identity_logit_exactness": true,
+    "matched_replay_control": true,
+    "trace_completeness": true
+  },
+  "config": {
+    "affine_condition_number": 12.0,
+    "affine_seed": 5202,
+    "candidate_perturbation_norm": 0.1,
+    "continuation_horizon": 4,
+    "continuation_seeds": [
+      5203,
+      5204
+    ],
+    "num_latents": 6,
+    "question": "Question: What is 2 + 3?",
+    "seed": 5201
+  },
+  "environment": {
+    "device": "cpu",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.9",
+    "torch": "2.5.1+cpu",
+    "torch_threads": 16,
+    "transformers": "4.46.2"
+  },
+  "experiment_name": "public-gpt2-coconut-smoke-v1",
+  "interpretation": "This is a real-checkpoint integration contract. It validates exact chart insertion and replay, but it does not test coordinate-dependent operations over a representative task sample.",
+  "metrics": {
+    "affine_bitwise_latent_recovery": true,
+    "affine_embedding_max_abs_error": 0.0,
+    "affine_logit_max_abs_error": 0.0,
+    "candidate_divergence_standard_error": 0.0,
+    "candidate_mean_divergence": 4.290052757482954e-08,
+    "continuation_generated_tokens": 32,
+    "continuation_rollout_calls": 8,
+    "control_mean_divergence": 0.0,
+    "identity_embedding_max_abs_error": 0.0,
+    "identity_logit_max_abs_error": 0.0,
+    "trace_record_count": 6
+  },
+  "model": {
+    "checkpoint_file": "checkpoint_33",
+    "checkpoint_repo": "connordilgren/gpt2-gsm8k-coconut",
+    "checkpoint_sha256": "f7a9b5fda7c5c2afa972aaa22ac9aef13d6f083e202fe8a09649d810e3593213",
+    "coconut_source_commit": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+    "hidden_dimension": 768,
+    "model_id": "openai-community/gpt2",
+    "parameter_dtype": "torch.float32"
+  },
+  "schema_version": 1,
+  "scientific_evidence": false,
+  "status": "pass",
+  "thresholds": {
+    "max_affine_embedding_error": 1e-06,
+    "max_affine_logit_error": 1e-05,
+    "max_control_divergence": 1e-12,
+    "max_identity_embedding_error": 0.0,
+    "max_identity_logit_error": 0.0,
+    "min_candidate_divergence": 1e-10
+  }
+}

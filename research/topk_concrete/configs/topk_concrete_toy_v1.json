@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment_name": "topk-concrete-policy-toy-gate-v1",
+  "vocabulary_size": 32,
+  "top_k": 5,
+  "sample_count": 131072,
+  "score_sample_count": 32768,
+  "scenario_seeds": [15101, 15102, 15103, 15104, 15105],
+  "temperature": 0.7,
+  "gumbel_scale": 1.0,
+  "logit_scale": 0.9,
+  "policy_drift_scale": 0.35,
+  "reward_nonlinearity": 0.3,
+  "clip_epsilon": 0.2,
+  "thresholds": {
+    "max_reference_density_error": 1e-8,
+    "max_shift_invariance_error": 1e-10,
+    "max_exact_ratio_mean_error": 0.05,
+    "max_exact_score_mean_norm": 0.08,
+    "min_naive_sum_ratio_mean_bias": 0.03,
+    "min_naive_score_mean_norm": 0.1,
+    "min_clip_decision_disagreement": 0.05,
+    "min_selection_correction_log_ratio_rms": 0.1
+  }
+}

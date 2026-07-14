@@ -1,0 +1,77 @@
+{
+  "config_sha256": "63ea4518ae2ac5e2ff52eecd385eda68cba125f950612205a8eee802c512a25f",
+  "dataset": {
+    "id": "HuggingFaceH4/MATH-500",
+    "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+    "split": "test"
+  },
+  "evaluated_states": 1,
+  "expected_full_records": 384,
+  "experiment_name": "lpca_stage_b_sequential_v1",
+  "frozen_selected_states": 96,
+  "gates": null,
+  "model": {
+    "dtype": "float16",
+    "id": "Qwen/Qwen2.5-3B",
+    "revision": "3aab1f1954e9cc14eb9509a215f9e5ca08227a9b"
+  },
+  "records_path": "artifacts\\policy_contract_audit\\stage_b_sequential_v1_preflight_records.jsonl",
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "datasets": "3.6.0",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.9",
+    "seconds": 132.89196729660034,
+    "torch": "2.5.1+cu124",
+    "transformers": "4.55.4"
+  },
+  "status": "preflight",
+  "summary": {
+    "action_sum_error_p999": 4.4375614294267506e-16,
+    "completed_trajectory_rate": 1.0,
+    "final_js_median": 0.01375331394210097,
+    "final_support_jaccard_median": 0.75,
+    "final_top1_disagreement_mean": 0.0,
+    "final_total_variation_median": 0.03910340794503433,
+    "finite_trajectory_rate": 1.0,
+    "horizons": {
+      "1": {
+        "js_median": 0.691768512765392,
+        "support_jaccard_median": 0.0,
+        "top1_disagreement_mean": 0.75,
+        "total_variation_median": 0.9992127614623172
+      },
+      "16": {
+        "js_median": 0.4383868260857723,
+        "support_jaccard_median": 0.08596491441130638,
+        "top1_disagreement_mean": 0.75,
+        "total_variation_median": 0.8158158129686603
+      },
+      "32": {
+        "js_median": 0.01375331394210097,
+        "support_jaccard_median": 0.75,
+        "top1_disagreement_mean": 0.0,
+        "total_variation_median": 0.03910340794503433
+      },
+      "4": {
+        "js_median": 0.4887744956685132,
+        "support_jaccard_median": 0.05000000074505806,
+        "top1_disagreement_mean": 0.5,
+        "total_variation_median": 0.7370526208272675
+      },
+      "8": {
+        "js_median": 0.0012884212228203332,
+        "support_jaccard_median": 1.0,
+        "top1_disagreement_mean": 0.25,
+        "total_variation_median": 0.004898609323874518
+      }
+    },
+    "identity_branch_js_max": 1.2562418808222708e-17,
+    "identity_reference_nll_gap_max": 0.0,
+    "reference_nll_absolute_gap_median": 0.4376647472381592,
+    "reference_nll_signed_gap_median": -0.4376647472381592,
+    "singleton_action_step_rate": 0.6015625,
+    "state_count": 1,
+    "trajectory_count": 4
+  }
+}

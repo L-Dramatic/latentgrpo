@@ -1,0 +1,46 @@
+{
+  "config_sha256": "47536e7f9a9504ef958afa8b06280599025e6edbb0068e4cf5dfe7db97ebd629",
+  "dataset": {
+    "id": "HuggingFaceH4/MATH-500",
+    "revision": "6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be",
+    "split": "test",
+    "use_all_rows": true
+  },
+  "dataset_total_rows": 500,
+  "evaluated_rows": 2,
+  "experiment_name": "lpca_public_checkpoint_stage_a_v1",
+  "gates": null,
+  "model": {
+    "dtype": "float16",
+    "id": "Qwen/Qwen2.5-3B",
+    "revision": "3aab1f1954e9cc14eb9509a215f9e5ca08227a9b"
+  },
+  "records_path": "artifacts\\policy_contract_audit\\public_checkpoint_stage_a_v1_preflight_records.jsonl",
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "datasets": "3.6.0",
+    "platform": "Windows-10-10.0.26200-SP0",
+    "python": "3.10.9",
+    "seconds": 53.57432270050049,
+    "torch": "2.5.1+cu124",
+    "transformers": "4.55.4"
+  },
+  "status": "preflight",
+  "summary": {
+    "active_support_size_max": 19,
+    "active_support_size_min": 13,
+    "archive_mass_error_p999": 4.440892098500626e-16,
+    "exact_ratio_z_p99": 1.6912617493893916,
+    "exact_score_snr_p99": 1.2117506576444872,
+    "excluded_full_model_mass_median": 0.21105216408875277,
+    "excluded_full_model_mass_p10": 0.1869428286570517,
+    "filtered_support_churn_mean": 0.10000000149011612,
+    "mixture_proxy_embedding_relative_l2_median": 0.8173885715293219,
+    "proxy_mode_disagreement_mean": 0.421875,
+    "reconstruction_l1_p999": 0.0,
+    "record_count": 6,
+    "state_count": 2,
+    "surrogate_exact_score_cosine_median": 0.2646619336203267,
+    "surrogate_exact_score_relative_error_median": 0.9747973007013697
+  }
+}

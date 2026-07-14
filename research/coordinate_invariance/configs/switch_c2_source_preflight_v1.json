@@ -1,0 +1,51 @@
+{
+  "schema_version": 1,
+  "experiment_name": "switch-c2-source-preflight-v1",
+  "source": {
+    "commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd",
+    "files": {
+      "src/model/coconut_swi_model.py": "3bdd5e66076bbcab1c3e2ee600c16fad749839cda21616b3d094211ba4fa1b27",
+      "scripts/eval_latent.py": "ee194d3a7aae063a9aefba5d5f88bcb82caf17342abc4fc7dad10f1a9745511f",
+      "scripts/eval_math500.py": "3f42dc4cb73820ec8e3d6732a9c6b62f58cbc04de15f0034ff7de1c8208886d7",
+      "scripts/train_phase3_grpo.sh": "f4fee54c526e957f55691e60905ac0b9c9aedea2ba55a7856978b2ca2225b484",
+      "tests/test_rl_pipeline.py": "a37dca04ed72a2348e3a4af6006a217f4eca9e90dfe85cff6f40dd4d3489f7bc"
+    }
+  },
+  "adapter": {
+    "id": "LARK-Lab/SWITCH-Phase3-GRPO-LoRA-Qwen3-8B",
+    "revision": "246fee75d774c02a110ea8608ac841a916dd5d35",
+    "metadata_files": {
+      "README.md": "91a7c0f56bdc309183ede9c77dc781a6b9fb7026d0108411f0abe643c9a3faaf",
+      "adapter_config.json": "5c74470d61ddaa59aec00a76103d9de7c0933b863ce054ac2757e209a7f7a970",
+      "chat_template.jinja": "a55ee1b1660128b7098723e0abcd92caa0788061051c62d51cbe87d9cf1974d8",
+      "tokenizer_config.json": "d9bf1d78a80bad5eb65b83c2608910e3be00a9d3250c8153a5a393ad1257e1d6",
+      "tokenizer.json": "c43dd6fac5d73912596554c48c00b73bc1128c8b83e5669041b00d5def57e663"
+    },
+    "weight_file": "adapter_model.safetensors",
+    "weight_bytes": 7804226664,
+    "weight_lfs_sha256": "0cdeafb628cdadd4c0fe21507ec7d61c98ace506d9bdad87775515de032a5e2c",
+    "peft_version": "0.18.1"
+  },
+  "base_model": {
+    "id": "Qwen/Qwen3-8B",
+    "revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "safetensor_bytes": 16381516776
+  },
+  "tokenizer": {
+    "expected_length": 151672,
+    "swi_start_id": 151669,
+    "swi_end_id": 151670,
+    "latent_id": 151671,
+    "eos_id": 151645,
+    "transformers_4_55_compatibility_override": {
+      "extra_special_tokens": {}
+    }
+  },
+  "paper_final_protocol": {
+    "minimum_latent_dwell": 4,
+    "latent_noise_scale": 0.0,
+    "record_latent_actions": false,
+    "latent_replay": false,
+    "required_inference_driver": "scripts/eval_latent.py"
+  }
+}

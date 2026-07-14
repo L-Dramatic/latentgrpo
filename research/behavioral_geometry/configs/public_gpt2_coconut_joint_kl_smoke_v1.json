@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "experiment_name": "public-gpt2-coconut-joint-kl-smoke-v1",
+  "model_id": "openai-community/gpt2",
+  "checkpoint_repo": "connordilgren/gpt2-gsm8k-coconut",
+  "checkpoint_file": "checkpoint_33",
+  "checkpoint_relative_path": "_models/gpt2-gsm8k-coconut/checkpoint_33",
+  "coconut_source_relative_path": "_external/coconut",
+  "model_cache_relative_path": "_models/hf_home/hub",
+  "question": "Question: What is 2 + 3?",
+  "num_latents": 6,
+  "target_pass": 3,
+  "collection_seed": 9101,
+  "continuation_horizon": 6,
+  "continuation_seeds": [9102, 9103],
+  "sampling_temperature": 0.8,
+  "stop_at_eos": false,
+  "candidate_perturbation_seed": 9104,
+  "candidate_perturbation_norm": 0.1,
+  "thresholds": {
+    "max_control_total_kl": 1e-12,
+    "max_control_logit_error": 0.0,
+    "min_candidate_total_kl": 1e-10
+  }
+}

@@ -1,0 +1,62 @@
+{
+  "interpretation": "Prompt-clustered bootstrap keeps every temperature for a prompt together. These flags do not replace the frozen Stage B2 gate.",
+  "point_estimates": {
+    "exact_positive_rate": 1.0,
+    "gain_difference_by_temperature": {
+      "0.3": -0.001427544232003782,
+      "0.5": -0.0018588918011033138,
+      "1.0": -0.0016001224289007453
+    },
+    "gain_difference_mean": -0.001628852820669281,
+    "gain_sign_disagreement_rate": 0.0,
+    "positive_rate_advantage": 0.0,
+    "surrogate_positive_rate": 1.0
+  },
+  "prompt_cluster_bootstrap": {
+    "gain_difference": {
+      "l95": -0.0019417908909621572,
+      "median": -0.0016248405679205394,
+      "u95": -0.001349167919228215
+    },
+    "gain_difference_by_temperature": {
+      "0.3": {
+        "l95": -0.0018001927130296333,
+        "median": -0.0014159632650085309,
+        "u95": -0.0010984273616461149
+      },
+      "0.5": {
+        "l95": -0.0022817018733887104,
+        "median": -0.0018585476300782113,
+        "u95": -0.0014618777093670721
+      },
+      "1.0": {
+        "l95": -0.002079623417914715,
+        "median": -0.0015900869907483645,
+        "u95": -0.001178267966547933
+      }
+    },
+    "positive_rate_advantage": {
+      "l95": 0.0,
+      "median": 0.0,
+      "u95": 0.0
+    },
+    "replicates": 10000,
+    "seed": 714504
+  },
+  "record_count": 144,
+  "records_path": "artifacts\\policy_contract_audit\\stage_b_gradient_v1_records.jsonl",
+  "records_sha256": "37c9d921595fd143d16770d828469e3e57145b0614cd5bbe9f227b167e6a3f2b",
+  "robustness_flags": {
+    "paired_gain_cluster_l95_above_zero": false,
+    "paired_gain_mean_clears_frozen_threshold": false,
+    "positive_rate_advantage_clears_frozen_threshold": false,
+    "positive_rate_advantage_cluster_l95_above_zero": false
+  },
+  "state_count": 48,
+  "status": "post_hoc_non_gating_robustness",
+  "temperatures": [
+    0.3,
+    0.5,
+    1.0
+  ]
+}

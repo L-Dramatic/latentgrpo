@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "experiment_name": "simplex-grpo-toy-gate-v1",
+  "category_count": 10,
+  "sample_count": 65536,
+  "scenario_seeds": [8201, 8202, 8203, 8204, 8205],
+  "temperature": 0.7,
+  "logit_scale": 0.8,
+  "policy_drift_scale": 0.35,
+  "reward_nonlinearity": 0.35,
+  "clip_epsilon": 0.2,
+  "gauge_offsets": [-2.0, -1.0, 0.0, 1.0, 2.0],
+  "thresholds": {
+    "max_concrete_reference_error": 1e-8,
+    "max_simplex_gradient_relative_error": 0.12,
+    "min_gradient_variance_reduction": 1.25,
+    "min_log_ratio_variance_reduction": 1.15,
+    "min_effective_sample_size_ratio": 1.05,
+    "min_clip_decision_disagreement": 0.05,
+    "min_auxiliary_gauge_sensitivity": 0.05
+  }
+}

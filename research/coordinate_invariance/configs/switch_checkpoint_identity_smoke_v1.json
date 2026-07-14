@@ -1,0 +1,47 @@
+{
+  "schema_version": 1,
+  "experiment_name": "switch-paper-final-checkpoint-identity-smoke-v1",
+  "source": {
+    "relative_path": "_external/switch",
+    "commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd",
+    "model_source_sha256": "3bdd5e66076bbcab1c3e2ee600c16fad749839cda21616b3d094211ba4fa1b27"
+  },
+  "model": {
+    "base_id": "Qwen/Qwen3-8B",
+    "base_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "adapter_id": "LARK-Lab/SWITCH-Phase3-GRPO-LoRA-Qwen3-8B",
+    "adapter_revision": "246fee75d774c02a110ea8608ac841a916dd5d35",
+    "attention_implementation": "eager",
+    "cache_relative_path": "_models/hf_home/hub"
+  },
+  "dataset": {
+    "relative_path": "_models/hf_home/hub/datasets--HuggingFaceH4--MATH-500/snapshots/6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be/test.jsonl",
+    "sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+    "expected_rows": 500,
+    "prompt_order_relative_path": "artifacts/coordinate_invariance/switch_c2_prompt_order_v1.json",
+    "prompt_order_sha256": "ceae806918e9cad16b5225f999591f9f6206f51bceec9076ce5de4449ad8fbc3",
+    "prompt_order_config_sha256": "c0d9b44560055314b1190fcd172fd4230f5468fd62984ef847a1b6c33495d61f"
+  },
+  "prompt": {
+    "suffix": "\nPlease reason step by step, and put your final answer within \\boxed{}."
+  },
+  "selection": {
+    "ordered_prompt_count": 8
+  },
+  "generation": {
+    "max_new_tokens": 256,
+    "minimum_latent_dwell": 4
+  },
+  "runtime": {
+    "device": "cuda:0",
+    "seed": 71541,
+    "disable_tf32": true
+  },
+  "thresholds": {
+    "minimum_prompts_with_latent_blocks": 2,
+    "maximum_token_mismatches": 0,
+    "maximum_latent_info_mismatches": 0,
+    "maximum_forward_count_mismatches": 0,
+    "maximum_identity_hidden_mismatches": 0
+  }
+}

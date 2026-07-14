@@ -1,0 +1,88 @@
+{
+  "charts": [
+    {
+      "charted_euclidean_actual_gain": 0.014327164890264532,
+      "condition_number": 1.0,
+      "euclidean_transport_cosine": 0.9999999999999999,
+      "euclidean_transport_relative_error": 0.0,
+      "fctr_actual_gain_abs_error": 0.0,
+      "fctr_predicted_gain_abs_error": 0.0,
+      "fctr_transport_cosine": 1.0,
+      "fctr_transport_relative_error": 0.0,
+      "fctr_trust_cost_abs_error": 0.0,
+      "name": "identity",
+      "native_euclidean_actual_gain": 0.014327164890264532
+    },
+    {
+      "charted_euclidean_actual_gain": 0.014327164890264754,
+      "condition_number": 1.0000000000000007,
+      "euclidean_transport_cosine": 0.9999999999999998,
+      "euclidean_transport_relative_error": 6.094720788189093e-16,
+      "fctr_actual_gain_abs_error": 0.0,
+      "fctr_predicted_gain_abs_error": 3.469446951953614e-18,
+      "fctr_transport_cosine": 1.0,
+      "fctr_transport_relative_error": 6.003604694289724e-16,
+      "fctr_trust_cost_abs_error": 2.168404344971009e-19,
+      "name": "orthogonal-seed-71502",
+      "native_euclidean_actual_gain": 0.014327164890264532
+    },
+    {
+      "charted_euclidean_actual_gain": 0.015841564293904598,
+      "condition_number": 4.0,
+      "euclidean_transport_cosine": 0.8196923833905754,
+      "euclidean_transport_relative_error": 0.7828551594186975,
+      "fctr_actual_gain_abs_error": 0.0,
+      "fctr_predicted_gain_abs_error": 3.469446951953614e-18,
+      "fctr_transport_cosine": 0.9999999999999999,
+      "fctr_transport_relative_error": 5.822954932577641e-16,
+      "fctr_trust_cost_abs_error": 0.0,
+      "name": "affine-cond-4-seed-71503",
+      "native_euclidean_actual_gain": 0.014327164890264532
+    },
+    {
+      "charted_euclidean_actual_gain": 0.023839455357284822,
+      "condition_number": 11.999999999999995,
+      "euclidean_transport_cosine": 0.6744159097655911,
+      "euclidean_transport_relative_error": 1.936185839673501,
+      "fctr_actual_gain_abs_error": 1.1102230246251565e-16,
+      "fctr_predicted_gain_abs_error": 6.938893903907228e-18,
+      "fctr_transport_cosine": 0.9999999999999998,
+      "fctr_transport_relative_error": 9.749356215085022e-16,
+      "fctr_trust_cost_abs_error": 2.168404344971009e-19,
+      "name": "affine-cond-12-seed-71504",
+      "native_euclidean_actual_gain": 0.014327164890264532
+    }
+  ],
+  "config_sha256": "4fbab76baf0224885b7aa86a59510771eca74e268ea3b050df04b95434eb337d",
+  "evidence_level": "deterministic implementation contract only",
+  "experiment_name": "fctr-coordinate-transport-toy-gate-v1",
+  "gates": {
+    "all_fctr_budget": true,
+    "all_fctr_gain": true,
+    "all_fctr_transport": true,
+    "anisotropic_euclidean_positive_control": true,
+    "identity_euclidean_control": true,
+    "metric_positive_definite": true,
+    "orthogonal_euclidean_control": true
+  },
+  "interpretation": "A pass validates coordinate transport and the local FCTR solver. It is not evidence that a trained latent-reasoning method needs FCTR.",
+  "native_fctr": {
+    "metric_condition_number": 3.0679577313981503,
+    "predicted_gain": 0.030096001823666736,
+    "trust_cost": 0.001
+  },
+  "runtime": {
+    "device": "cpu",
+    "python": "3.10.9",
+    "seconds": 0.21452949999365956,
+    "torch": "2.5.1+cu124"
+  },
+  "status": "pass",
+  "system": {
+    "gradient_norm": 0.5073137409879023,
+    "latent_dimension": 8,
+    "metric_max_eigenvalue": 0.8947302696446651,
+    "metric_min_eigenvalue": 0.2916370915048142,
+    "native_utility": 0.5836847646835291
+  }
+}
