@@ -1,6 +1,6 @@
 # SWITCH C2 Managed Operations
 
-These files operate the frozen `switch-c2-frozen-v4` scientific protocol. They
+These files operate the frozen `switch-c2-frozen-v5` scientific protocol. They
 do not change its model, data order, estimator, thresholds, or decision rules.
 The managed target is the C2 measurement gate, not GPU training.
 
@@ -34,6 +34,10 @@ count. It renames the archive and writes `SWITCH_C2_OFFLINE_READY` only after:
 4. all required model metadata is present.
 
 The managed runner verifies those assets again on every offline-cache start.
+When the official Hub is reachable, the frozen runner disables Xet and uses
+bounded standard HTTP downloads because the AutoDL proxy reset Xet range
+requests during attempt 4. Exact revisions and downstream file hashes remain
+the identity boundary, independent of transport.
 
 ## Failure and shutdown contract
 

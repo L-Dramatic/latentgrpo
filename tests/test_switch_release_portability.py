@@ -64,3 +64,12 @@ def test_identity_and_scientific_config_bindings_are_current() -> None:
     assert _sha256(scientific_path) == (
         "7efe9caf1b0ef35f8c63149c4ce38d9319d25689c410449358c461ba8a471056"
     )
+
+
+def test_cloud_runner_uses_bounded_standard_http_downloads() -> None:
+    entrypoint = (
+        ROOT / "research/coordinate_invariance/run_switch_c2_autodl.sh"
+    ).read_text(encoding="utf-8")
+    assert 'HF_HUB_DISABLE_XET="${HF_HUB_DISABLE_XET:-1}"' in entrypoint
+    assert 'HF_HUB_DOWNLOAD_TIMEOUT="${HF_HUB_DOWNLOAD_TIMEOUT:-120}"' in entrypoint
+    assert 'HF_HUB_ETAG_TIMEOUT="${HF_HUB_ETAG_TIMEOUT:-30}"' in entrypoint

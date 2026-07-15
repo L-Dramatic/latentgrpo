@@ -110,3 +110,44 @@ Remediation:
 4. Rebind the three implementation hashes without changing any model, prompt,
    split, estimator, threshold, or decision rule, then issue
    `switch-c2-frozen-v4`.
+
+## Attempt 4 - 2026-07-15
+
+- Project ref: `switch-c2-frozen-v4`
+- Project commit: `585cad46f8331d3d58dda3bed642fa32315cb1df`
+- GPU: NVIDIA H20, 97,871 MiB visible VRAM
+- Driver / PyTorch: 590.48.01 / 2.8.0+cu128
+- Data disk: 100 GiB class, 99.5 GiB free at resource check
+- Managed start: 2026-07-15T10:37:21Z
+- Controlled stop state: `FAILED`, exit code 143
+- Stop time: 2026-07-15T10:49:02Z
+- Stop boundary: base-checkpoint download inside the identity stage, before
+  model loading or any checkpoint-dependent measurement
+- Passed controls: v4 project identity, explicit CUDA allocator initialization,
+  resource/BF16 checks, pinned MATH-500 resolution, and all 24 runner-local
+  tests
+- Failure cause: the AutoDL proxy repeatedly reset Xet range requests. After
+  initial retries, Xet wrote only about 8 MB over five minutes and predicted a
+  multi-hour transfer. A separate 100 MiB official HTTP range probe completed
+  in 14.92 seconds at 7,027,410 bytes/second.
+- Controller action: terminate the managed process group, collect evidence,
+  and enter the normal shutdown contract rather than continue wasting GPU rent
+- Scientific interpretation: none; no checkpoint identity, eligibility,
+  calibration, or test artifact was produced
+- Returned bundle SHA-256:
+  `f054767ea0f5d9fbffcb4bb105cf01a443a65e063c27d047ec8dfb9e6acd59e0`
+- Bundle verification: tar stream read successfully, 33 members
+- Evidence retrieved: 2026-07-15T10:49:57Z
+- Shutdown verification: SSH endpoint was closed for five consecutive checks
+  from 2026-07-15T10:53:03Z through 2026-07-15T10:57:50Z
+
+Remediation:
+
+1. Set `HF_HUB_DISABLE_XET=1` before any Hugging Face import so the official Hub
+   uses standard HTTP through the working AutoDL proxy path.
+2. Set bounded Hub download and metadata timeouts while preserving resumable
+   `.incomplete` files.
+3. Keep exact model revisions and file hashes as the identity boundary; the
+   transport selection does not change scientific inputs.
+4. Add a release test for the frozen transport defaults, then issue
+   `switch-c2-frozen-v5`.

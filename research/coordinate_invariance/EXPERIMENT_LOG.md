@@ -439,3 +439,32 @@ three peak-memory resets. Source identity, LF transport, frozen prerequisite
 hashes, implementation bindings, and the complete pre-execution evidence tar
 stream passed. This validates the v4 runtime repair and release transport only;
 it does not create checkpoint-dependent evidence.
+
+## 2026-07-15: SWITCH C2 cloud attempt 4 and HTTP transport repair
+
+The v4 release passed its cloud CUDA compatibility check, all resource and
+source controls, and 24 runner-local tests. It entered the identity stage and
+began resolving the exact Qwen3-8B revision, but the AutoDL proxy repeatedly
+reset Xet range requests. Xet made only about 8 MB of durable progress over a
+five-minute observation window. In parallel, a read-only 100 MiB range probe
+against the same official Hugging Face model file completed in 14.92 seconds at
+7,027,410 bytes/second through standard HTTP.
+
+The controller therefore stopped the managed process before model loading,
+recorded the reason, collected evidence, and allowed the existing shutdown
+contract to finish. This was a cost-control decision, not a scientific gate
+result. No checkpoint-dependent artifact was created.
+
+- Returned bundle SHA-256:
+  `f054767ea0f5d9fbffcb4bb105cf01a443a65e063c27d047ec8dfb9e6acd59e0`
+- Evidence retrieved: `2026-07-15T10:49:57Z`
+- Shutdown verified: `2026-07-15T10:57:51Z`
+- Scientific status: **Not run**
+
+Version 5 disables Xet before importing Hugging Face libraries and uses bounded
+standard HTTP timeouts. Hugging Face cache partials remain resumable. Exact
+repository revisions and downstream SHA-256 checks remain authoritative, so
+this changes only byte transport, not the model, adapter, dataset, prompt,
+estimator, split, threshold, or decision rule. The three checkpoint-dependent
+implementation hashes and both frozen scientific configs remain unchanged from
+v4.
