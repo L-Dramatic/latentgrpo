@@ -415,3 +415,27 @@ dependent implementation bindings changed.
 - Scientific runner SHA-256:
   `879b23892a354c1b30b374a2e540e15b92b8300686fd99d0a18c0a5dbab3d341`
 - Identity and scientific config hashes: **Unchanged from v3**
+
+## 2026-07-15: SWITCH C2 frozen-v4 release smoke
+
+- Artifact:
+  `artifacts/coordinate_invariance/switch_c2_release_smoke_v4.json`
+- Artifact SHA-256:
+  `2e9f89acf5dd48d021d56f5a7f994ee4d62af5fd7537faef45900376b7ef4f7f`
+- Release tag: `switch-c2-frozen-v4`
+- Tag object: `306538a80ef8463f66be63f545c963679b822b27`
+- Release commit: `585cad46f8331d3d58dda3bed642fa32315cb1df`
+- Fresh-clone full project suite: **137 passed**
+- Fresh-clone pinned SWITCH/release suite: **30 passed**
+- Status, Bash syntax, and collection entrypoints: **Pass**
+- Pre-execution bundle: 159,551 bytes, 33 members, SHA-256
+  `7b4e5d56f3c6e3ff929c5b776877ce615e839bf5ab0c00aea3e1ee29c5bd5c3c`
+- Scientific status: **Not run**
+
+The public annotated tag was cloned at depth one with `core.autocrlf=true`.
+The upstream SWITCH source was independently fetched at its fixed commit. The
+new order-sensitive tests verified explicit CUDA initialization before all
+three peak-memory resets. Source identity, LF transport, frozen prerequisite
+hashes, implementation bindings, and the complete pre-execution evidence tar
+stream passed. This validates the v4 runtime repair and release transport only;
+it does not create checkpoint-dependent evidence.

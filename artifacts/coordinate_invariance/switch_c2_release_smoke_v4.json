@@ -1,0 +1,72 @@
+{
+  "schema_version": 1,
+  "experiment_name": "switch_c2_release_smoke_v4",
+  "tested_at_utc": "2026-07-15T10:03:39.2155129Z",
+  "status": "pass",
+  "evidence_level": "fresh public clone, CUDA-initialization regression coverage, frozen tests, and pre-execution collection only",
+  "host": {
+    "git_version": "2.49.0.windows.1",
+    "core_autocrlf": true,
+    "bash_runtime": "WSL"
+  },
+  "superseded_release": {
+    "tag": "switch-c2-frozen-v3",
+    "tag_object": "f1add63e42ddceebf57d11ca4e1bfcab74810431",
+    "commit": "974de2153e3315939abbf32a0e316d0bd16c8b92",
+    "status": "fail on H20 before checkpoint loading",
+    "failure": "PyTorch 2.8 peak-memory statistics were reset before the lazily initialized CUDA allocator existed"
+  },
+  "validated_release": {
+    "repository": "https://github.com/L-Dramatic/latentgrpo.git",
+    "clone_mode": "depth-1 annotated-tag checkout",
+    "tag": "switch-c2-frozen-v4",
+    "tag_object": "306538a80ef8463f66be63f545c963679b822b27",
+    "commit": "585cad46f8331d3d58dda3bed642fa32315cb1df",
+    "detached_head_matches_tag_commit": true,
+    "worktree_clean_before_tests": true,
+    "cuda_compatibility_fix": {
+      "entrypoints": [
+        "checkpoint_identity",
+        "eligibility",
+        "scientific_calibration_and_test"
+      ],
+      "operation_order": [
+        "torch.cuda.init",
+        "torch.cuda.empty_cache",
+        "torch.cuda.reset_peak_memory_stats"
+      ],
+      "order_sensitive_regression_tests": 3,
+      "scientific_protocol_changed": false
+    },
+    "pinned_switch_source": {
+      "commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd",
+      "model_source_git_blob": "eb976d634c06570e0a25b63c3b16c44490a799aa",
+      "model_source_sha256": "468e4fc05361e4b6150c2a645dddbb3d3ea9a4e60935808804a71bac494615e7",
+      "normalized_worktree_matches_blob": true
+    },
+    "lf_checkout": {
+      "entrypoint": true,
+      "source_preflight_artifact": true,
+      "coconut_c1_artifact": true,
+      "prompt_order_artifact": true
+    },
+    "prerequisite_artifact_sha256": {
+      "source_preflight": "69f22657c11b96d461924fd51e62c14bd3fc7f992369bc256e542c99fb3a63f2",
+      "coconut_c1": "82a0a85f1852328ce877c1510db7d00ab862dad984a42e3c82bdff324ab5e764",
+      "prompt_order": "8dd5d3e339eaf09607b85be29c1d8413a429903118664f5459f1ff7dd16b848c"
+    },
+    "bash_syntax_check": "pass",
+    "fresh_clone_full_project_suite": "137 passed",
+    "fresh_clone_pinned_switch_suite": "30 passed",
+    "status_entrypoint": "pass",
+    "collection_entrypoint": "pass",
+    "collection_bundle": {
+      "bytes": 159551,
+      "sha256": "7b4e5d56f3c6e3ff929c5b776877ce615e839bf5ab0c00aea3e1ee29c5bd5c3c",
+      "members": 33,
+      "manifest_files": 32,
+      "scope": "pre-execution bundle; checkpoint-dependent artifacts are absent"
+    }
+  },
+  "scientific_status": "not run"
+}
