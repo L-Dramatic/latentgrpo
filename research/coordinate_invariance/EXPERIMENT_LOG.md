@@ -356,3 +356,25 @@ v2 only for portable execution.
   `7efe9caf1b0ef35f8c63149c4ce38d9319d25689c410449358c461ba8a471056`
 - Scientific canonical config SHA-256:
   `4290912a37f0c67b2751c71098e983663fead0620da6c88da40c6adde87996b7`
+
+## 2026-07-15: SWITCH C2 frozen-v3 portable release smoke
+
+- Artifact:
+  `artifacts/coordinate_invariance/switch_c2_release_smoke_v3.json`
+- Artifact SHA-256:
+  `4c2df82161f6a7026af5330a6661669e54d6ec6783d6b7003c3af294442678c0`
+- Release tag: `switch-c2-frozen-v3`
+- Tag object: `f1add63e42ddceebf57d11ca4e1bfcab74810431`
+- Release commit: `974de2153e3315939abbf32a0e316d0bd16c8b92`
+- Fresh-clone full project suite: **134 passed**
+- Fresh-clone pinned SWITCH/release suite: **27 passed**
+- Status, Bash syntax, and collection entrypoints: **Pass**
+- Scientific status: **Not run**
+
+The public annotated tag was cloned at depth one with `core.autocrlf=true`, and
+the upstream SWITCH source was independently cloned at its fixed commit. The
+source Git object, normalized worktree, all three raw prerequisite artifact
+hashes, identity/scientific config bindings, and LF checkout contract passed.
+The pre-execution return bundle was fully read and matched its reported
+SHA-256. This closes the release-portability defect without producing or
+changing checkpoint-dependent evidence.
