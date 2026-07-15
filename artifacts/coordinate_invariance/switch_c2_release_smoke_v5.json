@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "experiment_name": "switch_c2_release_smoke_v5",
+  "tested_at_utc": "2026-07-15T11:06:58.0387285Z",
+  "status": "pass",
+  "evidence_level": "fresh public clone, bounded HTTP transport regression, frozen tests, and pre-execution collection only",
+  "host": {
+    "git_version": "2.49.0.windows.1",
+    "core_autocrlf": true,
+    "bash_runtime": "WSL"
+  },
+  "superseded_release": {
+    "tag": "switch-c2-frozen-v4",
+    "tag_object": "306538a80ef8463f66be63f545c963679b822b27",
+    "commit": "585cad46f8331d3d58dda3bed642fa32315cb1df",
+    "status": "controlled stop during base-checkpoint transfer",
+    "failure": "the AutoDL proxy repeatedly reset Xet range requests while standard official HTTP remained healthy"
+  },
+  "validated_release": {
+    "repository": "https://github.com/L-Dramatic/latentgrpo.git",
+    "clone_mode": "depth-1 annotated-tag checkout",
+    "tag": "switch-c2-frozen-v5",
+    "tag_object": "f7671b4c78b1d416b823d8c3f7c466627e6cd4da",
+    "commit": "1d3064c0699c14616d27df01208b711938933594",
+    "detached_head_matches_tag_commit": true,
+    "worktree_clean_before_tests": true,
+    "transport_contract": {
+      "hf_hub_disable_xet_default": "1",
+      "hf_hub_download_timeout_seconds": 120,
+      "hf_hub_etag_timeout_seconds": 30,
+      "partial_downloads_resumable": true,
+      "exact_revisions_and_hashes_unchanged": true,
+      "scientific_protocol_changed": false
+    },
+    "pinned_switch_source": {
+      "commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd",
+      "model_source_git_blob": "eb976d634c06570e0a25b63c3b16c44490a799aa",
+      "model_source_sha256": "468e4fc05361e4b6150c2a645dddbb3d3ea9a4e60935808804a71bac494615e7",
+      "normalized_worktree_matches_blob": true
+    },
+    "lf_checkout": {
+      "entrypoint": true,
+      "source_preflight_artifact": true,
+      "coconut_c1_artifact": true,
+      "prompt_order_artifact": true
+    },
+    "prerequisite_artifact_sha256": {
+      "source_preflight": "69f22657c11b96d461924fd51e62c14bd3fc7f992369bc256e542c99fb3a63f2",
+      "coconut_c1": "82a0a85f1852328ce877c1510db7d00ab862dad984a42e3c82bdff324ab5e764",
+      "prompt_order": "8dd5d3e339eaf09607b85be29c1d8413a429903118664f5459f1ff7dd16b848c"
+    },
+    "bash_syntax_check": "pass",
+    "fresh_clone_full_project_suite": "138 passed",
+    "fresh_clone_pinned_switch_suite": "31 passed",
+    "status_entrypoint": "pass",
+    "collection_entrypoint": "pass",
+    "collection_bundle": {
+      "bytes": 160594,
+      "sha256": "1cb242334d14fd604e164cce7327d906b3e8c4ba1bf3b9f889aa042c26df1ee1",
+      "members": 33,
+      "manifest_files": 32,
+      "scope": "pre-execution bundle; checkpoint-dependent artifacts are absent"
+    }
+  },
+  "scientific_status": "not run"
+}

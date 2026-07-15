@@ -50,7 +50,8 @@
         "project_release_tag": "switch-c2-frozen-v5",
         "release_smoke": {
           "artifact": "artifacts/coordinate_invariance/switch_c2_release_smoke_v5.json",
-          "status": "pending external fresh-clone validation after immutable tag creation"
+          "artifact_sha256": "1ba6f9a84ab0be765845e0ac86df59d7128f258dbe98fbc44f49c3a42a8ba6ee",
+          "status": "pass"
         },
         "checkpoint_identity_config_file_sha256": "7dc90bafc6d34c58c54e1eb333cf20383073fee1f0948705b8b46b4d513db094",
         "checkpoint_identity_config_sha256": "5f7456d6dd83d01ec02bb988de660e3b995b2b5f65351dba28b893eff02d5438",

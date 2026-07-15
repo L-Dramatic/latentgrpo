@@ -468,3 +468,26 @@ this changes only byte transport, not the model, adapter, dataset, prompt,
 estimator, split, threshold, or decision rule. The three checkpoint-dependent
 implementation hashes and both frozen scientific configs remain unchanged from
 v4.
+
+## 2026-07-15: SWITCH C2 frozen-v5 release smoke
+
+- Artifact:
+  `artifacts/coordinate_invariance/switch_c2_release_smoke_v5.json`
+- Artifact SHA-256:
+  `1ba6f9a84ab0be765845e0ac86df59d7128f258dbe98fbc44f49c3a42a8ba6ee`
+- Release tag: `switch-c2-frozen-v5`
+- Tag object: `f7671b4c78b1d416b823d8c3f7c466627e6cd4da`
+- Release commit: `1d3064c0699c14616d27df01208b711938933594`
+- Fresh-clone full project suite: **138 passed**
+- Fresh-clone pinned SWITCH/release suite: **31 passed**
+- Status, Bash syntax, and collection entrypoints: **Pass**
+- Pre-execution bundle: 160,594 bytes, 33 members, SHA-256
+  `1cb242334d14fd604e164cce7327d906b3e8c4ba1bf3b9f889aa042c26df1ee1`
+- Scientific status: **Not run**
+
+The public annotated tag and fixed upstream SWITCH commit were independently
+fetched into a fresh clone. The release test confirmed that Xet is disabled
+before Hub imports and that HTTP metadata/download timeouts are bounded. The
+full tar stream, source identity, LF transport, prerequisite hashes, frozen
+implementation bindings, and all tests passed. This validates transport and
+release integrity only; no checkpoint-dependent observation was generated.
