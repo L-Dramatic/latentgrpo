@@ -57,6 +57,13 @@ def _require_equal(name: str, actual: Any, expected: Any) -> None:
         raise ValueError(f"{name} is {actual!r}, expected {expected!r}")
 
 
+def _reset_cuda_peak_memory_stats(device: torch.device) -> None:
+    # PyTorch 2.8 memory-stat APIs do not initialize the CUDA allocator.
+    torch.cuda.init()
+    torch.cuda.empty_cache()
+    torch.cuda.reset_peak_memory_stats(device)
+
+
 def run(config: dict[str, Any], workspace_root: Path) -> dict[str, Any]:
     import accelerate
     import peft
@@ -115,8 +122,7 @@ def run(config: dict[str, Any], workspace_root: Path) -> dict[str, Any]:
     torch.manual_seed(seed)
     if device.type == "cuda":
         torch.cuda.manual_seed_all(seed)
-        torch.cuda.empty_cache()
-        torch.cuda.reset_peak_memory_stats(device)
+        _reset_cuda_peak_memory_stats(device)
         if bool(config["runtime"].get("disable_tf32", True)):
             torch.backends.cuda.matmul.allow_tf32 = False
             torch.backends.cudnn.allow_tf32 = False

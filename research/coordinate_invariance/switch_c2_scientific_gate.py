@@ -79,6 +79,13 @@ def implementation_hashes() -> dict[str, str]:
     }
 
 
+def _reset_cuda_peak_memory_stats(device: torch.device) -> None:
+    # PyTorch 2.8 memory-stat APIs do not initialize the CUDA allocator.
+    torch.cuda.init()
+    torch.cuda.empty_cache()
+    torch.cuda.reset_peak_memory_stats(device)
+
+
 def require_bound_pass_artifact(
     artifact: dict[str, Any],
     *,
@@ -1365,8 +1372,7 @@ def run_phase(
     torch.manual_seed(int(config["runtime"]["seed"]))
     if device.type == "cuda":
         torch.cuda.manual_seed_all(int(config["runtime"]["seed"]))
-        torch.cuda.empty_cache()
-        torch.cuda.reset_peak_memory_stats(device)
+        _reset_cuda_peak_memory_stats(device)
         if bool(config["runtime"].get("disable_tf32", True)):
             torch.backends.cuda.matmul.allow_tf32 = False
             torch.backends.cudnn.allow_tf32 = False

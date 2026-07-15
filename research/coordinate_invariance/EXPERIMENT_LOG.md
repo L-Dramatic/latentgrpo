@@ -378,3 +378,40 @@ hashes, identity/scientific config bindings, and LF checkout contract passed.
 The pre-execution return bundle was fully read and matched its reported
 SHA-256. This closes the release-portability defect without producing or
 changing checkpoint-dependent evidence.
+
+## 2026-07-15: SWITCH C2 cloud attempt 3 and CUDA initialization repair
+
+The v3 release passed project/source identity, the H20 resource floor, BF16,
+the official pinned MATH-500 resolution, and all 21 runner-local tests on
+PyTorch 2.8.0+cu128. It then stopped at the first checkpoint-identity runtime
+line, before model or adapter weight download. No checkpoint-dependent artifact
+was created.
+
+The failure was operational: CUDA is lazily initialized, while the PyTorch 2.8
+peak-memory reset path does not initialize the allocator before accessing its
+per-device state. Calling `reset_peak_memory_stats(cuda:0)` before any CUDA
+tensor or model allocation therefore raised `RuntimeError: Invalid device
+argument`. The managed runner collected a 33-member evidence bundle and the
+instance was verified offline for five consecutive checks.
+
+- Returned bundle SHA-256:
+  `c9bc2fa68368fa94f762526a1c0775aa19be718b569e65eddea1e4eb1c15a4bc`
+- Scientific status: **Not run**
+- Identity, eligibility, calibration, and test artifacts: **Missing by design**
+- Shutdown verified: `2026-07-15T09:48:20Z`
+
+Version 4 explicitly initializes CUDA before clearing and resetting peak memory
+statistics in all three checkpoint-dependent entrypoints. The reset remains
+before model loading, so the reported peak-memory quantity is unchanged. An
+order-sensitive regression test covers identity, eligibility, and scientific
+runners. No model, prompt, data order, calibration/test split, estimator,
+threshold, or decision rule changed; only runtime compatibility and the three
+dependent implementation bindings changed.
+
+- Identity runner SHA-256:
+  `a80e68495b3d9f76d91f385120c6640c12995110205974d51fcf2ef8436e6dad`
+- Eligibility runner SHA-256:
+  `4ff90d169e59e51a6cf506bceca8a88a53a403d8c29d1ed6fe93a1d3262cf682`
+- Scientific runner SHA-256:
+  `879b23892a354c1b30b374a2e540e15b92b8300686fd99d0a18c0a5dbab3d341`
+- Identity and scientific config hashes: **Unchanged from v3**

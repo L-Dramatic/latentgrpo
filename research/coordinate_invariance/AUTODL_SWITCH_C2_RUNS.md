@@ -70,3 +70,43 @@ Remediation:
 3. Add the Git blob object ID to the model-source identity record.
 4. Rebuild all dependent config, implementation, artifact, and release hashes
    before issuing `switch-c2-frozen-v3`.
+
+## Attempt 3 - 2026-07-15
+
+- Project ref: `switch-c2-frozen-v3`
+- Project commit: `974de2153e3315939abbf32a0e316d0bd16c8b92`
+- GPU: NVIDIA H20, 97,871 MiB visible VRAM
+- Driver / PyTorch: 590.48.01 / 2.8.0+cu128
+- Data disk: 100 GiB class, 99.5 GiB free at resource check
+- Managed start: 2026-07-15T09:40:30Z
+- Managed stop state: `FAILED`, exit code 1
+- Failure time: 2026-07-15T09:40:47Z
+- Failure boundary: checkpoint-identity runtime initialization, before model or
+  adapter weight download
+- Passed controls: official Hugging Face network probe, frozen project/source
+  identity, CUDA/BF16/resource checks, pinned MATH-500 resolution, and all 21
+  runner-local tests
+- Failure cause: PyTorch 2.8 lazily initializes CUDA, but its peak-memory reset
+  path does not initialize the allocator. The identity runner called
+  `reset_peak_memory_stats(cuda:0)` before any tensor or model had initialized
+  the allocator, yielding `RuntimeError: Invalid device argument`.
+- Scientific interpretation: none; no checkpoint identity, eligibility,
+  calibration, or test artifact was produced
+- Returned bundle SHA-256:
+  `c9bc2fa68368fa94f762526a1c0775aa19be718b569e65eddea1e4eb1c15a4bc`
+- Bundle verification: tar stream read successfully, 33 members
+- Evidence retrieved: 2026-07-15T09:41:52Z
+- Shutdown verification: SSH endpoint was closed for five consecutive checks
+  from 2026-07-15T09:44:02Z through 2026-07-15T09:48:20Z
+
+Remediation:
+
+1. Explicitly initialize CUDA immediately before clearing and resetting memory
+   statistics in the identity, eligibility, and scientific runners.
+2. Preserve the reset before model loading so peak allocated memory retains its
+   original meaning.
+3. Add an order-sensitive regression test for all three checkpoint-dependent
+   entrypoints.
+4. Rebind the three implementation hashes without changing any model, prompt,
+   split, estimator, threshold, or decision rule, then issue
+   `switch-c2-frozen-v4`.

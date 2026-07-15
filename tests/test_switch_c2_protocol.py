@@ -8,6 +8,11 @@ import pytest
 import torch
 from torch import nn
 
+from research.coordinate_invariance import (
+    switch_c2_eligibility_scan,
+    switch_c2_scientific_gate,
+    switch_checkpoint_identity_smoke,
+)
 from research.coordinate_invariance.real_models.switch import (
     SwitchReplayPlan,
     load_pinned_switch_types,
@@ -88,6 +93,33 @@ def test_c2_artifacts_bind_all_behavior_defining_implementations() -> None:
         "metrics",
         "statistics",
     }
+
+
+@pytest.mark.parametrize(
+    "module",
+    (
+        switch_checkpoint_identity_smoke,
+        switch_c2_eligibility_scan,
+        switch_c2_scientific_gate,
+    ),
+)
+def test_cuda_allocator_is_initialized_before_peak_stats_reset(
+    monkeypatch: pytest.MonkeyPatch,
+    module: object,
+) -> None:
+    calls: list[object] = []
+    device = torch.device("cuda:0")
+    monkeypatch.setattr(torch.cuda, "init", lambda: calls.append("init"))
+    monkeypatch.setattr(torch.cuda, "empty_cache", lambda: calls.append("empty_cache"))
+    monkeypatch.setattr(
+        torch.cuda,
+        "reset_peak_memory_stats",
+        lambda selected: calls.append(("reset", selected)),
+    )
+
+    module._reset_cuda_peak_memory_stats(device)
+
+    assert calls == ["init", "empty_cache", ("reset", device)]
 
 
 def test_c2_source_manifest_freezes_current_implementation_hashes() -> None:

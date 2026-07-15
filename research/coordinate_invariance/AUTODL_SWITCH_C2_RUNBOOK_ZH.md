@@ -34,7 +34,7 @@ C2 是训练前的科学闸门，不是正式训练。它依次执行：
 ```bash
 git clone https://github.com/L-Dramatic/latentgrpo.git
 cd latentgrpo
-git checkout --detach switch-c2-frozen-v3
+git checkout --detach switch-c2-frozen-v4
 ```
 
 随后在仓库根目录执行：
@@ -45,7 +45,7 @@ bash research/coordinate_invariance/run_switch_c2_autodl.sh prepare
 
 `prepare` 会创建隔离环境、锁定官方 SWITCH 源码、下载固定版本 MATH-500、
 检查项目冻结标签、GPU/磁盘/BF16，并运行 SWITCH/C2 专项测试。它不会下载大模型
-权重。项目版本不匹配 `switch-c2-frozen-v3` 时会在下载前停止，避免错跑代码。
+权重。项目版本不匹配 `switch-c2-frozen-v4` 时会在下载前停止，避免错跑代码。
 
 准备通过后，建议在 `tmux` 中分阶段运行：
 

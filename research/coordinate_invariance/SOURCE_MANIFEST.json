@@ -47,11 +47,10 @@
         "status": "pass"
       },
       "c2_contract": {
-        "project_release_tag": "switch-c2-frozen-v3",
+        "project_release_tag": "switch-c2-frozen-v4",
         "release_smoke": {
-          "artifact": "artifacts/coordinate_invariance/switch_c2_release_smoke_v3.json",
-          "artifact_sha256": "4c2df82161f6a7026af5330a6661669e54d6ec6783d6b7003c3af294442678c0",
-          "status": "pass"
+          "artifact": "artifacts/coordinate_invariance/switch_c2_release_smoke_v4.json",
+          "status": "pending external fresh-clone validation after immutable tag creation"
         },
         "checkpoint_identity_config_file_sha256": "7dc90bafc6d34c58c54e1eb333cf20383073fee1f0948705b8b46b4d513db094",
         "checkpoint_identity_config_sha256": "5f7456d6dd83d01ec02bb988de660e3b995b2b5f65351dba28b893eff02d5438",
@@ -60,15 +59,15 @@
         "prompt_order_artifact_sha256": "8dd5d3e339eaf09607b85be29c1d8413a429903118664f5459f1ff7dd16b848c",
         "implementation_sha256": {
           "identity": {
-            "identity_runner": "4b00c47b0daff2b8ea63fc60b144944269dc1590ae1af549fd18464c68a45a41",
+            "identity_runner": "a80e68495b3d9f76d91f385120c6640c12995110205974d51fcf2ef8436e6dad",
             "switch_adapter": "8b91f721546375520669ee075ab917d3138aff966c344ec48acb7848c731df5b"
           },
           "eligibility": {
-            "eligibility_runner": "05ef75fdafcd7ba916171b533bfcc387c4551522ae7ec720cf3c55452003fd3f",
+            "eligibility_runner": "4ff90d169e59e51a6cf506bceca8a88a53a403d8c29d1ed6fe93a1d3262cf682",
             "switch_adapter": "8b91f721546375520669ee075ab917d3138aff966c344ec48acb7848c731df5b"
           },
           "scientific": {
-            "scientific_runner": "80d1c4865ffd69f6c1c4a52eedeb977648bbf0c5a6a215c6b0e627d58a766029",
+            "scientific_runner": "879b23892a354c1b30b374a2e540e15b92b8300686fd99d0a18c0a5dbab3d341",
             "geometry": "e2fc07c1038c0863fdc6287b3c4f2d7cbb14e75ba4a2b796927b3cd982427bb2",
             "switch_adapter": "8b91f721546375520669ee075ab917d3138aff966c344ec48acb7848c731df5b",
             "fctr_solver": "fb7486dee657d06d87beb8c5e431c4b15c9fbc27f10aa0c00d8cc450ffe2823c",
