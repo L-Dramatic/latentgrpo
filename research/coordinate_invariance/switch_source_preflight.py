@@ -16,6 +16,14 @@ def _sha256(path: Path) -> str:
     return digest.hexdigest()
 
 
+def _git_blob(source_directory: Path, commit: str, relative: str) -> bytes:
+    return subprocess.run(
+        ["git", "-C", str(source_directory), "show", f"{commit}:{relative}"],
+        check=True,
+        capture_output=True,
+    ).stdout
+
+
 def _canonical_hash(config: dict[str, Any]) -> str:
     payload = json.dumps(config, sort_keys=True, separators=(",", ":")).encode()
     return hashlib.sha256(payload).hexdigest()
@@ -46,9 +54,16 @@ def run(
     }
     source_hashes: dict[str, str] = {}
     for relative, expected in source_config["files"].items():
-        actual = _sha256(source_directory / relative)
+        payload = _git_blob(source_directory, commit, relative)
+        actual = hashlib.sha256(payload).hexdigest()
         source_hashes[relative] = actual
         gates[f"source_hash:{relative}"] = actual == expected
+        worktree_payload = (source_directory / relative).read_bytes().replace(
+            b"\r\n", b"\n"
+        )
+        gates[f"source_worktree_matches_blob:{relative}"] = (
+            worktree_payload == payload
+        )
 
     metadata_hashes: dict[str, str] = {}
     for relative, expected in config["adapter"]["metadata_files"].items():
@@ -182,7 +197,9 @@ def main() -> None:
     report = run(config, args.source_directory, args.metadata_directory)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
-        json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     print(json.dumps(report, indent=2, sort_keys=True))
     if report["status"] != "pass":

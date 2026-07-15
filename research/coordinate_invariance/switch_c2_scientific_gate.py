@@ -951,7 +951,11 @@ def _read_journal(
 
 def _write_header(path: Path, header: dict[str, Any]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(header, sort_keys=True) + "\n", encoding="utf-8")
+    path.write_text(
+        json.dumps(header, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
+    )
 
 
 def _append_record(path: Path, record: dict[str, Any]) -> None:
@@ -1597,7 +1601,9 @@ def main() -> None:
     )
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(
-        json.dumps(report, indent=2, sort_keys=True) + "\n", encoding="utf-8"
+        json.dumps(report, indent=2, sort_keys=True) + "\n",
+        encoding="utf-8",
+        newline="\n",
     )
     compact = {key: value for key, value in report.items() if key not in {"records", "whitening"}}
     print(json.dumps(compact, indent=2, sort_keys=True))

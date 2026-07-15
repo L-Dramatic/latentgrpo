@@ -182,7 +182,7 @@ float64. Its scientific configuration and thresholds are unchanged.
   `389f9ba43b7f6a4219e5402495959d8f2d1ac1350b79705382f1c518dc9b135c`
 - Artifact: `artifacts/coordinate_invariance/fctr_coconut_smoke_v1c.json`
 - Artifact SHA-256:
-  `4ed3b83325ea7d9d73f6546058fd2980fc394305bdcab61d9cdec37488e6e495`
+  `82a0a85f1852328ce877c1510db7d00ab862dad984a42e3c82bdff324ab5e764`
 - Status: **Pass: 11 of 11 frozen gates**
 - Evidence level: real-checkpoint differentiable integration contract only
 
@@ -321,3 +321,38 @@ CRLF bytes, passed `bash -n`, reported the four checkpoint-dependent artifacts
 as absent, and generated a self-verified pre-execution return bundle. This
 proves release transport and evidence collection only; it is not checkpoint or
 method evidence.
+
+## 2026-07-15: SWITCH source-pin portability repair
+
+The first Linux execution of the frozen local tests exposed a second release
+portability issue before any model weight or checkpoint-dependent artifact was
+created. The upstream SWITCH commit was correct and its checkout was clean, but
+the v2 source hash had been calculated from a Windows CRLF worktree. Linux
+checked out the same Git blob with LF bytes, so the fail-closed hash gate stopped
+the run.
+
+The affected model file contained 1,377 CRLF sequences locally. Replacing each
+CRLF with LF produced an exact byte match to Git blob
+`eb976d634c06570e0a25b63c3b16c44490a799aa`, whose canonical SHA-256 is
+`468e4fc05361e4b6150c2a645dddbb3d3ea9a4e60935808804a71bac494615e7`.
+All five preflight source files had the same host-line-ending-only difference.
+
+Version 3 therefore defines source identity from bytes read directly from the
+fixed Git commit and separately requires the normalized worktree bytes to equal
+that blob. It also records the model source Git object ID. No model behavior,
+prompt, estimator, threshold, split, or scientific observation changed. The v2
+attempt and returned bundle remain negative operational evidence; v3 supersedes
+v2 only for portable execution.
+
+- Portable source-preflight canonical config SHA-256:
+  `d63837994df4d75fee5221195656b4033cc775a52b0c71b39081448a328af8c0`
+- Portable source-preflight artifact SHA-256:
+  `69f22657c11b96d461924fd51e62c14bd3fc7f992369bc256e542c99fb3a63f2`
+- Identity config file SHA-256:
+  `7dc90bafc6d34c58c54e1eb333cf20383073fee1f0948705b8b46b4d513db094`
+- Identity canonical config SHA-256:
+  `5f7456d6dd83d01ec02bb988de660e3b995b2b5f65351dba28b893eff02d5438`
+- Scientific config file SHA-256:
+  `7efe9caf1b0ef35f8c63149c4ce38d9319d25689c410449358c461ba8a471056`
+- Scientific canonical config SHA-256:
+  `4290912a37f0c67b2751c71098e983663fead0620da6c88da40c6adde87996b7`

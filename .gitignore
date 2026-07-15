@@ -52,3 +52,5 @@ artifacts/**/*.bin
 artifacts/**/*.safetensors
 artifacts/**/traces/
 artifacts/**/*.tar.gz
+artifacts/**/offline_staging/
+artifacts/**/autodl_return_*/

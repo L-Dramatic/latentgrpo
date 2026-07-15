@@ -4,7 +4,7 @@
   "source": {
     "relative_path": "_external/switch",
     "commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd",
-    "model_source_sha256": "3bdd5e66076bbcab1c3e2ee600c16fad749839cda21616b3d094211ba4fa1b27"
+    "model_source_sha256": "468e4fc05361e4b6150c2a645dddbb3d3ea9a4e60935808804a71bac494615e7"
   },
   "model": {
     "base_id": "Qwen/Qwen3-8B",
@@ -19,7 +19,7 @@
     "sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
     "expected_rows": 500,
     "prompt_order_relative_path": "artifacts/coordinate_invariance/switch_c2_prompt_order_v1.json",
-    "prompt_order_sha256": "ceae806918e9cad16b5225f999591f9f6206f51bceec9076ce5de4449ad8fbc3",
+    "prompt_order_sha256": "8dd5d3e339eaf09607b85be29c1d8413a429903118664f5459f1ff7dd16b848c",
     "prompt_order_config_sha256": "c0d9b44560055314b1190fcd172fd4230f5468fd62984ef847a1b6c33495d61f"
   },
   "prompt": {

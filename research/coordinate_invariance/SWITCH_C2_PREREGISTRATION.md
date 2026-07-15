@@ -38,9 +38,9 @@ a training pilot. A failure is retained and stops the FCTR method claim.
 - Scientific config:
   `configs/switch_c2_scientific_gate_v1.json`.
 - Identity config canonical SHA-256:
-  `e2df1ad9f577c8d44c97e8738575ea383ae1e75287206792aca42c56e8da09b5`.
+  `5f7456d6dd83d01ec02bb988de660e3b995b2b5f65351dba28b893eff02d5438`.
 - Scientific config canonical SHA-256:
-  `603629a1eab5bc0c68af70fd160904e1dda30c388a5ec4fae312585e46202c9d`.
+  `4290912a37f0c67b2751c71098e983663fead0620da6c88da40c6adde87996b7`.
 
 The released latent driver, hidden recurrence, minimum dwell of four, tokenizer
 IDs, forced `</swi>` insertion, and all weight hashes are source-pinned. The
@@ -206,7 +206,7 @@ charts, categorical-KL metrics, and bootstrap statistics. Identity and
 eligibility artifacts bind their runner and SWITCH adapter, and every downstream
 phase rejects an upstream artifact from a different implementation.
 
-The executable release is pinned by Git tag `switch-c2-frozen-v2`. The AutoDL
+The executable release is pinned by Git tag `switch-c2-frozen-v3`. The AutoDL
 entrypoint refuses a different project commit before downloading model weights.
 On every staged exit it creates an integrity-checked evidence bundle containing
 the available formal artifacts, journals, logs, frozen inputs, implementation,

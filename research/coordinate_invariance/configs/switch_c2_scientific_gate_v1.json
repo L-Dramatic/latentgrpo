@@ -4,11 +4,11 @@
   "frozen_at": "2026-07-15",
   "prerequisites": {
     "source_preflight_artifact": "artifacts/coordinate_invariance/switch_c2_source_preflight_v1.json",
-    "source_preflight_artifact_sha256": "3fae56acf8332a10d136e4b897c2653fc5be307a09a4eb5c2c479349bfa88d9b",
+    "source_preflight_artifact_sha256": "69f22657c11b96d461924fd51e62c14bd3fc7f992369bc256e542c99fb3a63f2",
     "coconut_c1_artifact": "artifacts/coordinate_invariance/fctr_coconut_smoke_v1c.json",
-    "coconut_c1_artifact_sha256": "4ed3b83325ea7d9d73f6546058fd2980fc394305bdcab61d9cdec37488e6e495",
+    "coconut_c1_artifact_sha256": "82a0a85f1852328ce877c1510db7d00ab862dad984a42e3c82bdff324ab5e764",
     "checkpoint_identity_config": "research/coordinate_invariance/configs/switch_checkpoint_identity_smoke_v1.json",
-    "checkpoint_identity_config_sha256": "e2df1ad9f577c8d44c97e8738575ea383ae1e75287206792aca42c56e8da09b5",
+    "checkpoint_identity_config_sha256": "5f7456d6dd83d01ec02bb988de660e3b995b2b5f65351dba28b893eff02d5438",
     "checkpoint_identity_artifact": "artifacts/coordinate_invariance/switch_checkpoint_identity_smoke_v1.json",
     "checkpoint_identity_required_status": "pass"
   },
@@ -30,7 +30,7 @@
     "sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
     "expected_rows": 500,
     "prompt_order_artifact": "artifacts/coordinate_invariance/switch_c2_prompt_order_v1.json",
-    "prompt_order_artifact_sha256": "ceae806918e9cad16b5225f999591f9f6206f51bceec9076ce5de4449ad8fbc3",
+    "prompt_order_artifact_sha256": "8dd5d3e339eaf09607b85be29c1d8413a429903118664f5459f1ff7dd16b848c",
     "prompt_order_config_sha256": "c0d9b44560055314b1190fcd172fd4230f5468fd62984ef847a1b6c33495d61f"
   },
   "prompt": {

@@ -14,7 +14,7 @@
       "status": "downloaded; exact chart insertion and the C1c differentiable FCTR integration gate both pass",
       "c1_integration": {
         "config_sha256": "f3ce1bacda69040d8190d6e55d3e57bcb159cd2ca2a5610b5e700566333e8245",
-        "artifact_sha256": "4ed3b83325ea7d9d73f6546058fd2980fc394305bdcab61d9cdec37488e6e495",
+        "artifact_sha256": "82a0a85f1852328ce877c1510db7d00ab862dad984a42e3c82bdff324ab5e764",
         "gates_passed": 11,
         "gates_total": 11,
         "peak_allocated_mib": 911.53857421875
@@ -40,37 +40,36 @@
         "revision": "b968826d9c46dd6066d109eabc6255188de91218",
         "safetensor_bytes": 16381516776
       },
-      "status": "source pinned; official CPU tests and the local source/metadata preflight pass; C2 identity, eligibility, calibration, and held-out runners are frozen but the 24.2 GB paper-final checkpoint has not been downloaded or executed",
+      "status": "source pinned with Git-blob canonical hashes; official CPU tests and the portable source/metadata preflight pass; C2 identity, eligibility, calibration, and held-out runners are frozen but the 24.2 GB paper-final checkpoint has not been executed",
       "source_preflight": {
-        "config_sha256": "42ce262f98692a392ea33c04c63a2a941d55590e35def44cfb761a5574790431",
-        "artifact_sha256": "3fae56acf8332a10d136e4b897c2653fc5be307a09a4eb5c2c479349bfa88d9b",
+        "config_sha256": "d63837994df4d75fee5221195656b4033cc775a52b0c71b39081448a328af8c0",
+        "artifact_sha256": "69f22657c11b96d461924fd51e62c14bd3fc7f992369bc256e542c99fb3a63f2",
         "status": "pass"
       },
       "c2_contract": {
-        "project_release_tag": "switch-c2-frozen-v2",
+        "project_release_tag": "switch-c2-frozen-v3",
         "release_smoke": {
-          "artifact": "artifacts/coordinate_invariance/switch_c2_release_smoke_v2.json",
-          "artifact_sha256": "da0c59e1070ddd429aec43a3c5caa9ffeae69d4989ace36347608e9e8b924c31",
-          "status": "pass"
+          "artifact": "artifacts/coordinate_invariance/switch_c2_release_smoke_v3.json",
+          "status": "pending external fresh-clone validation after immutable tag creation"
         },
-        "checkpoint_identity_config_file_sha256": "8f6f7bcc1edf52db3a39b8bc58585709e7526cbd46d07aa521e305ec379c1519",
-        "checkpoint_identity_config_sha256": "e2df1ad9f577c8d44c97e8738575ea383ae1e75287206792aca42c56e8da09b5",
-        "scientific_config_file_sha256": "a73759e1e0fed584d33234b1431d7ba282908229ba8217bdd1188a85fcc23800",
-        "scientific_config_sha256": "603629a1eab5bc0c68af70fd160904e1dda30c388a5ec4fae312585e46202c9d",
-        "prompt_order_artifact_sha256": "ceae806918e9cad16b5225f999591f9f6206f51bceec9076ce5de4449ad8fbc3",
+        "checkpoint_identity_config_file_sha256": "7dc90bafc6d34c58c54e1eb333cf20383073fee1f0948705b8b46b4d513db094",
+        "checkpoint_identity_config_sha256": "5f7456d6dd83d01ec02bb988de660e3b995b2b5f65351dba28b893eff02d5438",
+        "scientific_config_file_sha256": "7efe9caf1b0ef35f8c63149c4ce38d9319d25689c410449358c461ba8a471056",
+        "scientific_config_sha256": "4290912a37f0c67b2751c71098e983663fead0620da6c88da40c6adde87996b7",
+        "prompt_order_artifact_sha256": "8dd5d3e339eaf09607b85be29c1d8413a429903118664f5459f1ff7dd16b848c",
         "implementation_sha256": {
           "identity": {
-            "identity_runner": "dc3be7072df4013d2c5f8b829c2d3517f470f4d568db13611012666197fd74aa",
-            "switch_adapter": "10e30f5a602c1ea448bed51a8cfea4e9b4bda89f95a328ea7edd737de663bf2c"
+            "identity_runner": "4b00c47b0daff2b8ea63fc60b144944269dc1590ae1af549fd18464c68a45a41",
+            "switch_adapter": "8b91f721546375520669ee075ab917d3138aff966c344ec48acb7848c731df5b"
           },
           "eligibility": {
-            "eligibility_runner": "94c03bbd53989210065f463b588f668e086062eb0215d0b465fd76d821316cbb",
-            "switch_adapter": "10e30f5a602c1ea448bed51a8cfea4e9b4bda89f95a328ea7edd737de663bf2c"
+            "eligibility_runner": "05ef75fdafcd7ba916171b533bfcc387c4551522ae7ec720cf3c55452003fd3f",
+            "switch_adapter": "8b91f721546375520669ee075ab917d3138aff966c344ec48acb7848c731df5b"
           },
           "scientific": {
-            "scientific_runner": "2ac6016c6ed9265795e1ad0a9ea95945e2b4be68a01a4e32a7c6bfd9596d65c6",
+            "scientific_runner": "80d1c4865ffd69f6c1c4a52eedeb977648bbf0c5a6a215c6b0e627d58a766029",
             "geometry": "e2fc07c1038c0863fdc6287b3c4f2d7cbb14e75ba4a2b796927b3cd982427bb2",
-            "switch_adapter": "10e30f5a602c1ea448bed51a8cfea4e9b4bda89f95a328ea7edd737de663bf2c",
+            "switch_adapter": "8b91f721546375520669ee075ab917d3138aff966c344ec48acb7848c731df5b",
             "fctr_solver": "fb7486dee657d06d87beb8c5e431c4b15c9fbc27f10aa0c00d8cc450ffe2823c",
             "charts": "5f9638edf26b9c2a22a85695304c2b1e913d848bef6307a87cc7d573321f7de5",
             "metrics": "6f6f4c52aefe4d9716e2ce6054044cc4751b1602e653506d5e76fae86f9ea4aa",

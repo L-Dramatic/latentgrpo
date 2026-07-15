@@ -1,5 +1,8 @@
 from __future__ import annotations
 
+import hashlib
+import json
+from pathlib import Path
 from types import SimpleNamespace
 
 import torch
@@ -16,6 +19,7 @@ from research.coordinate_invariance.real_models.switch import (
 from research.coordinate_invariance.switch_c2_eligibility_scan import (
     classify_switch_run,
 )
+from research.coordinate_invariance.switch_source_preflight import _git_blob
 
 
 class DeterministicSwitchLM(nn.Module):
@@ -98,8 +102,25 @@ def test_pinned_source_integrity() -> None:
     record = verify_pinned_switch_source("_external/switch")
     assert record["commit"] == "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd"
     assert record["source_sha256"] == (
-        "3bdd5e66076bbcab1c3e2ee600c16fad749839cda21616b3d094211ba4fa1b27"
+        "468e4fc05361e4b6150c2a645dddbb3d3ea9a4e60935808804a71bac494615e7"
     )
+    assert record["source_git_blob"] == "eb976d634c06570e0a25b63c3b16c44490a799aa"
+
+
+def test_source_preflight_hashes_are_git_blob_canonical() -> None:
+    source_directory = Path("_external/switch").resolve()
+    config = json.loads(
+        Path(
+            "research/coordinate_invariance/configs/switch_c2_source_preflight_v1.json"
+        ).read_text(encoding="utf-8")
+    )
+    commit = str(config["source"]["commit"])
+    for relative, expected in config["source"]["files"].items():
+        payload = _git_blob(source_directory, commit, relative)
+        assert hashlib.sha256(payload).hexdigest() == expected
+        assert (source_directory / relative).read_bytes().replace(
+            b"\r\n", b"\n"
+        ) == payload
 
 
 def test_audit_loop_matches_official_generation_call_by_call() -> None:

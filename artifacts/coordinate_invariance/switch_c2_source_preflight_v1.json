@@ -1,5 +1,5 @@
 {
-  "config_sha256": "42ce262f98692a392ea33c04c63a2a941d55590e35def44cfb761a5574790431",
+  "config_sha256": "d63837994df4d75fee5221195656b4033cc775a52b0c71b39081448a328af8c0",
   "evidence_level": "source and release-metadata contract only",
   "experiment_name": "switch-c2-source-preflight-v1",
   "gates": {
@@ -23,6 +23,11 @@
     "source_hash:scripts/train_phase3_grpo.sh": true,
     "source_hash:src/model/coconut_swi_model.py": true,
     "source_hash:tests/test_rl_pipeline.py": true,
+    "source_worktree_matches_blob:scripts/eval_latent.py": true,
+    "source_worktree_matches_blob:scripts/eval_math500.py": true,
+    "source_worktree_matches_blob:scripts/train_phase3_grpo.sh": true,
+    "source_worktree_matches_blob:src/model/coconut_swi_model.py": true,
+    "source_worktree_matches_blob:tests/test_rl_pipeline.py": true,
     "token_id:eos_id": true,
     "token_id:latent_id": true,
     "token_id:swi_end_id": true,
@@ -47,11 +52,11 @@
   },
   "source_commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd",
   "source_hashes": {
-    "scripts/eval_latent.py": "ee194d3a7aae063a9aefba5d5f88bcb82caf17342abc4fc7dad10f1a9745511f",
-    "scripts/eval_math500.py": "3f42dc4cb73820ec8e3d6732a9c6b62f58cbc04de15f0034ff7de1c8208886d7",
-    "scripts/train_phase3_grpo.sh": "f4fee54c526e957f55691e60905ac0b9c9aedea2ba55a7856978b2ca2225b484",
-    "src/model/coconut_swi_model.py": "3bdd5e66076bbcab1c3e2ee600c16fad749839cda21616b3d094211ba4fa1b27",
-    "tests/test_rl_pipeline.py": "a37dca04ed72a2348e3a4af6006a217f4eca9e90dfe85cff6f40dd4d3489f7bc"
+    "scripts/eval_latent.py": "969448244e1e1693ecd46c6cc979f1e98d1553215785fd061bd3bc24e7aae4ea",
+    "scripts/eval_math500.py": "fd8f7c83790817307f247e0557f966ed511a8b862f7510656f87cffb839a31ee",
+    "scripts/train_phase3_grpo.sh": "38682d6ba568dd5650b470f6126192de361441f44b874a2951fc46212924c57a",
+    "src/model/coconut_swi_model.py": "468e4fc05361e4b6150c2a645dddbb3d3ea9a4e60935808804a71bac494615e7",
+    "tests/test_rl_pipeline.py": "8146f74d390f5480dfc0d715174d9974e85469ff0f53b42dd39418c2db051e63"
   },
   "status": "pass",
   "token_ids": {

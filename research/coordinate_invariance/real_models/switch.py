@@ -15,8 +15,9 @@ from torch import Tensor
 
 
 PINNED_SWITCH_COMMIT = "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd"
+PINNED_SWITCH_SOURCE_GIT_BLOB_SHA1 = "eb976d634c06570e0a25b63c3b16c44490a799aa"
 PINNED_SWITCH_SOURCE_SHA256 = (
-    "3bdd5e66076bbcab1c3e2ee600c16fad749839cda21616b3d094211ba4fa1b27"
+    "468e4fc05361e4b6150c2a645dddbb3d3ea9a4e60935808804a71bac494615e7"
 )
 SWITCH_BASE_MODEL_ID = "Qwen/Qwen3-8B"
 SWITCH_BASE_REVISION = "b968826d9c46dd6066d109eabc6255188de91218"
@@ -79,9 +80,25 @@ def _source_commit(source_directory: Path) -> str:
     return result.stdout.strip()
 
 
+def _git_blob(source_directory: Path, revision_path: str) -> tuple[str, bytes]:
+    object_id = subprocess.run(
+        ["git", "-C", str(source_directory), "rev-parse", revision_path],
+        check=True,
+        capture_output=True,
+        text=True,
+    ).stdout.strip()
+    payload = subprocess.run(
+        ["git", "-C", str(source_directory), "show", revision_path],
+        check=True,
+        capture_output=True,
+    ).stdout
+    return object_id, payload
+
+
 def verify_pinned_switch_source(source_directory: str | Path) -> dict[str, str]:
     source_directory = Path(source_directory).resolve()
-    source_file = source_directory / "src" / "model" / "coconut_swi_model.py"
+    source_relative = "src/model/coconut_swi_model.py"
+    source_file = source_directory / source_relative
     if not source_file.is_file():
         raise FileNotFoundError(f"missing pinned SWITCH source: {source_file}")
     commit = _source_commit(source_directory)
@@ -89,13 +106,31 @@ def verify_pinned_switch_source(source_directory: str | Path) -> dict[str, str]:
         raise ValueError(
             f"SWITCH source commit is {commit}, expected {PINNED_SWITCH_COMMIT}"
         )
-    source_sha256 = _sha256_file(source_file)
+    source_git_blob, source_payload = _git_blob(
+        source_directory, f"{commit}:{source_relative}"
+    )
+    if source_git_blob != PINNED_SWITCH_SOURCE_GIT_BLOB_SHA1:
+        raise ValueError(
+            f"SWITCH source Git blob is {source_git_blob}, "
+            f"expected {PINNED_SWITCH_SOURCE_GIT_BLOB_SHA1}"
+        )
+    worktree_payload = source_file.read_bytes().replace(b"\r\n", b"\n")
+    if worktree_payload != source_payload:
+        raise ValueError(
+            "SWITCH worktree source differs from the pinned Git blob after "
+            "CRLF normalization"
+        )
+    source_sha256 = hashlib.sha256(source_payload).hexdigest()
     if source_sha256 != PINNED_SWITCH_SOURCE_SHA256:
         raise ValueError(
             "SWITCH source SHA-256 mismatch: "
             f"got {source_sha256}, expected {PINNED_SWITCH_SOURCE_SHA256}"
         )
-    return {"commit": commit, "source_sha256": source_sha256}
+    return {
+        "commit": commit,
+        "source_git_blob": source_git_blob,
+        "source_sha256": source_sha256,
+    }
 
 
 @contextmanager
