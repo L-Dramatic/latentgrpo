@@ -151,3 +151,49 @@ Remediation:
    transport selection does not change scientific inputs.
 4. Add a release test for the frozen transport defaults, then issue
    `switch-c2-frozen-v5`.
+
+## Attempt 5 - 2026-07-15 to 2026-07-16
+
+- Project ref: `switch-c2-frozen-v5`
+- Project commit: `1d3064c0699c14616d27df01208b711938933594`
+- GPU: NVIDIA H20, 97,871 MiB visible VRAM
+- Driver / PyTorch: 580.65.06 / 2.8.0+cu128
+- Data disk: 100 GiB class, about 77 GiB free at final inspection
+- Managed start: 2026-07-15T11:25:52Z
+- Managed stop state: `FAILED`, exit code 1
+- Failure time: 2026-07-15T23:19:47Z
+- Failure boundary: complete 16-prompt calibration, before calibration artifact
+  materialization and before the held-out test
+- Passed stages: exact checkpoint identity and complete frozen eligibility scan
+- Identity result: 8/8 prompts passed with zero token, latent-info, forward-count,
+  or identity-hidden mismatch; 4 prompts contained natural latent blocks
+- Eligibility result: 500/500 rows scanned, 76 eligible, 16 calibration and 32
+  held-out test prompts fixed; all six eligibility gates passed
+- Formal failure cause: no global gain satisfied the preregistered all-prompt
+  radius and objective controls. At the smallest gain, calibration prompt 8
+  already required relative hidden L2 0.060155 for V32 and 0.060163 for the
+  selected V3 baseline, above the frozen maximum of 0.05.
+- Independent numerical failure: the best finite-difference step was 0.01,
+  with median relative error 0.261846 and p90 error 0.574329, above limits 0.10
+  and 0.20.
+- Independent efficacy signal: V32's mean Spearman margin over the selected
+  strongest simple baseline was negative at all four calibration scales; the
+  least-negative margin was -0.007302 at relative hidden L2 0.02.
+- Returned bundle SHA-256:
+  `da0cc1c3090ea27c63b6c086d7903229cb65ef052a2149f30b3d05143e441dae`
+- Bundle verification: tar stream read successfully, 37 members; all 36 files
+  listed in its internal manifest independently matched their SHA-256
+- Evidence retrieved: 2026-07-16T03:22:49Z
+- Shutdown verification: after the final evidence pull and fallback shutdown,
+  the compute backend returned EOF before the SSH banner for five consecutive
+  checks from 2026-07-16T03:37:20Z through 2026-07-16T03:38:29Z. AutoDL's
+  public TCP proxy remained open, so backend unavailability rather than TCP
+  closure is the authoritative operational check. Three final rechecks through
+  2026-07-16T03:55:55Z produced the same powered-off behavior.
+- Scientific decision: **No-go for the frozen SWITCH C2 v1 operationalization.**
+  No held-out result exists, and the held-out test must not be run under this
+  failed calibration.
+
+The complete interpretation and deterministic journal replay are recorded in
+`SWITCH_C2_ATTEMPT5_POSTMORTEM.md` and
+`artifacts/coordinate_invariance/switch_c2_calibration_postmortem_v1.json`.

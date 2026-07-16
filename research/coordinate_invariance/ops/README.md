@@ -45,8 +45,10 @@ Any nonzero frozen-runner exit prevents later gates, collects the strongest
 available evidence bundle, flushes logs, and enters `SHUTDOWN_PENDING`. The
 primary controller and watchdog both retry AutoDL's custom `/usr/bin/shutdown`
 without arguments. A local monitor retrieves and reads the final tar stream,
-records its SHA-256, and requires five consecutive closed SSH checks before it
-reports shutdown success.
+records its SHA-256, and requires five consecutive failed SSH backend
+connections before it reports shutdown success. AutoDL's public TCP proxy can
+remain open after the compute backend is powered off, so TCP availability is
+recorded as context rather than treated as proof that the GPU is still running.
 
 The local monitor contains a final fallback shutdown request if the remote host
 remains reachable beyond the grace window. Credentials are read only from the

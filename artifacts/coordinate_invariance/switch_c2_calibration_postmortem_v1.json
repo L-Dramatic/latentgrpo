@@ -1,0 +1,416 @@
+{
+  "schema_version": 1,
+  "experiment_name": "switch-fctr-c2-calibration-postmortem-v1",
+  "evidence_level": "deterministic post-hoc diagnostic from the frozen append-only calibration journal; not a preregistered scientific artifact",
+  "status": "fail",
+  "decision": "no_go_for_frozen_switch_c2_v1",
+  "failure_stage": "calibration_selection",
+  "formal_failure_reason": "no calibration gain satisfies radius and objective controls",
+  "held_out_test_authorized": false,
+  "inputs": {
+    "config": "research/coordinate_invariance/configs/switch_c2_scientific_gate_v1.json",
+    "config_file_sha256": "7efe9caf1b0ef35f8c63149c4ce38d9319d25689c410449358c461ba8a471056",
+    "config_canonical_sha256": "4290912a37f0c67b2751c71098e983663fead0620da6c88da40c6adde87996b7",
+    "journal": "artifacts/coordinate_invariance/journals/switch_c2_calibration_4b0c45b26fbd8138.jsonl",
+    "journal_sha256": "daf0eba6c3473756ed0127779cc800d9b65e5f2a8cc746c2c9dbc2927c497c30",
+    "journal_header_binding": {
+      "kind": "header",
+      "phase": "calibration",
+      "config_sha256": "4290912a37f0c67b2751c71098e983663fead0620da6c88da40c6adde87996b7",
+      "eligibility_sha256": "5ae70200e06d72ec14faf5f878d3969966aae3b64dbd6fa695973b1254cca9e0",
+      "calibration_sha256": null,
+      "implementation_sha256": {
+        "charts": "5f9638edf26b9c2a22a85695304c2b1e913d848bef6307a87cc7d573321f7de5",
+        "fctr_solver": "fb7486dee657d06d87beb8c5e431c4b15c9fbc27f10aa0c00d8cc450ffe2823c",
+        "geometry": "e2fc07c1038c0863fdc6287b3c4f2d7cbb14e75ba4a2b796927b3cd982427bb2",
+        "metrics": "6f6f4c52aefe4d9716e2ce6054044cc4751b1602e653506d5e76fae86f9ea4aa",
+        "scientific_runner": "879b23892a354c1b30b374a2e540e15b92b8300686fd99d0a18c0a5dbab3d341",
+        "statistics": "6219ed60c3c4674af243fb52a2cd397c0d32b8789a78668d8f802f4e358d6678",
+        "switch_adapter": "8b91f721546375520669ee075ab917d3138aff966c344ec48acb7848c731df5b"
+      },
+      "state_collection_model_forward_calls": 787,
+      "whitening_variance_floor": 0.0008990421555936336,
+      "whitening_precision_dimension": 4096
+    },
+    "record_count": 16
+  },
+  "probe_selection": {
+    "candidates": [
+      {
+        "relative_hidden_l2": 0.0025,
+        "best_simple": "activation_whitening",
+        "best_simple_mean_spearman": 0.05209259317705352,
+        "v32_mean_spearman": 0.005231055381796169,
+        "v64_mean_spearman": 0.008500464995418774,
+        "v32_margin": -0.04686153779525735
+      },
+      {
+        "relative_hidden_l2": 0.005,
+        "best_simple": "activation_whitening",
+        "best_simple_mean_spearman": -0.023757709858990932,
+        "v32_mean_spearman": -0.0912165282200707,
+        "v64_mean_spearman": -0.09328715430869834,
+        "v32_margin": -0.06745881836107977
+      },
+      {
+        "relative_hidden_l2": 0.01,
+        "best_simple": "latent_exit_prefix_3",
+        "best_simple_mean_spearman": 0.01798175287492433,
+        "v32_mean_spearman": -0.0027245080113521775,
+        "v64_mean_spearman": -0.0017436851272653953,
+        "v32_margin": -0.020706260886276508
+      },
+      {
+        "relative_hidden_l2": 0.02,
+        "best_simple": "visible_prefix_3",
+        "best_simple_mean_spearman": 0.05045788837024221,
+        "v32_mean_spearman": 0.043156206899818396,
+        "v64_mean_spearman": 0.04282926593845614,
+        "v32_margin": -0.007301681470423815
+      }
+    ],
+    "selected": {
+      "relative_hidden_l2": 0.02,
+      "best_simple": "visible_prefix_3",
+      "best_simple_mean_spearman": 0.05045788837024221,
+      "v32_mean_spearman": 0.043156206899818396,
+      "v64_mean_spearman": 0.04282926593845614,
+      "v32_margin": -0.007301681470423815
+    },
+    "all_v32_margins_nonpositive": true
+  },
+  "gain_selection": {
+    "maximum_relative_hidden_l2": 0.05,
+    "candidates": [
+      {
+        "predicted_objective_gain": 0.0001,
+        "all_prompts_within_radius": false,
+        "methods": {
+          "visible_prefix_32": {
+            "valid_prompt_count": 15,
+            "invalid_prompt_count": 1,
+            "invalid_prompts": [
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 0.060155109610818026
+              }
+            ],
+            "maximum_relative_hidden_l2": 0.060155109610818026
+          },
+          "visible_prefix_3": {
+            "valid_prompt_count": 15,
+            "invalid_prompt_count": 1,
+            "invalid_prompts": [
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 0.060163066937845185
+              }
+            ],
+            "maximum_relative_hidden_l2": 0.060163066937845185
+          }
+        },
+        "candidate_objective_gain_mean": null,
+        "baseline_objective_gain_mean": null,
+        "v32_to_best_simple_objective_gain_ratio": null,
+        "candidate_strict_kl_mean": null,
+        "baseline_strict_kl_mean": null,
+        "v32_to_best_simple_strict_kl_ratio": null,
+        "formally_valid": false
+      },
+      {
+        "predicted_objective_gain": 0.0003,
+        "all_prompts_within_radius": false,
+        "methods": {
+          "visible_prefix_32": {
+            "valid_prompt_count": 15,
+            "invalid_prompt_count": 1,
+            "invalid_prompts": [
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 0.18046532883245406
+              }
+            ],
+            "maximum_relative_hidden_l2": 0.18046532883245406
+          },
+          "visible_prefix_3": {
+            "valid_prompt_count": 15,
+            "invalid_prompt_count": 1,
+            "invalid_prompts": [
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 0.18048920081353553
+              }
+            ],
+            "maximum_relative_hidden_l2": 0.18048920081353553
+          }
+        },
+        "candidate_objective_gain_mean": null,
+        "baseline_objective_gain_mean": null,
+        "v32_to_best_simple_objective_gain_ratio": null,
+        "candidate_strict_kl_mean": null,
+        "baseline_strict_kl_mean": null,
+        "v32_to_best_simple_strict_kl_ratio": null,
+        "formally_valid": false
+      },
+      {
+        "predicted_objective_gain": 0.001,
+        "all_prompts_within_radius": false,
+        "methods": {
+          "visible_prefix_32": {
+            "valid_prompt_count": 15,
+            "invalid_prompt_count": 1,
+            "invalid_prompts": [
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 0.6015510961081801
+              }
+            ],
+            "maximum_relative_hidden_l2": 0.6015510961081801
+          },
+          "visible_prefix_3": {
+            "valid_prompt_count": 15,
+            "invalid_prompt_count": 1,
+            "invalid_prompts": [
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 0.6016306693784518
+              }
+            ],
+            "maximum_relative_hidden_l2": 0.6016306693784518
+          }
+        },
+        "candidate_objective_gain_mean": null,
+        "baseline_objective_gain_mean": null,
+        "v32_to_best_simple_objective_gain_ratio": null,
+        "candidate_strict_kl_mean": null,
+        "baseline_strict_kl_mean": null,
+        "v32_to_best_simple_strict_kl_ratio": null,
+        "formally_valid": false
+      },
+      {
+        "predicted_objective_gain": 0.003,
+        "all_prompts_within_radius": false,
+        "methods": {
+          "visible_prefix_32": {
+            "valid_prompt_count": 14,
+            "invalid_prompt_count": 2,
+            "invalid_prompts": [
+              {
+                "selected_index": 7,
+                "unique_id": "test/algebra/2470.json",
+                "relative_hidden_l2": 0.050204345899984355
+              },
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 1.8046532883245405
+              }
+            ],
+            "maximum_relative_hidden_l2": 1.8046532883245405
+          },
+          "visible_prefix_3": {
+            "valid_prompt_count": 14,
+            "invalid_prompt_count": 2,
+            "invalid_prompts": [
+              {
+                "selected_index": 7,
+                "unique_id": "test/algebra/2470.json",
+                "relative_hidden_l2": 0.058275988056374434
+              },
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 1.8048920081353554
+              }
+            ],
+            "maximum_relative_hidden_l2": 1.8048920081353554
+          }
+        },
+        "candidate_objective_gain_mean": null,
+        "baseline_objective_gain_mean": null,
+        "v32_to_best_simple_objective_gain_ratio": null,
+        "candidate_strict_kl_mean": null,
+        "baseline_strict_kl_mean": null,
+        "v32_to_best_simple_strict_kl_ratio": null,
+        "formally_valid": false
+      },
+      {
+        "predicted_objective_gain": 0.01,
+        "all_prompts_within_radius": false,
+        "methods": {
+          "visible_prefix_32": {
+            "valid_prompt_count": 13,
+            "invalid_prompt_count": 3,
+            "invalid_prompts": [
+              {
+                "selected_index": 7,
+                "unique_id": "test/algebra/2470.json",
+                "relative_hidden_l2": 0.16734781966661452
+              },
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 6.015510961081802
+              },
+              {
+                "selected_index": 11,
+                "unique_id": "test/prealgebra/951.json",
+                "relative_hidden_l2": 0.10002182111352559
+              }
+            ],
+            "maximum_relative_hidden_l2": 6.015510961081802
+          },
+          "visible_prefix_3": {
+            "valid_prompt_count": 13,
+            "invalid_prompt_count": 3,
+            "invalid_prompts": [
+              {
+                "selected_index": 7,
+                "unique_id": "test/algebra/2470.json",
+                "relative_hidden_l2": 0.1942532935212481
+              },
+              {
+                "selected_index": 8,
+                "unique_id": "test/intermediate_algebra/2046.json",
+                "relative_hidden_l2": 6.016306693784518
+              },
+              {
+                "selected_index": 11,
+                "unique_id": "test/prealgebra/951.json",
+                "relative_hidden_l2": 0.0723931785719712
+              }
+            ],
+            "maximum_relative_hidden_l2": 6.016306693784518
+          }
+        },
+        "candidate_objective_gain_mean": null,
+        "baseline_objective_gain_mean": null,
+        "v32_to_best_simple_objective_gain_ratio": null,
+        "candidate_strict_kl_mean": null,
+        "baseline_strict_kl_mean": null,
+        "v32_to_best_simple_strict_kl_ratio": null,
+        "formally_valid": false
+      }
+    ],
+    "valid_gain_count": 0
+  },
+  "finite_difference": {
+    "prompt_count": 4,
+    "candidates": [
+      {
+        "relative_hidden_l2": 0.0025,
+        "errors": [
+          1.3587003911585693,
+          0.5068370195988269,
+          0.961014845699687,
+          19.186808868101657
+        ],
+        "median_relative_error": 1.159857618429128,
+        "p90_relative_error": 13.838376325018736
+      },
+      {
+        "relative_hidden_l2": 0.005,
+        "errors": [
+          0.4323733221149405,
+          1.0857205445815568,
+          1.4141098193909136,
+          0.9742732149273322
+        ],
+        "median_relative_error": 1.0299968797544445,
+        "p90_relative_error": 1.3155930369481066
+      },
+      {
+        "relative_hidden_l2": 0.01,
+        "errors": [
+          0.07881446830910108,
+          0.17905804004545448,
+          0.34463429039211735,
+          0.6727689935805253
+        ],
+        "median_relative_error": 0.2618461652187859,
+        "p90_relative_error": 0.574328582624003
+      },
+      {
+        "relative_hidden_l2": 0.02,
+        "errors": [
+          0.1589046574406862,
+          0.16193684857108018,
+          0.5983669166521304,
+          1.1032749829200927
+        ],
+        "median_relative_error": 0.38015188261160526,
+        "p90_relative_error": 0.9518025630397041
+      }
+    ],
+    "selected": {
+      "relative_hidden_l2": 0.01,
+      "errors": [
+        0.07881446830910108,
+        0.17905804004545448,
+        0.34463429039211735,
+        0.6727689935805253
+      ],
+      "median_relative_error": 0.2618461652187859,
+      "p90_relative_error": 0.574328582624003
+    },
+    "thresholds": {
+      "maximum_median_relative_error": 0.1,
+      "maximum_p90_relative_error": 0.2
+    },
+    "pass": false
+  },
+  "numerical_controls": {
+    "projected_gradient": {
+      "maximum_observed_relative_error": 0.007896624086102626,
+      "maximum_allowed_relative_error": 0.01,
+      "pass": true
+    },
+    "metric_update_transport": {
+      "maximum_observed_relative_error": 5.80208100411981e-13,
+      "maximum_allowed_relative_error": 0.005,
+      "pass": true
+    },
+    "orthogonal_euclidean_transport": {
+      "maximum_observed_discrepancy": 2.1888844847941154e-16,
+      "maximum_allowed_discrepancy": 0.005,
+      "pass": true
+    },
+    "condition12_chart_sensitivity": {
+      "median_observed_discrepancy": 1.5616740414485024,
+      "minimum_required_median": 0.25,
+      "pass": true
+    },
+    "zero_point": {
+      "maximum_observed_logit_absolute_error": 0.0,
+      "maximum_allowed_logit_absolute_error": 0.0,
+      "pass": true
+    },
+    "basis_orthogonality": {
+      "maximum_observed_absolute_error": 4.218847493575595e-15,
+      "maximum_allowed_absolute_error": 1e-05,
+      "pass": true
+    }
+  },
+  "runtime": {
+    "seconds": 11979.359372597188,
+    "counters": {
+      "free_rollout_visible_tokens": 0.0,
+      "full_gradient_backward_calls": 16.0,
+      "jvp_calls": 64.0,
+      "latent_logit_steps": 10712.0,
+      "logit_evaluations": 2678.0,
+      "model_forward_calls": 181995.0,
+      "prefix_cache_builds": 16.0,
+      "prefix_cache_hits": 2678.0,
+      "prefix_evaluations": 2694.0,
+      "visible_logit_tokens": 170496.0
+    }
+  },
+  "interpretation": "The complete calibration journal cannot authorize the held-out C2 test. Every global gain violates the all-prompt radius control, the selected finite-difference check exceeds both tolerances, and V32 does not beat the calibration-selected simple baseline at any probe scale. Passing transport controls show that this is not explained by a basic coordinate-transport implementation defect."
+}

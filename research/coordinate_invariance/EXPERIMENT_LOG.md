@@ -491,3 +491,44 @@ before Hub imports and that HTTP metadata/download timeouts are bounded. The
 full tar stream, source identity, LF transport, prerequisite hashes, frozen
 implementation bindings, and all tests passed. This validates transport and
 release integrity only; no checkpoint-dependent observation was generated.
+
+## 2026-07-16: SWITCH C2 attempt 5 calibration failure
+
+The v5 cloud run completed every expensive calibration measurement without an
+operational interruption. Checkpoint identity passed exactly, the frozen scan
+processed all 500 MATH-500 rows, and all 16 calibration prompt records were
+written. The runner then reproduced the preregistered fail-closed behavior:
+`_select_calibration` raised `ValueError: no calibration gain satisfies radius
+and objective controls`. No calibration JSON was emitted and the held-out
+32-prompt C2 test was not started.
+
+This is a scientific no-go for the frozen V32 operationalization, not another
+cloud failure. One near-zero-gradient prompt made both V32 and the selected V3
+baseline exceed the 0.05 relative hidden-L2 radius at even the smallest global
+gain, so all five gains failed the all-prompt rule. Two additional observations
+make a simple threshold repair unjustified:
+
+1. The best finite-difference setting had median relative error 0.261846 and
+   p90 error 0.574329, versus frozen maxima 0.10 and 0.20.
+2. V32 failed to beat the calibration-selected simple baseline at every probe
+   scale. Its best margin was still negative (-0.007302 at scale 0.02).
+
+Several implementation and geometry controls passed strongly: zero-point logit
+error was 0, maximum basis-orthogonality error was 4.22e-15, maximum projected
+gradient error was 0.007897, maximum metric transport error was 5.80e-13,
+maximum orthogonal-chart discrepancy was 2.19e-16, and median condition-12
+Euclidean direction discrepancy was 1.561674. The negative result therefore
+cannot be dismissed as a basic coordinate-transport bug.
+
+- Identity artifact SHA-256:
+  `53596f97104a53be99659ea1243d1702eab1c4848b61136cf8e298bb89ff5cf9`
+- Eligibility artifact SHA-256:
+  `5ae70200e06d72ec14faf5f878d3969966aae3b64dbd6fa695973b1254cca9e0`
+- Calibration journal SHA-256:
+  `daf0eba6c3473756ed0127779cc800d9b65e5f2a8cc746c2c9dbc2927c497c30`
+- Final return bundle SHA-256:
+  `da0cc1c3090ea27c63b6c086d7903229cb65ef052a2149f30b3d05143e441dae`
+- Frozen scientific status: **Calibration failed; held-out test not run**
+- Decision: **Do not spend more GPU on this exact protocol.** Any altered
+  radius rule, prompt eligibility rule, derivative check, or estimator is a new
+  protocol that requires a new preregistration and fresh confirmatory data.

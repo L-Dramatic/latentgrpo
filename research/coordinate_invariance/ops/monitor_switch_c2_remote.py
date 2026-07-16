@@ -195,7 +195,8 @@ def main() -> int:
     last_checkpoint = 0.0
     final_seen_at: float | None = None
     final_pulled = False
-    closed_checks = 0
+    unavailable_checks = 0
+    shutdown_observations: list[dict[str, object]] = []
 
     print(f"{utc_now()} local monitor started", flush=True)
     while True:
@@ -203,18 +204,30 @@ def main() -> int:
             client = connect(args)
         except (OSError, paramiko.SSHException) as exc:
             if final_seen_at is not None:
-                closed_checks = closed_checks + 1 if not tcp_is_open(args.host, args.port) else 0
+                unavailable_checks += 1
+                tcp_proxy_open = tcp_is_open(args.host, args.port)
+                shutdown_observations.append(
+                    {
+                        "checked_at": utc_now(),
+                        "exception_type": type(exc).__name__,
+                        "tcp_proxy_open": tcp_proxy_open,
+                        "ssh_backend_available": False,
+                    }
+                )
                 print(
-                    f"{utc_now()} shutdown verification closed={closed_checks}/"
-                    f"{args.shutdown_closed_checks}",
+                    f"{utc_now()} shutdown verification backend_unavailable="
+                    f"{unavailable_checks}/{args.shutdown_closed_checks} "
+                    f"tcp_proxy_open={tcp_proxy_open}",
                     flush=True,
                 )
-                if closed_checks >= args.shutdown_closed_checks:
+                if unavailable_checks >= args.shutdown_closed_checks:
                     summary = {
                         "verified_at": utc_now(),
                         "host": args.host,
                         "port": args.port,
-                        "consecutive_closed_checks": closed_checks,
+                        "verification_method": "consecutive SSH backend unavailability",
+                        "consecutive_unavailable_checks": unavailable_checks,
+                        "observations": shutdown_observations,
                         "final_evidence_pulled": final_pulled,
                     }
                     args.destination.mkdir(parents=True, exist_ok=True)
@@ -230,7 +243,8 @@ def main() -> int:
             time.sleep(args.interval)
             continue
 
-        closed_checks = 0
+        unavailable_checks = 0
+        shutdown_observations = []
         try:
             sftp = client.open_sftp()
             status = parse_status(remote_text(sftp, REMOTE_STATUS))

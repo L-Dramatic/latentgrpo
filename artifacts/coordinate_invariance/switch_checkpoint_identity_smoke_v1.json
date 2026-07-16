@@ -1,0 +1,203 @@
+{
+  "checkpoint": {
+    "adapter_id": "LARK-Lab/SWITCH-Phase3-GRPO-LoRA-Qwen3-8B",
+    "adapter_revision": "246fee75d774c02a110ea8608ac841a916dd5d35",
+    "attention_implementation": "eager",
+    "base_id": "Qwen/Qwen3-8B",
+    "base_revision": "b968826d9c46dd6066d109eabc6255188de91218",
+    "source_commit": "d8d97cdc6276fcfa6e48f6a6b19ce472c7b87fcd"
+  },
+  "config_sha256": "5f7456d6dd83d01ec02bb988de660e3b995b2b5f65351dba28b893eff02d5438",
+  "dataset_sha256": "35dc41080a3680858b27fa7e0533d2d547825316fc5dafe5d316f4ccc5a06132",
+  "evidence_level": "paper-final checkpoint execution identity only",
+  "experiment_name": "switch-paper-final-checkpoint-identity-smoke-v1",
+  "gates": {
+    "identity_hook_hidden_exact": true,
+    "latent_block_coverage": true,
+    "official_audit_forward_counts_exact": true,
+    "official_audit_latent_info_exact": true,
+    "official_audit_tokens_exact": true,
+    "ordered_prompt_count": true
+  },
+  "implementation_sha256": {
+    "identity_runner": "a80e68495b3d9f76d91f385120c6640c12995110205974d51fcf2ef8436e6dad",
+    "switch_adapter": "8b91f721546375520669ee075ab917d3138aff966c344ec48acb7848c731df5b"
+  },
+  "interpretation": "A pass establishes that the source-equivalent audit loop and an identity latent hook reproduce the released checkpoint exactly. It is not a scientific effect and does not authorize training.",
+  "prompts": [
+    {
+      "dataset_index": 95,
+      "forward_counts_exact": true,
+      "generated_visible_token_count": 256,
+      "identity_hidden_exact": true,
+      "latent_blocks": 1,
+      "latent_info_exact": true,
+      "latent_steps": [
+        4
+      ],
+      "model_forward_calls_per_path": 261,
+      "natural_exits": [
+        true
+      ],
+      "output_ids_sha256": "baff303aed5c13230be6e0a66387ddb06cf5ec545c9798b6a1b83635aeca9998",
+      "problem_sha256": "8b30a7be8ee0adc16f0a19edfda93f5dfca0e9d7d408326c2736e5098d06e1e9",
+      "prompt_token_count": 103,
+      "scan_rank": 0,
+      "tokens_exact": true,
+      "unique_id": "test/precalculus/34.json"
+    },
+    {
+      "dataset_index": 234,
+      "forward_counts_exact": true,
+      "generated_visible_token_count": 256,
+      "identity_hidden_exact": true,
+      "latent_blocks": 0,
+      "latent_info_exact": true,
+      "latent_steps": [],
+      "model_forward_calls_per_path": 257,
+      "natural_exits": [],
+      "output_ids_sha256": "92149a21fe4e50c86da50c24bb9273f46ebf281c93e9aa6a1db55aeb1b2a7594",
+      "problem_sha256": "ce699925401ba6668902739f014ac20a2782f068f66a4e07f8bce91329350d23",
+      "prompt_token_count": 86,
+      "scan_rank": 1,
+      "tokens_exact": true,
+      "unique_id": "test/intermediate_algebra/1837.json"
+    },
+    {
+      "dataset_index": 249,
+      "forward_counts_exact": true,
+      "generated_visible_token_count": 256,
+      "identity_hidden_exact": true,
+      "latent_blocks": 0,
+      "latent_info_exact": true,
+      "latent_steps": [],
+      "model_forward_calls_per_path": 257,
+      "natural_exits": [],
+      "output_ids_sha256": "00cc7de0644eac921024b142371c18de29fce23ae0e03fedb84e4296bbe06eab",
+      "problem_sha256": "ee1b3a25b71946282d4300091a2809b35c450bfbe3491c5a6c35a331433d76eb",
+      "prompt_token_count": 64,
+      "scan_rank": 2,
+      "tokens_exact": true,
+      "unique_id": "test/number_theory/1065.json"
+    },
+    {
+      "dataset_index": 304,
+      "forward_counts_exact": true,
+      "generated_visible_token_count": 256,
+      "identity_hidden_exact": true,
+      "latent_blocks": 0,
+      "latent_info_exact": true,
+      "latent_steps": [],
+      "model_forward_calls_per_path": 257,
+      "natural_exits": [],
+      "output_ids_sha256": "738959cd4c73ed824b1adf04acea8829a1ad4b6b66aa085dfbc4f602ff907a97",
+      "problem_sha256": "f59c58f79047ac70a5c7a95f0c9cff993f03200f3b236ba8a303a6018721d9e4",
+      "prompt_token_count": 58,
+      "scan_rank": 3,
+      "tokens_exact": true,
+      "unique_id": "test/intermediate_algebra/446.json"
+    },
+    {
+      "dataset_index": 74,
+      "forward_counts_exact": true,
+      "generated_visible_token_count": 256,
+      "identity_hidden_exact": true,
+      "latent_blocks": 0,
+      "latent_info_exact": true,
+      "latent_steps": [],
+      "model_forward_calls_per_path": 257,
+      "natural_exits": [],
+      "output_ids_sha256": "aed529ec4846a7a717f6338bd92ab68661f608884ff72337a3c724be38f42794",
+      "problem_sha256": "490c8dd47aecc496eea869fe1d18d0b4d5b23e66900c9f8508b7f9bd4b5a3fa7",
+      "prompt_token_count": 50,
+      "scan_rank": 4,
+      "tokens_exact": true,
+      "unique_id": "test/precalculus/24313.json"
+    },
+    {
+      "dataset_index": 411,
+      "forward_counts_exact": true,
+      "generated_visible_token_count": 256,
+      "identity_hidden_exact": true,
+      "latent_blocks": 1,
+      "latent_info_exact": true,
+      "latent_steps": [
+        4
+      ],
+      "model_forward_calls_per_path": 261,
+      "natural_exits": [
+        true
+      ],
+      "output_ids_sha256": "c624eb3cfbccb923ecc616595268a571fc8614d95d66685c6421ddae8449d5e4",
+      "problem_sha256": "ca9cbef015dfaab22b1a6944f39b7e09b2a7619b3e7a5ec8464ad82ebde36dbf",
+      "prompt_token_count": 104,
+      "scan_rank": 5,
+      "tokens_exact": true,
+      "unique_id": "test/prealgebra/1227.json"
+    },
+    {
+      "dataset_index": 311,
+      "forward_counts_exact": true,
+      "generated_visible_token_count": 256,
+      "identity_hidden_exact": true,
+      "latent_blocks": 1,
+      "latent_info_exact": true,
+      "latent_steps": [
+        4
+      ],
+      "model_forward_calls_per_path": 261,
+      "natural_exits": [
+        true
+      ],
+      "output_ids_sha256": "909a0bc905b0ffaa4ead777aebf9c7b6509ea05f7391c1d72dcbd33cf07a57e5",
+      "problem_sha256": "5d688c1d01def1bc20b491e071f5abeed2f44f76de2495e004e568db8191c6d9",
+      "prompt_token_count": 98,
+      "scan_rank": 6,
+      "tokens_exact": true,
+      "unique_id": "test/number_theory/911.json"
+    },
+    {
+      "dataset_index": 478,
+      "forward_counts_exact": true,
+      "generated_visible_token_count": 256,
+      "identity_hidden_exact": true,
+      "latent_blocks": 1,
+      "latent_info_exact": true,
+      "latent_steps": [
+        4
+      ],
+      "model_forward_calls_per_path": 261,
+      "natural_exits": [
+        true
+      ],
+      "output_ids_sha256": "32d2e8d81fb75cc2111a2ebd5222f945612f79672d6ee6a843eb51d7d5375f95",
+      "problem_sha256": "fcefdaeffd3707430918941cf6c03be0b66e81b40a43a024d50534d937beb168",
+      "prompt_token_count": 98,
+      "scan_rank": 7,
+      "tokens_exact": true,
+      "unique_id": "test/intermediate_algebra/1279.json"
+    }
+  ],
+  "runner_sha256": "a80e68495b3d9f76d91f385120c6640c12995110205974d51fcf2ef8436e6dad",
+  "runtime": {
+    "accelerate": "1.14.0",
+    "cuda_device": "NVIDIA H20",
+    "cuda_peak_allocated_mib": 25763.98095703125,
+    "device": "cuda:0",
+    "model_forward_calls": 6216,
+    "peft": "0.18.1",
+    "python": "3.12.3",
+    "seconds": 5160.639209641144,
+    "torch": "2.8.0+cu128",
+    "transformers": "4.57.6"
+  },
+  "status": "pass",
+  "summary": {
+    "forward_count_mismatches": 0,
+    "identity_hidden_mismatches": 0,
+    "latent_info_mismatches": 0,
+    "prompt_count": 8,
+    "prompts_with_latent_blocks": 4,
+    "token_mismatches": 0
+  }
+}
