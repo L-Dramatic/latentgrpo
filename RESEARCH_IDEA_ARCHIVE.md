@@ -1856,3 +1856,39 @@ source contract, literature audit, and exact tests under
 `research/mixed_measure_policy/` as an LPCA extension or future benchmark
 diagnostic. Do not run GPU training for MMLPO. A new primary candidate must move
 away from likelihood repair and pass an independent novelty gate.
+
+## 23. Idea K: Stratified Gumbel Group Exploration
+
+### 23.1 Candidate definition
+
+SGGE proposed coupling random numbers across the rollouts of a latent-GRPO group
+while preserving every trajectory's original marginal policy. The intended gain
+was fewer duplicate paths, more mixed-reward groups, and lower-variance learning
+at unchanged rollout count.
+
+### 23.2 Exact zero-GPU gate: 2026-07-16
+
+The marginal and coverage claims pass. In a two-member Bernoulli gate,
+antithetic uniforms preserve both Bernoulli marginals and raise the probability
+of a success/failure group from `2p(1-p)` to `2 min(p,1-p)`. A raw own-reward
+score estimator stays unbiased and can have lower variance.
+
+The GRPO/RLOO interaction fails. Rewards from another coupled rollout are
+correlated with the current trajectory score, so the usual leave-one-out or
+group-centered baseline has a nonzero cross term. At `p=0.3`, the true gradient
+and IID leave-one-out expectation are `0.21`, while the antithetic expectation
+is `0.30`, a `42.86%` positive bias. The increased informative-group rate and
+the apparent gradient amplification are caused by the same dependence.
+
+### 23.3 Collision and decision
+
+Arithmetic Sampling already provides parallel marginal-preserving diverse LLM
+decoding with unbiased original-model expectations. Randomized quasi-Monte
+Carlo policy gradients and generic antithetic sampling cover the unbiased raw
+estimator fallback. Removing the within-group baseline therefore preserves
+correctness but loses the distinct GRPO contribution.
+
+**KILL as a primary AAAI method.** Preserve
+`research/coupled_group_exploration/` as an exact warning/control suite. Any
+future correlated-rollout proposal must test cross-trajectory
+score-baseline terms, not only per-trajectory marginals or reward diversity.

@@ -1,0 +1,27 @@
+{
+  "audit_date": "2026-07-16",
+  "configuration": {
+    "success_probability": 0.3,
+    "group_size": 2,
+    "reward": "action",
+    "score": "action_minus_probability"
+  },
+  "ground_truth": {
+    "policy_gradient": 0.21
+  },
+  "iid": {
+    "informative_group_probability": 0.42,
+    "raw_score_expectation": 0.21,
+    "raw_score_variance": 0.05144999999999999,
+    "leave_one_out_expectation": 0.21
+  },
+  "antithetic": {
+    "informative_group_probability": 0.6000000000000001,
+    "raw_score_expectation": 0.21000000000000002,
+    "raw_score_variance": 0.029399999999999975,
+    "raw_variance_ratio_vs_iid": 0.5714285714285711,
+    "leave_one_out_expectation": 0.30000000000000004,
+    "leave_one_out_relative_bias": 0.4285714285714288
+  },
+  "decision": "KILL_PRIMARY_METHOD_PRESERVE_CONTROL"
+}
