@@ -1,0 +1,787 @@
+{
+  "action_bank": [
+    {
+      "continuous_action_consumed": true,
+      "finished_after_check": false,
+      "l2_to_reference": 0.0,
+      "latent_mode_after_update": true,
+      "proxy": 18,
+      "role": "deterministic_reference",
+      "seed": null,
+      "source_weighted_embedding_norm": 0.5378080010414124,
+      "structural_end_consumed": false,
+      "topk_ids": [
+        18,
+        15,
+        279,
+        220,
+        17,
+        12,
+        24,
+        2511,
+        16,
+        23
+      ],
+      "topk_probs": [
+        0.15358392894268036,
+        0.13553734123706818,
+        0.11961128562688828,
+        0.10555659234523773,
+        0.10555659234523773,
+        0.10555659234523773,
+        0.09315336495637894,
+        0.0822075605392456,
+        0.07254791259765625,
+        0.02668888308107853
+      ]
+    },
+    {
+      "continuous_action_consumed": true,
+      "finished_after_check": false,
+      "l2_to_reference": 0.12659236788749695,
+      "latent_mode_after_update": true,
+      "legacy_bf16_first_max_abs_difference": 0.000244140625,
+      "proxy": 220,
+      "role": "noisy_candidate",
+      "seed": 2026071601,
+      "source_weighted_embedding_norm": 0.5398116707801819,
+      "structural_end_consumed": false,
+      "topk_gumbel_scores": [
+        0.4706764221191406,
+        0.22449755668640137,
+        0.011980056762695312,
+        -0.021538496017456055,
+        -0.13646996021270752,
+        -0.40122509002685547,
+        -0.6551687717437744,
+        -0.7703583240509033,
+        -0.8811593055725098,
+        -1.0868949890136719
+      ],
+      "topk_ids": [
+        220,
+        279,
+        18,
+        2511,
+        15,
+        16,
+        17,
+        12,
+        23,
+        20
+      ],
+      "topk_probs": [
+        0.1971960812807083,
+        0.1541644185781479,
+        0.1246490553021431,
+        0.12054025381803513,
+        0.10745285451412201,
+        0.08245866000652313,
+        0.06396610289812088,
+        0.05700641870498657,
+        0.05102740600705147,
+        0.04153876751661301
+      ]
+    },
+    {
+      "continuous_action_consumed": true,
+      "finished_after_check": false,
+      "l2_to_reference": 0.20206886529922485,
+      "latent_mode_after_update": true,
+      "legacy_bf16_first_max_abs_difference": 0.000244140625,
+      "proxy": 220,
+      "role": "noisy_candidate",
+      "seed": 2026071602,
+      "source_weighted_embedding_norm": 0.5892271995544434,
+      "structural_end_consumed": false,
+      "topk_gumbel_scores": [
+        1.1638355255126953,
+        1.1115455627441406,
+        1.0691871643066406,
+        0.781874418258667,
+        -0.4147944450378418,
+        -0.6424462795257568,
+        -0.8132071495056152,
+        -0.8704301118850708,
+        -1.2235941886901855,
+        -1.396988868713379
+      ],
+      "topk_ids": [
+        220,
+        24,
+        12,
+        15,
+        2511,
+        21,
+        16,
+        18,
+        279,
+        17
+      ],
+      "topk_probs": [
+        0.22987709939479828,
+        0.21816569566726685,
+        0.20911753177642822,
+        0.15689609944820404,
+        0.04741387069225311,
+        0.037760477513074875,
+        0.03183295577764511,
+        0.030062520876526833,
+        0.02111777476966381,
+        0.017755944281816483
+      ]
+    },
+    {
+      "continuous_action_consumed": true,
+      "finished_after_check": false,
+      "l2_to_reference": 0.35984763503074646,
+      "latent_mode_after_update": true,
+      "legacy_bf16_first_max_abs_difference": 0.000244140625,
+      "proxy": 24,
+      "role": "noisy_candidate",
+      "seed": 2026071603,
+      "source_weighted_embedding_norm": 0.6212323307991028,
+      "structural_end_consumed": false,
+      "topk_gumbel_scores": [
+        2.0620975494384766,
+        0.6888092756271362,
+        0.3218388557434082,
+        -0.349010705947876,
+        -0.44975948333740234,
+        -0.5970368385314941,
+        -0.6574875116348267,
+        -0.7219188213348389,
+        -1.3666797876358032,
+        -1.765356421470642
+      ],
+      "topk_ids": [
+        24,
+        18,
+        16,
+        2511,
+        279,
+        15,
+        17,
+        12,
+        220,
+        23
+      ],
+      "topk_probs": [
+        0.5401104092597961,
+        0.13679523766040802,
+        0.09477587044239044,
+        0.04845644533634186,
+        0.043812382966279984,
+        0.037812475115060806,
+        0.03559441119432449,
+        0.033373333513736725,
+        0.017513925209641457,
+        0.011755479499697685
+      ]
+    },
+    {
+      "continuous_action_consumed": true,
+      "finished_after_check": false,
+      "l2_to_reference": 0.4948943257331848,
+      "latent_mode_after_update": true,
+      "legacy_bf16_first_max_abs_difference": 0.000244140625,
+      "proxy": 2511,
+      "role": "noisy_candidate",
+      "seed": 2026071604,
+      "source_weighted_embedding_norm": 0.5261638164520264,
+      "structural_end_consumed": false,
+      "topk_gumbel_scores": [
+        1.6405839920043945,
+        0.06064581871032715,
+        -0.01673412322998047,
+        -0.2275693416595459,
+        -0.33586573600769043,
+        -0.7636207342147827,
+        -0.8101614713668823,
+        -1.3010571002960205,
+        -1.4182722568511963,
+        -1.813016414642334
+      ],
+      "topk_ids": [
+        2511,
+        24,
+        15,
+        2501,
+        16,
+        12,
+        18,
+        17,
+        220,
+        20
+      ],
+      "topk_probs": [
+        0.5006195902824402,
+        0.1031215488910675,
+        0.09544292092323303,
+        0.07729993015527725,
+        0.06936599314212799,
+        0.0452246218919754,
+        0.04316806048154831,
+        0.026422223076224327,
+        0.023499760776758194,
+        0.015835370868444443
+      ]
+    }
+  ],
+  "endpoint_audit": {
+    "natural_pair": {
+      "cache_storage_disjoint": true,
+      "candidate": "NATURAL_VISIBLE",
+      "candidate_closure": {
+        "endpoint": "NATURAL_VISIBLE",
+        "forced_visible_control": false,
+        "natural_visible": true,
+        "records": [
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 0,
+            "proxy": 220,
+            "request_output_length": 1,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 1,
+            "proxy": 35124,
+            "request_output_length": 2,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": false,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 2,
+            "proxy": 524,
+            "request_output_length": 3,
+            "structural_end_consumed": true
+          }
+        ],
+        "request_output_ids": [
+          220,
+          35124,
+          524
+        ]
+      },
+      "endpoint_kl": 0.0,
+      "reference": "NATURAL_VISIBLE",
+      "reference_closure": {
+        "endpoint": "NATURAL_VISIBLE",
+        "forced_visible_control": false,
+        "natural_visible": true,
+        "records": [
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 0,
+            "proxy": 18,
+            "request_output_length": 1,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 1,
+            "proxy": 35124,
+            "request_output_length": 2,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 2,
+            "proxy": 82460,
+            "request_output_length": 3,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 3,
+            "proxy": 2304,
+            "request_output_length": 4,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": false,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 4,
+            "proxy": 524,
+            "request_output_length": 5,
+            "structural_end_consumed": true
+          }
+        ],
+        "request_output_ids": [
+          18,
+          35124,
+          82460,
+          2304,
+          524
+        ]
+      },
+      "same_atom": true,
+      "scientific_visible_pair": true,
+      "visible_continuation_defined": true
+    },
+    "plumbing_control_pair": {
+      "candidate": "NATURAL_VISIBLE",
+      "candidate_closure": {
+        "endpoint": "NATURAL_VISIBLE",
+        "forced_visible_control": false,
+        "natural_visible": true,
+        "records": [
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 0,
+            "proxy": 220,
+            "request_output_length": 1,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 1,
+            "proxy": 35124,
+            "request_output_length": 2,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": false,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 2,
+            "proxy": 524,
+            "request_output_length": 3,
+            "structural_end_consumed": true
+          }
+        ],
+        "request_output_ids": [
+          220,
+          35124,
+          524
+        ]
+      },
+      "endpoint_kl": Infinity,
+      "reference": "FORCED_VISIBLE_CONTROL",
+      "reference_closure": {
+        "endpoint": "FORCED_VISIBLE_CONTROL",
+        "forced_visible_control": true,
+        "natural_visible": false,
+        "records": [
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 0,
+            "proxy": 18,
+            "request_output_length": 1,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 1,
+            "proxy": 35124,
+            "request_output_length": 2,
+            "structural_end_consumed": false
+          },
+          {
+            "continuous_action_consumed": true,
+            "finish_kind": null,
+            "finished_after_check": false,
+            "latent_step": 2,
+            "proxy": 82460,
+            "request_output_length": 3,
+            "structural_end_consumed": false
+          }
+        ],
+        "request_output_ids": [
+          18,
+          35124,
+          82460
+        ]
+      },
+      "same_atom": false,
+      "scientific_visible_pair": false,
+      "visible_continuation_defined": true
+    }
+  },
+  "failures": [],
+  "gpu": {
+    "free_bytes_after_preflight": 4386193408,
+    "peak_allocated_bytes": 2947976704,
+    "peak_reserved_bytes": 3026190336
+  },
+  "identity_control": {
+    "cache_storage_disjoint": true,
+    "forward": {
+      "eos_terminated": false,
+      "per_step_directional_kl": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "requested_horizon": 4,
+      "sample_seed": 2026071701,
+      "shared_reference_token_ids": [
+        27963,
+        29,
+        59,
+        80175
+      ],
+      "sum_directional_kl": 0.0,
+      "teacher_forced_candidate_on_every_reference_token": true,
+      "visible_policy": "fixed full-vocabulary categorical temperature=1 engineering law"
+    },
+    "max_per_step_kl": 0.0,
+    "reverse": {
+      "eos_terminated": false,
+      "per_step_directional_kl": [
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "requested_horizon": 4,
+      "sample_seed": 2026071702,
+      "shared_reference_token_ids": [
+        27963,
+        29,
+        59,
+        80175
+      ],
+      "sum_directional_kl": 0.0,
+      "teacher_forced_candidate_on_every_reference_token": true,
+      "visible_policy": "fixed full-vocabulary categorical temperature=1 engineering law"
+    },
+    "status": "PASS",
+    "tolerance": 1e-08
+  },
+  "paired_forward_path": {
+    "natural_pair": {
+      "candidate_seed": 2026071601,
+      "forward": {
+        "eos_terminated": false,
+        "per_step_directional_kl": [
+          9.252412125771815e-05,
+          7.42182813728499e-05,
+          1.1878984898518724e-05,
+          1.629365427187628e-05
+        ],
+        "requested_horizon": 4,
+        "sample_seed": 2026071699,
+        "shared_reference_token_ids": [
+          27963,
+          29,
+          59,
+          80175
+        ],
+        "sum_directional_kl": 0.00019491504180096304,
+        "teacher_forced_candidate_on_every_reference_token": true,
+        "visible_policy": "fixed full-vocabulary categorical temperature=1 engineering law"
+      },
+      "reverse": {
+        "eos_terminated": false,
+        "per_step_directional_kl": [
+          0.0005131359690592262,
+          0.0001626236048601896,
+          5.011046638801768e-05,
+          2.36483406994131e-05
+        ],
+        "requested_horizon": 4,
+        "sample_seed": 2026071700,
+        "shared_reference_token_ids": [
+          27963,
+          29,
+          59,
+          80175
+        ],
+        "sum_directional_kl": 0.0007495183810068465,
+        "teacher_forced_candidate_on_every_reference_token": true,
+        "visible_policy": "fixed full-vocabulary categorical temperature=1 engineering law"
+      },
+      "scientific_estimand_candidate": true
+    },
+    "plumbing_control": {
+      "candidate_seed": 2026071601,
+      "forward": {
+        "eos_terminated": false,
+        "per_step_directional_kl": [
+          0.00010898135411802942,
+          2.267826812619558e-05,
+          1.1646390652341493e-05,
+          8.212066808505214e-06
+        ],
+        "requested_horizon": 4,
+        "sample_seed": 2026071699,
+        "shared_reference_token_ids": [
+          27963,
+          29,
+          59,
+          80175
+        ],
+        "sum_directional_kl": 0.0001515180797050717,
+        "teacher_forced_candidate_on_every_reference_token": true,
+        "visible_policy": "fixed full-vocabulary categorical temperature=1 engineering law"
+      },
+      "initial_action_l2": 0.12659236788749695,
+      "reason": "at least one branch uses an explicitly forced E_524 boundary",
+      "reverse": {
+        "eos_terminated": false,
+        "per_step_directional_kl": [
+          0.00014375852718886783,
+          1.6492678222374747e-05,
+          4.5397717581287345e-05,
+          6.985180343748432e-06
+        ],
+        "requested_horizon": 4,
+        "sample_seed": 2026071700,
+        "shared_reference_token_ids": [
+          27963,
+          29,
+          59,
+          80175
+        ],
+        "sum_directional_kl": 0.00021263410333627835,
+        "teacher_forced_candidate_on_every_reference_token": true,
+        "visible_policy": "fixed full-vocabulary categorical temperature=1 engineering law"
+      },
+      "scientific_evidence": false
+    },
+    "prefill_repeat_max_abs_error": 0.0,
+    "single_unit_microbenchmark": {
+      "full_length_cost_control": {
+        "result": {
+          "forced_token_id": 220,
+          "history_policy": "fixed non-EOS token repeated for a full-length compute control",
+          "horizon": 64,
+          "per_step_directional_kl": [
+            9.252412125771815e-05,
+            0.10896308792255749,
+            10.333044574113176,
+            3.6314079679622164,
+            0.0543836274169115,
+            0.0014128283275821815,
+            0.0002017071359479645,
+            1.971704282372028e-05,
+            3.854923533105282e-06,
+            9.997391656482715e-06,
+            0.00012562971372792318,
+            0.005910126309272248,
+            0.10186832343457558,
+            0.36015673339325593,
+            0.39542813023557577,
+            0.5205604975606092,
+            0.6950547941143457,
+            1.345990091893585,
+            2.39238854365797,
+            2.0374231770074887,
+            0.6318383906680124,
+            0.12434103668217847,
+            0.036610194346605146,
+            0.017068713687499234,
+            0.01164582098222736,
+            0.021009746781704922,
+            0.028123511915816732,
+            0.03608404718079792,
+            0.04070442946379715,
+            0.04993669193374399,
+            0.018842594326063403,
+            0.0033752838462598155,
+            0.0024198274976618625,
+            0.0011108590243646334,
+            0.00691074106019912,
+            0.01158212518825375,
+            0.02220870530997631,
+            0.030691757147237778,
+            0.01619429659843731,
+            0.0053986960093754715,
+            0.009284318875505567,
+            0.015392926262490026,
+            0.018697490724628257,
+            0.018413504239093853,
+            0.013215799392756744,
+            0.0055400662146679385,
+            0.0038455628667845984,
+            0.0031073779292289045,
+            0.00792780749036268,
+            0.012207477921545288,
+            0.00641644721699493,
+            0.0013973287019526093,
+            0.0011432176932072676,
+            0.002839568023124172,
+            0.003989482205255644,
+            0.011017506331017543,
+            0.02340031870488864,
+            0.027220681308143098,
+            0.01770272331446486,
+            0.016497844620286053,
+            0.02242223875664119,
+            0.026914029099044803,
+            0.025667514124017105,
+            0.008531988428942384
+          ],
+          "scientific_result": false,
+          "sum_directional_kl": 23.403336623773328
+        },
+        "visible_sample_and_force_seconds": 4.794876948999445,
+        "visible_steps_per_second": 13.347579235240852
+      },
+      "natural_candidate_latent_steps": 3,
+      "natural_reference_latent_steps": 5,
+      "purpose": "cost measurement only",
+      "requested_horizon": 64,
+      "sampled_forward": {
+        "eos_terminated": true,
+        "per_step_directional_kl": [
+          9.252412125771815e-05,
+          7.42182813728499e-05,
+          1.1878984898518724e-05,
+          1.629365427187628e-05,
+          2.513148793313221e-09,
+          7.016767287491735e-08,
+          8.313285971307958e-08,
+          3.109238905612493e-06
+        ],
+        "requested_horizon": 64,
+        "sample_seed": 2026071703,
+        "shared_reference_token_ids": [
+          27963,
+          29,
+          59,
+          80175,
+          90,
+          20,
+          92,
+          128009
+        ],
+        "sum_directional_kl": 0.00019818009438795685,
+        "teacher_forced_candidate_on_every_reference_token": true,
+        "visible_policy": "fixed full-vocabulary categorical temperature=1 engineering law"
+      },
+      "sampled_total_with_fresh_closures_seconds": 1.3597719089993916,
+      "scientific_result": false,
+      "total_benchmark_seconds": 6.5413985189989035,
+      "valid_visible_steps": 8,
+      "visible_sample_and_force_seconds": 0.7855331249993469,
+      "visible_steps_per_second": 10.184166326539891
+    }
+  },
+  "prompt": {
+    "construction": "checkpoint chat_template with one synthetic user message",
+    "eos_token_id": 128009,
+    "name": "synthetic_arithmetic_source_format",
+    "source_end_decode": "</",
+    "source_end_id": 524,
+    "text": "<|start_header_id|>user<|end_header_id|>\n\nPlease reason step by step, and put your final answer within \\boxed{}.\nA box contains 2 red counters and 3 blue counters. How many counters are in the box?<|eot_id|><|start_header_id|>assistant<|end_header_id|>\n\n<think>",
+    "token_ids": [
+      128006,
+      882,
+      128007,
+      271,
+      5618,
+      2944,
+      3094,
+      555,
+      3094,
+      11,
+      323,
+      2231,
+      701,
+      1620,
+      4320,
+      2949,
+      1144,
+      80175,
+      6390,
+      627,
+      32,
+      3830,
+      5727,
+      220,
+      17,
+      2579,
+      32632,
+      323,
+      220,
+      18,
+      6437,
+      32632,
+      13,
+      2650,
+      1690,
+      32632,
+      527,
+      304,
+      279,
+      3830,
+      30,
+      128009,
+      128006,
+      78191,
+      128007,
+      271,
+      14023,
+      771,
+      29
+    ]
+  },
+  "protocol": {
+    "action_seeds": [
+      2026071601,
+      2026071602,
+      2026071603,
+      2026071604
+    ],
+    "benchmark_horizon": 64,
+    "candidate_first_action": "pinned official Gumbel latent sampler, top-k=10",
+    "natural_suffix_policy": "persistent source request, candidate-owned cache, no-noise source sampler, natural endpoint or cap=32",
+    "no_dataset_or_calibration": true,
+    "not_authorized": [
+      "P1 phenomenon claim",
+      "Horizon Gap score",
+      "calibration",
+      "held-out experiment",
+      "PaTR implementation",
+      "training"
+    ],
+    "plumbing_control": "cap=3 then explicitly labeled forced E_524",
+    "reference_first_action": "pinned official no-noise latent sampler, top-k=10",
+    "scope": "endpoint-aware Family-A no-JVP source-action preflight",
+    "visible_policy": "fixed-seed full-vocabulary temperature-1 sampling plus same-history teacher forcing"
+  },
+  "runtime": {
+    "cuda_available": true,
+    "model_dir": "/mnt/e/LantentGRPO/_models/Latent-GRPO-Llama-1B",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.51.1"
+  },
+  "status": "PASS-NATURAL-FORWARD-KL-PREFLIGHT",
+  "timing": {
+    "action_bank_seconds": 9.229714067001623,
+    "model_load_seconds": 46.52575059099763,
+    "natural_closure_seconds": 0.7710617749980884,
+    "natural_visible_h4_seconds": 1.907441438997921,
+    "plumbing_and_identity_seconds": 3.214388351996604,
+    "single_unit_microbenchmark_seconds": 6.5413985189989035,
+    "total_seconds": 76.2742319780009
+  }
+}
