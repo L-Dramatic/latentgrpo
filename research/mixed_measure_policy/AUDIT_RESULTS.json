@@ -1,0 +1,51 @@
+{
+  "audit_date": "2026-07-16",
+  "configuration": {
+    "lower": -1.5,
+    "upper": 3.0,
+    "noise_scale": 1.0,
+    "temperature": 1.0,
+    "old_logit_gap": 0.2,
+    "new_logit_gap": 0.37
+  },
+  "clipped_gumbel": {
+    "lower_mass": 0.011314286380459627,
+    "upper_mass": 0.048568007099546597,
+    "boundary_mass": 0.059882293480006225
+  },
+  "executed_weight_law": {
+    "two_noise_atom_mass": 0.003585889072425596,
+    "old_only_mass": 0.003585889072425596,
+    "new_only_mass": 0.003585889072425596,
+    "old_atoms": [
+      {
+        "location": 0.013386917827664779,
+        "mass": 0.0005495123412524665
+      },
+      {
+        "location": 0.549833997312478,
+        "mass": 0.0024868643899206627
+      },
+      {
+        "location": 0.990986701347152,
+        "mass": 0.0005495123412524665
+      }
+    ],
+    "new_atoms": [
+      {
+        "location": 0.015828313967089842,
+        "mass": 0.0005495123412524665
+      },
+      {
+        "location": 0.5914589784327801,
+        "mass": 0.0024868643899206627
+      },
+      {
+        "location": 0.9923850668756108,
+        "mass": 0.0005495123412524665
+      }
+    ],
+    "bidirectional_singularity": true
+  },
+  "decision": "KILL_METHOD_PRESERVE_DIAGNOSTIC"
+}

@@ -1,0 +1,18 @@
+{
+  "audit_date": "2026-07-16",
+  "official_source": {
+    "commit": "c0994fbefb9de023912878534c7ae213b44b1966",
+    "sampler": "_external/official_latent_grpo/sglang_latent_reasoning_pkg/python/sglang/srt/layers/sampler.py",
+    "objective": "_external/official_latent_grpo/verl-0.4.x/verl/utils/torch_functional.py"
+  },
+  "primary_literature": [
+    "https://arxiv.org/abs/1802.07564",
+    "https://arxiv.org/abs/2605.14297",
+    "https://arxiv.org/abs/2604.17892",
+    "https://arxiv.org/abs/2511.06411",
+    "https://arxiv.org/abs/2604.27998",
+    "https://proceedings.neurips.cc/paper_files/paper/2018/hash/b096577e264d1ebd6b41041f392eec23-Abstract.html",
+    "https://arxiv.org/abs/2004.04843",
+    "https://arxiv.org/abs/2107.09359"
+  ]
+}

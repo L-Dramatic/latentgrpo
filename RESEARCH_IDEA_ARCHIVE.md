@@ -1820,3 +1820,39 @@ available; A100/H100 80 GB are alternatives. Do not rent a small card and alter
 the protocol to fit. The four cloud stages are identity, all-500 eligibility,
 calibration, and held-out test. Only a clean held-out pass can authorize the
 next estimator-development stage; training remains unauthorized.
+
+## 22. Idea J: Mixed-Measure Latent Policy Optimization
+
+### 22.1 Candidate definition
+
+MMLPO asked whether the released Latent-GRPO sampler should be optimized as a
+joint policy over dynamic candidate support, ordered Top-K IDs, continuous
+mixture weights, clipping events, and the request-driving proxy token. Its
+intended contribution was a source-faithful replacement for the released
+selected-score Gumbel surrogate.
+
+### 22.2 Zero-GPU audit result: 2026-07-16
+
+The source and mathematical claims are real. Hard clipping before adding
+policy-dependent scores gives the executed mixture policy-dependent point-mass
+locations. A two-token exact counterexample proves that a generic finite policy
+update creates new action atoms outside the old law and old atoms outside the
+new law. Consequently, the ordinary finite-step PPO likelihood ratio over the
+executed action does not generically exist.
+
+This does not yield a competitive optimizer. CAPG already handles fixed
+clipping atoms, HPO handles hybrid mixed gradients with a differentiable
+exogenous simulator, LEPO already gives a unified latent/discrete surrogate,
+and boundary-corrected reparameterization plus weak-derivative policy gradients
+cover the generic alternatives. For black-box terminal LLM rewards, the
+remaining repairs require costly boundary constructions, counterfactual
+continuations, or finite differences. Storing base noise gives a
+parameter-independent score and changes the executed action under replay.
+
+### 22.3 Decision
+
+**KILL as a primary method-paper direction.** Preserve the moving-atom theorem,
+source contract, literature audit, and exact tests under
+`research/mixed_measure_policy/` as an LPCA extension or future benchmark
+diagnostic. Do not run GPU training for MMLPO. A new primary candidate must move
+away from likelihood repair and pass an independent novelty gate.
