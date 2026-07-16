@@ -7,11 +7,13 @@ token distribution.
 ## Current research decision
 
 The old coordinate-first FCTR/CETR headline is permanently stopped. The
-horizon-sufficiency branch remains as a preserved research audit, but its
-no-JVP redesign is now `RECOMMEND-KILL-AS-AAAAI-MAIN`: Family A passed only an
-engineering preflight, Family B lacks a real source-objective construction
-group, and the proposed PaTR method cannot inherit the frozen P2 certificate
-contract. The artifacts remain useful as a reproducible diagnostic baseline.
+horizon-sufficiency branch has now also reached its frozen sacrificial stop.
+All 296 v1 discovery records completed with natural visible endpoints, but
+there were no robust H8/H64 ranking flips, zero late-mass actions among the
+risk-eligible set, and median `D8/D64=0.999839`. The binding decision is
+`KILL-CURRENT-FORWARD-HORIZON-GAP-MAINLINE / NO-FURTHER-GPU / NO-GO-CAL`.
+The package remains a reproducible negative-result and evaluator archive, not
+an active AAAI method line.
 
 The P0 contracts are frozen, and calibration/held-out work remains `HOLD`. A
 narrow, synthetic `GO-CHECKPOINT-PREFLIGHT` and its Linux runtime repair have
@@ -41,6 +43,14 @@ P0 documents:
   a 96 GB GPU run.
 
 Post-freeze feasibility work:
+
+- [`P1_SACRIFICIAL_DISCOVERY_KILL_REPORT_ZH.md`](P1_SACRIFICIAL_DISCOVERY_KILL_REPORT_ZH.md):
+  the binding terminal report. All 296 records completed without error, but
+  the frozen no-flip/negligible-tail KILL gate fired. No sample expansion,
+  calibration, method implementation, training, or further GPU run is allowed.
+- [`results/p1_sacrificial_discovery_v1/summary.json`](results/p1_sacrificial_discovery_v1/summary.json):
+  the machine-readable frozen summary; raw JSONL and the runtime manifest are
+  stored in the same directory.
 
 - [`P1_NO_JVP_REDESIGN_DRAFT_ZH.md`](P1_NO_JVP_REDESIGN_DRAFT_ZH.md): Chinese
   forward-only redesign draft. It replaces neither a frozen protocol nor a

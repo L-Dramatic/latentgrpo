@@ -1,0 +1,25 @@
+{
+  "checkpoint": "/mnt/e/LantentGRPO/_models/Latent-GRPO-Llama-1B",
+  "checkpoint_sha256": "ab6dcd385f01eb2a2aab4d449a5e922ebbd672c4c3189c01480de80a74379833",
+  "completed_record_count": 296,
+  "decision": "KILL",
+  "elapsed_seconds": 375.7772132320024,
+  "expected_record_count": 296,
+  "gpu": {
+    "free_bytes": 4883218432,
+    "peak_allocated_bytes": 2612642304,
+    "peak_reserved_bytes": 2694840320
+  },
+  "last_completed_key": "path|p08_constraint_reasoning|a3|reverse|h3",
+  "protocol_id": "p1-sacrificial-forward-kl-v1-20260716",
+  "protocol_sha256": "d47b5089866499e29d09e8b6d2f2ea7b10c8ab3722f943dd95657744a7c2a7a0",
+  "resumed_record_count": 0,
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "torch": "2.6.0+cu124",
+    "transformers": "4.51.1"
+  },
+  "source_commit": "c0994fb781a2d180662bb522d8ff3e8638dcf56d",
+  "started_unix": 1784195969.9317827,
+  "status": "COMPLETE"
+}
