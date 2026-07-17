@@ -1,0 +1,23 @@
+{
+  "checkpoint_id": "latent_grpo_llama_1b",
+  "compaction": {
+    "destination": "artifacts\\pcmc_gate\\local_a0\\a0_records.jsonl",
+    "record_count": 500,
+    "records_sha256": "3cb8df4def842900482ab58fb35725669183bf4519fc32973267992f432d2e5f"
+  },
+  "completed_checkpoint_records": 500,
+  "elapsed_seconds": 110.37305930000002,
+  "expected_checkpoint_records": 500,
+  "gpu": {
+    "device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "free_bytes": 3339714560,
+    "peak_allocated_bytes": 3591587840,
+    "peak_reserved_bytes": 4072669184
+  },
+  "last_completed_key": "a0|latent_grpo_llama_1b|math500:499",
+  "protocol_id": "pcmc-gate-ab-v1-20260718",
+  "protocol_sha256": "67d1a6b952823337433888cbfebf7841cb3851739af57426e68fd184a4760085",
+  "resumed_checkpoint_records": 0,
+  "started_unix": 1784322975.1061175,
+  "status": "COMPLETE_CHECKPOINT"
+}

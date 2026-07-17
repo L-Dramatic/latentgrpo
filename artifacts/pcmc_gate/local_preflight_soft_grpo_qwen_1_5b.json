@@ -1,0 +1,58 @@
+{
+  "checkpoint_id": "soft_grpo_qwen_1_5b",
+  "closure_task_count": 4,
+  "elapsed_seconds": 11.051403100000243,
+  "peak_allocated_bytes": 3646117376,
+  "peak_reserved_bytes": 3858759680,
+  "protocol_id": "pcmc-gate-ab-v1-20260718",
+  "protocol_sha256": "67d1a6b952823337433888cbfebf7841cb3851739af57426e68fd184a4760085",
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "torch": "2.5.1+cu124"
+  },
+  "scientific_evidence": false,
+  "status": "PASS_ENGINEERING_PREFLIGHT",
+  "task_count": 4,
+  "task_results": [
+    {
+      "action_fingerprint": "e47e3aca2381580a8f25402ce163be322c496c9661de3b02f5cf16b636dbe926",
+      "closure_executed": true,
+      "content_support_size": 2,
+      "official_sampler_replay_match": true,
+      "prompt_token_count": 67,
+      "status": "COMPLETE",
+      "structural_end_mass": 0.0,
+      "task_key": "a0|soft_grpo_qwen_1_5b|math500:000"
+    },
+    {
+      "action_fingerprint": "6c194a260fd05b4ade5d2319a33e7165f4163f6965c9665d764663a8a7ecdf15",
+      "closure_executed": true,
+      "content_support_size": 2,
+      "official_sampler_replay_match": true,
+      "prompt_token_count": 130,
+      "status": "COMPLETE",
+      "structural_end_mass": 0.0,
+      "task_key": "a0|soft_grpo_qwen_1_5b|math500:001"
+    },
+    {
+      "action_fingerprint": "3357ca033f050515243575fe6cf046bfbed886434044a5e4bcf4e491265ada7d",
+      "closure_executed": true,
+      "content_support_size": 2,
+      "official_sampler_replay_match": true,
+      "prompt_token_count": 67,
+      "status": "COMPLETE",
+      "structural_end_mass": 0.0,
+      "task_key": "a0|soft_grpo_qwen_1_5b|math500:002"
+    },
+    {
+      "action_fingerprint": "49a080ccf324ff1c52fc4d2df902a87c032892e1fa6b59a4e8fb91db059cb4a6",
+      "closure_executed": true,
+      "content_support_size": 2,
+      "official_sampler_replay_match": true,
+      "prompt_token_count": 34,
+      "status": "COMPLETE",
+      "structural_end_mass": 0.0,
+      "task_key": "a0|soft_grpo_qwen_1_5b|math500:003"
+    }
+  ]
+}

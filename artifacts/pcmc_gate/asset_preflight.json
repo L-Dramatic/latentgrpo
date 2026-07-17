@@ -1,0 +1,43 @@
+{
+  "checkpoints": [
+    {
+      "checkpoint_id": "latent_grpo_llama_1b",
+      "checkpoint_path": "E:\\LantentGRPO\\_models\\Latent-GRPO-Llama-1B",
+      "checkpoint_sha256_expected": "AB6DCD385F01EB2A2AAB4D449A5E922EBBD672C4C3189C01480DE80A74379833",
+      "checkpoint_sha256_observed": "AB6DCD385F01EB2A2AAB4D449A5E922EBBD672C4C3189C01480DE80A74379833",
+      "model_type_expected": "llama",
+      "model_type_observed": "llama",
+      "source_commit_expected": "c0994fb781a2d180662bb522d8ff3e8638dcf56d",
+      "source_commit_observed": "c0994fb781a2d180662bb522d8ff3e8638dcf56d",
+      "source_dirty": false,
+      "source_path": "E:\\LantentGRPO\\_external\\official_latent_grpo",
+      "status": "PASS"
+    },
+    {
+      "checkpoint_id": "soft_grpo_qwen_1_5b",
+      "checkpoint_path": "E:\\LantentGRPO\\_models\\SofT-GRPO-Qwen-1.5B",
+      "checkpoint_sha256_expected": "EFF1AB0B6CCA014CC4C766C237672384F2B6EB7F4E871C59D27C5E5A28D6DD93",
+      "checkpoint_sha256_observed": "EFF1AB0B6CCA014CC4C766C237672384F2B6EB7F4E871C59D27C5E5A28D6DD93",
+      "model_type_expected": "qwen2",
+      "model_type_observed": "qwen2",
+      "source_commit_expected": "8d3c61380b15c3400818da5ce41c62c293a1bfb4",
+      "source_commit_observed": "8d3c61380b15c3400818da5ce41c62c293a1bfb4",
+      "source_dirty": false,
+      "source_path": "E:\\LantentGRPO\\_external\\soft_grpo",
+      "status": "PASS"
+    }
+  ],
+  "dataset": {
+    "path": "E:\\LantentGRPO\\_models\\hf_datasets\\HuggingFaceH4___math-500\\default\\0.0.0\\6e4ed1a2a79af7d8630a6b768ec859cb5af4d3be\\math-500-test.arrow",
+    "sha256_expected": "FF2663846092B986DF3026F53904030CBAF8E061C9F978D319A7BD86B3A04EA4",
+    "sha256_observed": "FF2663846092B986DF3026F53904030CBAF8E061C9F978D319A7BD86B3A04EA4",
+    "status": "PASS"
+  },
+  "failures": [],
+  "free_disk_bytes": 135800037376,
+  "minimum_free_disk_bytes": 53687091200,
+  "protocol_id": "pcmc-gate-ab-v1-20260718",
+  "protocol_sha256": "67d1a6b952823337433888cbfebf7841cb3851739af57426e68fd184a4760085",
+  "status": "PASS",
+  "workspace_root": "E:\\LantentGRPO"
+}

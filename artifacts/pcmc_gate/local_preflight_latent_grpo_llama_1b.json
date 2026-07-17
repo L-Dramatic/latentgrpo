@@ -1,0 +1,54 @@
+{
+  "checkpoint_id": "latent_grpo_llama_1b",
+  "closure_task_count": 4,
+  "elapsed_seconds": 18.770739599999615,
+  "peak_allocated_bytes": 2725467136,
+  "peak_reserved_bytes": 2764046336,
+  "protocol_id": "pcmc-gate-ab-v1-20260718",
+  "protocol_sha256": "67d1a6b952823337433888cbfebf7841cb3851739af57426e68fd184a4760085",
+  "runtime": {
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+    "torch": "2.5.1+cu124"
+  },
+  "scientific_evidence": false,
+  "status": "PASS_ENGINEERING_PREFLIGHT",
+  "task_count": 4,
+  "task_results": [
+    {
+      "action_fingerprint": "5c63a8ffacea4d938c4e2bd82ba68a95324b47d58f8e964f7e87dfa023f4d946",
+      "closure_executed": true,
+      "content_support_size": 10,
+      "prompt_token_count": 99,
+      "status": "COMPLETE",
+      "structural_end_mass": 0.0,
+      "task_key": "a0|latent_grpo_llama_1b|math500:000"
+    },
+    {
+      "action_fingerprint": "10b89e3231773667f3feebb31115d0b20e8bc73a60f5d36e99f744aa3d5c2cf2",
+      "closure_executed": true,
+      "content_support_size": 10,
+      "prompt_token_count": 162,
+      "status": "COMPLETE",
+      "structural_end_mass": 0.0,
+      "task_key": "a0|latent_grpo_llama_1b|math500:001"
+    },
+    {
+      "action_fingerprint": "02cb38d00b8fd8f6f1538e2e591cd405fdaed94aa66e5cfdb80739dbee45755a",
+      "closure_executed": true,
+      "content_support_size": 10,
+      "prompt_token_count": 99,
+      "status": "COMPLETE",
+      "structural_end_mass": 0.0,
+      "task_key": "a0|latent_grpo_llama_1b|math500:002"
+    },
+    {
+      "action_fingerprint": "3993a02f7c5725ef355f26e15bcb1c189721c2fd33547be03de1727c50859f59",
+      "closure_executed": true,
+      "content_support_size": 10,
+      "prompt_token_count": 64,
+      "status": "COMPLETE",
+      "structural_end_mass": 0.0,
+      "task_key": "a0|latent_grpo_llama_1b|math500:003"
+    }
+  ]
+}

@@ -2,7 +2,7 @@
 
 Decision date: 2026-07-18
 
-## Verdict: HOLD, mechanism gate only
+## Verdict: KILL PCMC as the next general AAAI method direction
 
 | Gate | Result | Reason |
 |---|---|---|
@@ -10,21 +10,28 @@ Decision date: 2026-07-18
 | Independent loss novelty | FAIL | The frozen one-step objective is ordinary teacher-distribution KL distillation. |
 | Target semantics | UNRESOLVED | Hard-branch mixture is a design contract, not the unique semantics of a soft embedding. |
 | One-step to sequence implication | FAIL | Exact counterexample gives zero initial KL but `0.5` sequence TV. |
-| Causal non-closure evidence | NOT RUN | No natural-checkpoint evidence yet. |
+| Checkpoint A0: Latent-GRPO | PASS | Calibration Q75 JS is 0.06386 nats; 64 confirmation prompts exceed it. |
+| Checkpoint A0: SofT-GRPO | FAIL | Calibration Q75 JS is 5.37e-8 nats, about 93,000 times below the frozen 0.005 threshold. |
+| Causal non-closure evidence | BLOCKED BY A0 | The frozen protocol requires both checkpoint families to pass before A1. |
 | Constrained oracle barycenter | NOT RUN | No evidence that a one-forward solution exists in the natural latent region. |
 
 ## Authorization
 
-- Preserve PCMC as the only current mechanism hypothesis from the external
-  report.
-- Authorize protocol and source-adapter preparation on CPU.
-- Do not authorize checkpoint inference until that protocol has fixed sample
-  sizes, controls, manifests, and shutdown-safe execution.
+- Preserve the Latent-GRPO non-closure measurements as a diagnostic asset and
+  negative/heterogeneous result.
+- Do not reinterpret the Latent-only pass as a PCMC method win. The source-
+  faithful SofT action is almost one-hot and closes trivially.
+- Do not run A1, Gate B, adapter training, LoRA, or RL for PCMC.
 - Do not authorize training.
 
 ## Promotion rule
 
-Only causal Gate A and constrained-oracle Gate B can promote PCMC from HOLD.
-Passing one-step KL alone is insufficient. Failure of either gate KILLs PCMC as
-the next AAAI method direction without threshold relaxation.
+The frozen promotion rule required both checkpoint families to pass A0. SofT
+failed by orders of magnitude after an unmodified-source sampler replay audit,
+so A1 and Gate B remain closed without threshold relaxation or checkpoint
+cherry-picking.
 
+## Evidence
+
+See `A0_RESULT_2026-07-18.md` and
+`artifacts/pcmc_gate/local_a0/a0_decision.json`.

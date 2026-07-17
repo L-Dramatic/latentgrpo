@@ -54,3 +54,4 @@ artifacts/**/traces/
 artifacts/**/*.tar.gz
 artifacts/**/offline_staging/
 artifacts/**/autodl_return_*/
+artifacts/pcmc_gate/**/record_shards/
