@@ -1,0 +1,16 @@
+{
+  "decision_date": "2026-07-18",
+  "external_report_sha256": "60A8976E013F66CCD9E7CDF374163468DC4E7321E3FCD9147C50DABF1BFB78F5",
+  "frozen_repository_commit": "9ccd18295941b59d4862ba5a790f7a44c4b9fae2",
+  "gradient_max_absolute_difference": 0.0,
+  "irrelevance_candidate_probability_l1": 0.0,
+  "irrelevance_median_ess": 4.0,
+  "irrelevance_median_normalized_entropy": 1.0,
+  "irrelevance_median_off_source_mass": 0.75,
+  "irrelevance_path_candidate_mi_nats": 0.0,
+  "loss_absolute_difference": 0.0,
+  "report_gate_1a_would_false_pass": true,
+  "standalone_optimizer_identity_passes": true,
+  "verdict": "KILL_OMPI_R_AS_STANDALONE_METHOD"
+}
+
