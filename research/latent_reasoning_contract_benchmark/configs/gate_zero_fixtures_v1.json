@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "protocol_id": "lrc-bench-gate-zero-fixtures-v1-20260718",
+  "source_manifest_sha256": "61e630ad769f7b8cfa548b418ed00e5ffec5d205e7420431ac3dc8a889eb7fe2",
+  "tolerance": 1e-6,
+  "latent_grpo": {
+    "seed": 808,
+    "logits": [3.2, 2.4, 1.7, 0.8, -0.3, -1.1],
+    "embedding_hidden_size": 4,
+    "max_topk": 3,
+    "top_p": 0.71,
+    "temperature": 0.9,
+    "gumbel_softmax_temperature": 0.83,
+    "noise_scale": 0.7,
+    "latent_end_token_id": 5
+  },
+  "soft_grpo": {
+    "seed": 90210,
+    "logit_min": -4.0,
+    "logit_max": 4.0,
+    "vocabulary_size": 37,
+    "checkpoint_id": "soft_grpo_qwen_1_5b"
+  },
+  "decision": {
+    "required_method_count": 4,
+    "require_source_equivalence": true,
+    "require_deterministic_replay": true,
+    "maximum_reconstruction_error": 1e-6,
+    "maximum_normalization_error": 1e-6
+  }
+}

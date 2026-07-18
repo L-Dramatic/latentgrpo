@@ -1,0 +1,61 @@
+{
+  "protocol_id": "lrc-bench-gate-zero-fixtures-v1-20260718",
+  "config_file_sha256": "755cb564f217b37f7e281c74ee7e18ee944821b68a688dc6c69abd392e0a8b2c",
+  "config_canonical_sha256": "25578cc56059eaad19071ed0ebc3c8b8d1b01e780b103eb2a460fe6a888ae15a",
+  "source_manifest_sha256": "61e630ad769f7b8cfa548b418ed00e5ffec5d205e7420431ac3dc8a889eb7fe2",
+  "implementation_sha256": {
+    "deterministic_fixtures.py": "8f3bb63ddd7b0e7351e1aa5ee7aa0ad7a63b7cacbc016a61b3e6a4e66384be7d",
+    "gate_zero.py": "137e2e4c28250adc4d6188701c454c9435ef48b4e54e86c2b35902cc8e5513a1"
+  },
+  "stage": "gate_zero_source_native_fixtures",
+  "gpu_used": false,
+  "training_used": false,
+  "decision": "PASS_GATE_ZERO",
+  "controls": {
+    "required_method_count": true,
+    "all_source_equivalent": true,
+    "all_replays_deterministic": true,
+    "all_reconstruction_errors_bounded": true,
+    "all_normalization_errors_bounded": true
+  },
+  "methods": [
+    {
+      "method_id": "coconut_gpt2",
+      "source_equivalent": true,
+      "replay_deterministic": true,
+      "reconstruction_max_abs": 0.0,
+      "output_max_abs": 5.960464477539063e-08,
+      "source_output_sha256": "4d9757442a25ebe9da5b266cc9bac131ba43bda1cbf958a119d69a316e1c56da",
+      "executed_latent_steps": 2
+    },
+    {
+      "method_id": "codi_gpt2",
+      "source_equivalent": true,
+      "replay_deterministic": true,
+      "reconstruction_max_abs": 0.0,
+      "output_max_abs": 0.0,
+      "source_output_sha256": "8d874ce16eb7b1590c9406a21478bbf47970f4507dec945214b6471bb7c00257",
+      "executed_latent_steps": 2
+    },
+    {
+      "method_id": "latent_grpo_llama_1b",
+      "source_equivalent": true,
+      "replay_deterministic": true,
+      "reconstruction_max_abs": 0.0,
+      "normalization_error": 0.0,
+      "executed_latent_steps": 1,
+      "proxy_token_id": 0
+    },
+    {
+      "method_id": "soft_grpo_qwen_1_5b",
+      "source_equivalent": true,
+      "replay_deterministic": true,
+      "reconstruction_max_abs": 0.0,
+      "normalization_error": 0.0,
+      "executed_latent_steps": 1,
+      "proxy_token_id": 36
+    }
+  ],
+  "scientific_evidence": "none; fixture conformance only",
+  "next_required_action": "freeze checkpoint-state pilot manifests before any effect inspection"
+}

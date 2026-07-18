@@ -1,6 +1,6 @@
 # Latent Reasoning Contract Benchmark (LRC-Bench)
 
-Status: `GATE -1 / FEASIBILITY ONLY`
+Status: `GATE 0 PASS / FIXTURE CONFORMANCE ONLY`
 
 LRC-Bench is the current candidate direction after the optimizer and estimator
 branches in this repository failed their frozen gates. It asks whether a
@@ -72,3 +72,16 @@ python -m research.latent_reasoning_contract_benchmark.source_preflight `
 
 Passing Gate -1 means only that the experiment can be run without a provenance
 or category error. It is not evidence that the paper thesis works.
+
+Gate 0 now also passes. The runner executes unmodified pinned Coconut and CODI
+recurrence classes on a cache-aware toy causal model, executes the unmodified
+Latent-GRPO and SofT-GRPO sampler files, and compares each against an
+independently owned oracle. All reconstruction, normalization, replay, and
+source-equivalence controls pass. This validates instrumentation only; no task
+effect has been inspected.
+
+```powershell
+_research_env/Scripts/python.exe -m `
+  research.latent_reasoning_contract_benchmark.gate_zero `
+  --output artifacts/latent_reasoning_contract_benchmark/gate_zero_fixtures_v1.json
+```
