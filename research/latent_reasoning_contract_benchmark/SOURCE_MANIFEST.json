@@ -1,0 +1,200 @@
+{
+  "schema_version": 1,
+  "benchmark_id": "lrc-bench-gate-minus-one-v1-20260718",
+  "scope": {
+    "stage": "gate_minus_one",
+    "broad_mechanism_claim": "excluded_by_collision",
+    "surviving_claim": "source-faithful layered conformance from released mechanism specification to recurrence, execution, learning semantics, optional stochastic policy measure, and outcome relevance"
+  },
+  "methods": [
+    {
+      "id": "coconut_gpt2",
+      "name": "Coconut",
+      "family": "deterministic_hidden_state_recurrence",
+      "stochastic": false,
+      "paper": "https://arxiv.org/abs/2412.06769",
+      "source": {
+        "path": "_external/coconut",
+        "repository": "https://github.com/facebookresearch/coconut",
+        "commit": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+        "files": [
+          {
+            "path": "coconut.py",
+            "sha256": "489c745ecf3832b8dd1febf52e64c737468d4d07ae75bf8adcede594ba335a97",
+            "anchors": [
+              "# feedback the continuous thoughts to the input_embeds",
+              "inputs_embeds=inputs_embeds"
+            ]
+          }
+        ]
+      },
+      "checkpoint": {
+        "id": "connordilgren/gpt2-gsm8k-coconut",
+        "revision": "24f1422fcf6d557fd359fc818a4d1d0fde4aac7f",
+        "provenance": "independent_reproduction",
+        "public": true,
+        "local_path": "_models/gpt2-gsm8k-coconut",
+        "local_files": [
+          {
+            "path": "checkpoint_33",
+            "sha256": "f7a9b5fda7c5c2afa972aaa22ac9aef13d6f083e202fe8a09649d810e3593213"
+          }
+        ]
+      },
+      "contract_layers": [
+        {"id": "provenance", "status": "source_anchored", "evidence": ["official source; independently reproduced public checkpoint"]},
+        {"id": "recurrence", "status": "source_anchored", "evidence": ["last hidden state is fed into later latent positions"]},
+        {"id": "execution", "status": "source_anchored", "evidence": ["continuous hidden vectors replace latent input embeddings"]},
+        {"id": "learning", "status": "source_anchored", "evidence": ["multi-stage curriculum replaces explicit thoughts with continuous states"]},
+        {"id": "policy_measure", "status": "not_applicable", "evidence": [], "reason": "released Coconut recurrence is deterministic and is not trained with a scored stochastic latent action"},
+        {"id": "outcome_relevance", "status": "pending_runtime", "evidence": []}
+      ]
+    },
+    {
+      "id": "codi_gpt2",
+      "name": "CODI",
+      "family": "deterministic_self_distilled_recurrence",
+      "stochastic": false,
+      "paper": "https://aclanthology.org/2025.emnlp-main.36/",
+      "source": {
+        "path": "_external/codi",
+        "repository": "https://github.com/zhenyi4/codi",
+        "commit": "2c2314662c63e9f482ebc46614ffe9af17a241e5",
+        "files": [
+          {
+            "path": "src/model.py",
+            "sha256": "7dbb418429c594597cf796444af11d53951e28549ee306859ad4c0e5ab10d853",
+            "anchors": [
+              "latent_embd = outputs.hidden_states[-1][:, -1, :].unsqueeze(1)",
+              "loss = ce_loss_total + distill_loss_total + ref_ce_loss"
+            ]
+          },
+          {
+            "path": "test.py",
+            "sha256": "57510ac70c08d134e56bcf2a494acbc1d175d0d0407e2fabccb4228f1bf50a65",
+            "anchors": [
+              "outputs = model.codi(inputs_embeds=latent_embd",
+              "inf_latent_iterations = training_args.inf_latent_iterations"
+            ]
+          }
+        ]
+      },
+      "checkpoint": {
+        "id": "zen-E/CODI-gpt2",
+        "revision": "fd641b3d3edc59e4f534b55588e906588c9e36bb",
+        "provenance": "official",
+        "public": true,
+        "local_path": "_models/CODI-gpt2",
+        "local_files": [
+          {
+            "path": "pytorch_model.bin",
+            "sha256": "fd223b14932b8b66605c2a688e7d7193058ff2b40b2c6f6c1547c227d06d8417"
+          }
+        ]
+      },
+      "contract_layers": [
+        {"id": "provenance", "status": "source_anchored", "evidence": ["official source and official revision-pinned checkpoint"]},
+        {"id": "recurrence", "status": "source_anchored", "evidence": ["last hidden state or its projection is recursively fed as one input embedding"]},
+        {"id": "execution", "status": "source_anchored", "evidence": ["inference loop executes the recurrent latent embedding with KV cache"]},
+        {"id": "learning", "status": "source_anchored", "evidence": ["student CE, hidden-state distillation, and teacher CE are jointly optimized"]},
+        {"id": "policy_measure", "status": "not_applicable", "evidence": [], "reason": "released CODI inference is deterministic and has no stochastic latent-policy likelihood"},
+        {"id": "outcome_relevance", "status": "pending_runtime", "evidence": []}
+      ]
+    },
+    {
+      "id": "latent_grpo_llama_1b",
+      "name": "Latent-GRPO",
+      "family": "stochastic_post_noise_vocabulary_mixture_rl",
+      "stochastic": true,
+      "paper": "https://arxiv.org/abs/2604.27998",
+      "source": {
+        "path": "_external/official_latent_grpo",
+        "repository": "https://github.com/DJC-GO-SOLO/Latent-GRPO",
+        "commit": "c0994fb781a2d180662bb522d8ff3e8638dcf56d",
+        "files": [
+          {
+            "path": "sglang_latent_reasoning_pkg/python/sglang/srt/layers/sampler.py",
+            "sha256": "bf51b9ab1d74f004e911336cb34cc4b16dfab55b95631782220b3732a32ca45d",
+            "anchors": ["gumbels = gumbels.clamp(-1.5, 3)", "topk_gumbels, topk_indices = torch.topk"]
+          },
+          {
+            "path": "verl-0.4.x/verl/workers/actor/dp_actor.py",
+            "sha256": "87167f4e9b79f1abd340a45f7bf47b1ba09a758b60e69113d4061dba967b36ed",
+            "anchors": ["gumbel_y = torch.softmax", "soft_embs = torch.sum"]
+          },
+          {
+            "path": "verl-0.4.x/verl/utils/torch_functional.py",
+            "sha256": "246b7f37a26e7f9ed256eec52b791a168d0d930eedf1cef4bbfd4b51cf317aa8",
+            "anchors": ["def logprobs_from_logits_topk_gumbel", "output_gumbel = output_gumbel.sum(-1) / k_num"]
+          }
+        ]
+      },
+      "checkpoint": {
+        "id": "DJCheng/LLaMA3.2-1B-Instruct-Latent-GRPO-Top10",
+        "revision": "0db191bfd8240199db894de4de800788c845cb18",
+        "provenance": "official",
+        "public": true,
+        "local_path": "_models/Latent-GRPO-Llama-1B",
+        "local_files": [
+          {"path": "model.safetensors", "sha256": "ab6dcd385f01eb2a2aab4d449a5e922ebbd672c4c3189c01480de80a74379833"}
+        ]
+      },
+      "contract_layers": [
+        {"id": "provenance", "status": "source_anchored", "evidence": ["official source and official revision-pinned checkpoint"]},
+        {"id": "recurrence", "status": "source_anchored", "evidence": ["sampled top-k vocabulary mixture is recurrently consumed"]},
+        {"id": "execution", "status": "source_anchored", "evidence": ["stored ids and perturbed scores reconstruct a mixture embedding"]},
+        {"id": "learning", "status": "source_anchored", "evidence": ["GRPO uses a released latent surrogate with advantage-dependent backward semantics"]},
+        {"id": "policy_measure", "status": "source_anchored", "evidence": ["dynamic support, clipped Gumbel atoms, selected components, and aggregation are source-auditable"]},
+        {"id": "outcome_relevance", "status": "pending_runtime", "evidence": []}
+      ]
+    },
+    {
+      "id": "soft_grpo_qwen_1_5b",
+      "name": "SofT-GRPO",
+      "family": "stochastic_truncated_vocabulary_mixture_rl",
+      "stochastic": true,
+      "paper": "https://arxiv.org/abs/2511.06411",
+      "source": {
+        "path": "_external/soft_grpo",
+        "repository": "https://github.com/zz1358m/SofT-GRPO-master",
+        "commit": "8d3c61380b15c3400818da5ce41c62c293a1bfb4",
+        "files": [
+          {
+            "path": "Soft-Thinking+noise+loss-main/sglang_soft_thinking_pkg/python/sglang/srt/layers/sampler.py",
+            "sha256": "71e2d302f36755f7df280a03c6cfda5dc5a920b0ca778cff728882e1636a29dd",
+            "anchors": ["probs = top_k_renorm_prob", "topk_probs = topk_probs / (topk_probs.sum"]
+          },
+          {
+            "path": "verl-0.4.x/verl/workers/actor/dp_actor.py",
+            "sha256": "00896e2b74b757c72008f30b92cc14ff160e7776b22f6a43d2af0496eaa72823",
+            "anchors": ["gumbel_y = torch.softmax", "topk_embs = torch.sum"]
+          },
+          {
+            "path": "verl-0.4.x/verl/utils/torch_functional.py",
+            "sha256": "d399d4bcd342fef7c9cebbbdbfe41707532d244691c775997ab5c14b3a2e31b6",
+            "anchors": ["def logprobs_from_logits_topk_gumbel", "gumbel_reparameter = (rollout_topk_gumbels - topk_log_probs).clamp(-1.5, 3)"]
+          }
+        ]
+      },
+      "checkpoint": {
+        "id": "zz1358m/SofT-GRPO-master",
+        "revision": "128d4dbf8ba0f0765d48d39ab41b51be6e879a12",
+        "subfolder": "saved_weight/Deepeeek-Qwen-1.5B+SofT-GRPO",
+        "provenance": "official",
+        "public": true,
+        "local_path": "_models/SofT-GRPO-Qwen-1.5B",
+        "local_files": [
+          {"path": "model.safetensors", "sha256": "eff1ab0b6cca014cc4c766c237672384f2b6eb7f4e871c59d27c5e5a28d6dd93"}
+        ]
+      },
+      "contract_layers": [
+        {"id": "provenance", "status": "source_anchored", "evidence": ["official source and official repository subfolder pinned by immutable revision"]},
+        {"id": "recurrence", "status": "source_anchored", "evidence": ["truncated top-k soft action is recurrently consumed"]},
+        {"id": "execution", "status": "source_anchored", "evidence": ["stored ids and perturbed scores reconstruct a soft embedding"]},
+        {"id": "learning", "status": "source_anchored", "evidence": ["GRPO scores a reconstructed auxiliary Gumbel action with component aggregation"]},
+        {"id": "policy_measure", "status": "source_anchored", "evidence": ["fixed top-k support, clipped Gumbel margins, and component mask are source-auditable"]},
+        {"id": "outcome_relevance", "status": "pending_runtime", "evidence": []}
+      ]
+    }
+  ]
+}

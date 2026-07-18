@@ -1,0 +1,187 @@
+{
+  "benchmark_id": "lrc-bench-gate-minus-one-v1-20260718",
+  "stage": "gate_minus_one",
+  "gpu_used": false,
+  "decision": "PASS_GATE_MINUS_ONE",
+  "counts": {
+    "methods": 4,
+    "families": 4,
+    "stochastic_methods": 2,
+    "source_pass": 4,
+    "public_checkpoints": 4,
+    "official_checkpoints": 3,
+    "local_checkpoints": 4
+  },
+  "criteria": {
+    "four_methods": true,
+    "four_mechanism_families": true,
+    "two_stochastic_rl_methods": true,
+    "all_sources_pinned_and_verified": true,
+    "all_checkpoints_public_and_revision_pinned": true,
+    "at_least_three_official_checkpoints": true,
+    "at_least_three_checkpoints_local": true,
+    "broad_collision_explicitly_excluded": true
+  },
+  "methods": [
+    {
+      "id": "coconut_gpt2",
+      "family": "deterministic_hidden_state_recurrence",
+      "stochastic": false,
+      "source_pass": true,
+      "source_failures": [],
+      "source_commit_expected": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+      "source_commit_observed": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+      "source_remote_observed": "https://github.com/facebookresearch/coconut.git",
+      "source_files": [
+        {
+          "path": "coconut.py",
+          "sha256_expected": "489c745ecf3832b8dd1febf52e64c737468d4d07ae75bf8adcede594ba335a97",
+          "sha256_observed": "489c745ecf3832b8dd1febf52e64c737468d4d07ae75bf8adcede594ba335a97",
+          "missing_anchors": []
+        }
+      ],
+      "checkpoint": {
+        "id": "connordilgren/gpt2-gsm8k-coconut",
+        "revision": "24f1422fcf6d557fd359fc818a4d1d0fde4aac7f",
+        "provenance": "independent_reproduction",
+        "public": true,
+        "local_ready": true,
+        "files": [
+          {
+            "path": "checkpoint_33",
+            "sha256_expected": "f7a9b5fda7c5c2afa972aaa22ac9aef13d6f083e202fe8a09649d810e3593213",
+            "sha256_observed": "f7a9b5fda7c5c2afa972aaa22ac9aef13d6f083e202fe8a09649d810e3593213"
+          }
+        ]
+      }
+    },
+    {
+      "id": "codi_gpt2",
+      "family": "deterministic_self_distilled_recurrence",
+      "stochastic": false,
+      "source_pass": true,
+      "source_failures": [],
+      "source_commit_expected": "2c2314662c63e9f482ebc46614ffe9af17a241e5",
+      "source_commit_observed": "2c2314662c63e9f482ebc46614ffe9af17a241e5",
+      "source_remote_observed": "https://github.com/zhenyi4/codi.git",
+      "source_files": [
+        {
+          "path": "src/model.py",
+          "sha256_expected": "7dbb418429c594597cf796444af11d53951e28549ee306859ad4c0e5ab10d853",
+          "sha256_observed": "7dbb418429c594597cf796444af11d53951e28549ee306859ad4c0e5ab10d853",
+          "missing_anchors": []
+        },
+        {
+          "path": "test.py",
+          "sha256_expected": "57510ac70c08d134e56bcf2a494acbc1d175d0d0407e2fabccb4228f1bf50a65",
+          "sha256_observed": "57510ac70c08d134e56bcf2a494acbc1d175d0d0407e2fabccb4228f1bf50a65",
+          "missing_anchors": []
+        }
+      ],
+      "checkpoint": {
+        "id": "zen-E/CODI-gpt2",
+        "revision": "fd641b3d3edc59e4f534b55588e906588c9e36bb",
+        "provenance": "official",
+        "public": true,
+        "local_ready": true,
+        "files": [
+          {
+            "path": "pytorch_model.bin",
+            "sha256_expected": "fd223b14932b8b66605c2a688e7d7193058ff2b40b2c6f6c1547c227d06d8417",
+            "sha256_observed": "fd223b14932b8b66605c2a688e7d7193058ff2b40b2c6f6c1547c227d06d8417"
+          }
+        ]
+      }
+    },
+    {
+      "id": "latent_grpo_llama_1b",
+      "family": "stochastic_post_noise_vocabulary_mixture_rl",
+      "stochastic": true,
+      "source_pass": true,
+      "source_failures": [],
+      "source_commit_expected": "c0994fb781a2d180662bb522d8ff3e8638dcf56d",
+      "source_commit_observed": "c0994fb781a2d180662bb522d8ff3e8638dcf56d",
+      "source_remote_observed": "https://github.com/DJC-GO-SOLO/Latent-GRPO.git",
+      "source_files": [
+        {
+          "path": "sglang_latent_reasoning_pkg/python/sglang/srt/layers/sampler.py",
+          "sha256_expected": "bf51b9ab1d74f004e911336cb34cc4b16dfab55b95631782220b3732a32ca45d",
+          "sha256_observed": "bf51b9ab1d74f004e911336cb34cc4b16dfab55b95631782220b3732a32ca45d",
+          "missing_anchors": []
+        },
+        {
+          "path": "verl-0.4.x/verl/workers/actor/dp_actor.py",
+          "sha256_expected": "87167f4e9b79f1abd340a45f7bf47b1ba09a758b60e69113d4061dba967b36ed",
+          "sha256_observed": "87167f4e9b79f1abd340a45f7bf47b1ba09a758b60e69113d4061dba967b36ed",
+          "missing_anchors": []
+        },
+        {
+          "path": "verl-0.4.x/verl/utils/torch_functional.py",
+          "sha256_expected": "246b7f37a26e7f9ed256eec52b791a168d0d930eedf1cef4bbfd4b51cf317aa8",
+          "sha256_observed": "246b7f37a26e7f9ed256eec52b791a168d0d930eedf1cef4bbfd4b51cf317aa8",
+          "missing_anchors": []
+        }
+      ],
+      "checkpoint": {
+        "id": "DJCheng/LLaMA3.2-1B-Instruct-Latent-GRPO-Top10",
+        "revision": "0db191bfd8240199db894de4de800788c845cb18",
+        "provenance": "official",
+        "public": true,
+        "local_ready": true,
+        "files": [
+          {
+            "path": "model.safetensors",
+            "sha256_expected": "ab6dcd385f01eb2a2aab4d449a5e922ebbd672c4c3189c01480de80a74379833",
+            "sha256_observed": "ab6dcd385f01eb2a2aab4d449a5e922ebbd672c4c3189c01480de80a74379833"
+          }
+        ]
+      }
+    },
+    {
+      "id": "soft_grpo_qwen_1_5b",
+      "family": "stochastic_truncated_vocabulary_mixture_rl",
+      "stochastic": true,
+      "source_pass": true,
+      "source_failures": [],
+      "source_commit_expected": "8d3c61380b15c3400818da5ce41c62c293a1bfb4",
+      "source_commit_observed": "8d3c61380b15c3400818da5ce41c62c293a1bfb4",
+      "source_remote_observed": "https://github.com/zz1358m/SofT-GRPO-master.git",
+      "source_files": [
+        {
+          "path": "Soft-Thinking+noise+loss-main/sglang_soft_thinking_pkg/python/sglang/srt/layers/sampler.py",
+          "sha256_expected": "71e2d302f36755f7df280a03c6cfda5dc5a920b0ca778cff728882e1636a29dd",
+          "sha256_observed": "71e2d302f36755f7df280a03c6cfda5dc5a920b0ca778cff728882e1636a29dd",
+          "missing_anchors": []
+        },
+        {
+          "path": "verl-0.4.x/verl/workers/actor/dp_actor.py",
+          "sha256_expected": "00896e2b74b757c72008f30b92cc14ff160e7776b22f6a43d2af0496eaa72823",
+          "sha256_observed": "00896e2b74b757c72008f30b92cc14ff160e7776b22f6a43d2af0496eaa72823",
+          "missing_anchors": []
+        },
+        {
+          "path": "verl-0.4.x/verl/utils/torch_functional.py",
+          "sha256_expected": "d399d4bcd342fef7c9cebbbdbfe41707532d244691c775997ab5c14b3a2e31b6",
+          "sha256_observed": "d399d4bcd342fef7c9cebbbdbfe41707532d244691c775997ab5c14b3a2e31b6",
+          "missing_anchors": []
+        }
+      ],
+      "checkpoint": {
+        "id": "zz1358m/SofT-GRPO-master",
+        "revision": "128d4dbf8ba0f0765d48d39ab41b51be6e879a12",
+        "provenance": "official",
+        "public": true,
+        "local_ready": true,
+        "files": [
+          {
+            "path": "model.safetensors",
+            "sha256_expected": "eff1ab0b6cca014cc4c766c237672384f2b6eb7f4e871c59d27c5e5a28d6dd93",
+            "sha256_observed": "eff1ab0b6cca014cc4c766c237672384f2b6eb7f4e871c59d27c5e5a28d6dd93"
+          }
+        ]
+      }
+    }
+  ],
+  "next_required_action": "implement source-native fixture replay",
+  "scientific_evidence": "none; this report establishes feasibility only"
+}
