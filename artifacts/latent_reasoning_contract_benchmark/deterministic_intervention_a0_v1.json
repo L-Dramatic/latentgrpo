@@ -1,0 +1,224 @@
+{
+  "decision": "PASS_A0_SIGNAL",
+  "controls_pass": true,
+  "signal_pass": true,
+  "methods": {
+    "coconut_gpt2": {
+      "controls": {
+        "expected_prompt_count": true,
+        "condition_complete": true,
+        "finite_rate": 1.0,
+        "finite_rate_pass": true,
+        "native_replay_nll_absolute_error_max": 0.0,
+        "native_replay_nll_pass": true,
+        "native_replay_logit_absolute_error_max": 0.0,
+        "native_replay_logit_pass": true,
+        "exact_equal_depth_steps": true
+      },
+      "controls_pass": true,
+      "signal_conditions": [
+        "repeat_first",
+        "reverse_steps",
+        "zero_matched_depth",
+        "norm_matched_random"
+      ],
+      "signal_pass": true,
+      "effects": {
+        "native_replay": {
+          "mean_nll_delta": 0.0,
+          "median_nll_delta": 0.0,
+          "mean_absolute_nll_delta": 0.0,
+          "mean_nll_delta_bootstrap_95": [
+            0.0,
+            0.0
+          ],
+          "mean_teacher_forced_kl": 0.0,
+          "nonzero_nll_delta_fraction": 0.0
+        },
+        "repeat_first": {
+          "mean_nll_delta": 0.5921251912209868,
+          "median_nll_delta": 0.11371874809265137,
+          "mean_absolute_nll_delta": 0.8253923904690623,
+          "mean_nll_delta_bootstrap_95": [
+            0.2426507052183524,
+            0.9825317980665886
+          ],
+          "mean_teacher_forced_kl": 1.1517442233162,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "reverse_steps": {
+          "mean_nll_delta": 0.21554739484014362,
+          "median_nll_delta": 0.017732435705511307,
+          "mean_absolute_nll_delta": 0.5334528627750501,
+          "mean_nll_delta_bootstrap_95": [
+            -0.046664290847218126,
+            0.4823729509724899
+          ],
+          "mean_teacher_forced_kl": 0.4100133170150002,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "zero_matched_depth": {
+          "mean_nll_delta": 1.1025669971846241,
+          "median_nll_delta": 0.6046310067176819,
+          "mean_absolute_nll_delta": 1.41821605957972,
+          "mean_nll_delta_bootstrap_95": [
+            0.5475855270299235,
+            1.7129657994906893
+          ],
+          "mean_teacher_forced_kl": 1.7461222857054963,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "norm_matched_random": {
+          "mean_nll_delta": 0.4344207185900473,
+          "median_nll_delta": 0.3205984830856323,
+          "mean_absolute_nll_delta": 1.069474979082372,
+          "mean_nll_delta_bootstrap_95": [
+            -0.03254582910369663,
+            0.9163891582494443
+          ],
+          "mean_teacher_forced_kl": 1.264880423066188,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "no_latent": {
+          "mean_nll_delta": 0.4588021821660391,
+          "median_nll_delta": 0.20416498184204102,
+          "mean_absolute_nll_delta": 1.1706550288332096,
+          "mean_nll_delta_bootstrap_95": [
+            -0.0346136490580875,
+            0.9497425080394919
+          ],
+          "mean_teacher_forced_kl": 1.2516088379197754,
+          "nonzero_nll_delta_fraction": 1.0
+        }
+      }
+    },
+    "codi_gpt2": {
+      "controls": {
+        "expected_prompt_count": true,
+        "condition_complete": true,
+        "finite_rate": 1.0,
+        "finite_rate_pass": true,
+        "native_replay_nll_absolute_error_max": 0.0,
+        "native_replay_nll_pass": true,
+        "native_replay_logit_absolute_error_max": 0.0,
+        "native_replay_logit_pass": true,
+        "exact_equal_depth_steps": true
+      },
+      "controls_pass": true,
+      "signal_conditions": [
+        "repeat_first",
+        "reverse_steps",
+        "zero_matched_depth",
+        "norm_matched_random"
+      ],
+      "signal_pass": true,
+      "effects": {
+        "native_replay": {
+          "mean_nll_delta": 0.0,
+          "median_nll_delta": 0.0,
+          "mean_absolute_nll_delta": 0.0,
+          "mean_nll_delta_bootstrap_95": [
+            0.0,
+            0.0
+          ],
+          "mean_teacher_forced_kl": 0.0,
+          "nonzero_nll_delta_fraction": 0.0
+        },
+        "repeat_first": {
+          "mean_nll_delta": 0.19238315600443912,
+          "median_nll_delta": 0.08442723006010056,
+          "mean_absolute_nll_delta": 0.3135174496055697,
+          "mean_nll_delta_bootstrap_95": [
+            0.05713552008000988,
+            0.3428610506215932
+          ],
+          "mean_teacher_forced_kl": 0.3248413500064089,
+          "nonzero_nll_delta_fraction": 0.9375,
+          "clears_calibration_signal": true
+        },
+        "reverse_steps": {
+          "mean_nll_delta": 0.06302101722525322,
+          "median_nll_delta": 9.608625623513944e-05,
+          "mean_absolute_nll_delta": 0.1365339048074361,
+          "mean_nll_delta_bootstrap_95": [
+            -0.04341949952959112,
+            0.22855129946509578
+          ],
+          "mean_teacher_forced_kl": 0.1046083041030954,
+          "nonzero_nll_delta_fraction": 0.90625,
+          "clears_calibration_signal": true
+        },
+        "zero_matched_depth": {
+          "mean_nll_delta": 2.58343240470316,
+          "median_nll_delta": 2.5179123831476318,
+          "mean_absolute_nll_delta": 2.58343240470316,
+          "mean_nll_delta_bootstrap_95": [
+            2.2976557196150225,
+            2.8673261073975027
+          ],
+          "mean_teacher_forced_kl": 2.7963410429656506,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "norm_matched_random": {
+          "mean_nll_delta": 1.9092394061448772,
+          "median_nll_delta": 1.8641032529558288,
+          "mean_absolute_nll_delta": 1.909305582201739,
+          "mean_nll_delta_bootstrap_95": [
+            1.608473722687961,
+            2.209408417005534
+          ],
+          "mean_teacher_forced_kl": 2.196632916107774,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "no_latent": {
+          "mean_nll_delta": 2.498626938468476,
+          "median_nll_delta": 2.407578945159912,
+          "mean_absolute_nll_delta": 2.498626938468476,
+          "mean_nll_delta_bootstrap_95": [
+            2.201004928047439,
+            2.7956411561671644
+          ],
+          "mean_teacher_forced_kl": 2.700861319899559,
+          "nonzero_nll_delta_fraction": 1.0
+        }
+      }
+    }
+  },
+  "protocol_id": "lrc-deterministic-intervention-a0-v1-20260718",
+  "config_file_sha256": "3ba1656e68ca18202bef015a36164c0c70018a8e51a5f8d504c73bf33793760b",
+  "config_canonical_sha256": "5391a43ee1294d2512e69a5ad64589b33558b2124b5b433167160646c5f3b2a8",
+  "implementation_sha256": "f3ecb84a0d15c99ec67ae76c93b93f447217ac5e0f7428098eb8ebee8e6fa49c",
+  "prompt_manifest_sha256": "0ec53ccd19acbf5d2b1a4bd8fc0f512bc741c2d6b92c223712f7562c4dd2d1e7",
+  "stage": "deterministic_intervention_a0_calibration",
+  "split": "calibration",
+  "record_count": 64,
+  "gpu_used": true,
+  "training_used": false,
+  "runtime": {
+    "methods": {
+      "coconut_gpt2": {
+        "seconds": 52.68301480000082,
+        "cuda_peak_allocated_mib": 635.59130859375
+      },
+      "codi_gpt2": {
+        "seconds": 69.66449619999912,
+        "cuda_peak_allocated_mib": 876.67138671875
+      }
+    },
+    "total_seconds_this_invocation": 124.10106429999723,
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  },
+  "environment": {
+    "python": "3.10.9",
+    "torch": "2.5.1+cu124",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "scientific_evidence": "calibration_only",
+  "next_required_action": "freeze untouched confirmation and stochastic policy-contract preflight"
+}

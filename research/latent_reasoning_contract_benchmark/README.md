@@ -1,6 +1,6 @@
 # Latent Reasoning Contract Benchmark (LRC-Bench)
 
-Status: `CHECKPOINT SMOKE PASS / ENGINEERING EVIDENCE ONLY`
+Status: `DETERMINISTIC A0 PASS / CALIBRATION EVIDENCE ONLY`
 
 LRC-Bench is the current candidate direction after the optimizer and estimator
 branches in this repository failed their frozen gates. It asks whether a
@@ -98,3 +98,9 @@ _research_env/Scripts/python.exe -m `
   research.latent_reasoning_contract_benchmark.checkpoint_smoke `
   --output artifacts/latent_reasoning_contract_benchmark/checkpoint_smoke_v1.json
 ```
+
+The frozen deterministic A0 calibration now passes on 32 label-blind selected
+GSM8K questions for both Coconut and CODI. Native replay is exact, and
+equal-depth state interventions produce nontrivial paired target-NLL effects.
+The untouched confirmation split has not been read. This result validates the
+intervention measurement but is not a paper-level causal or novelty claim.
