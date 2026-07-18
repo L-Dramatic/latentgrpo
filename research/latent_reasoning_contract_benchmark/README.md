@@ -1,6 +1,6 @@
 # Latent Reasoning Contract Benchmark (LRC-Bench)
 
-Status: `DETERMINISTIC A0 PASS / CALIBRATION EVIDENCE ONLY`
+Status: `DETERMINISTIC CONFIRMATION PASS / STOCHASTIC THESIS PENDING`
 
 LRC-Bench is the current candidate direction after the optimizer and estimator
 branches in this repository failed their frozen gates. It asks whether a
@@ -104,3 +104,9 @@ GSM8K questions for both Coconut and CODI. Native replay is exact, and
 equal-depth state interventions produce nontrivial paired target-NLL effects.
 The untouched confirmation split has not been read. This result validates the
 intervention measurement but is not a paper-level causal or novelty claim.
+
+The separately frozen 32-question confirmation split also passes without any
+protocol change. Repeat-first and zero-state effects replicate in both Coconut
+and CODI with exact native reconstruction. Deterministic sensitivity is now a
+confirmed benchmark component, while paper viability still depends on the
+stochastic policy-contract branch and incremental value over simple baselines.

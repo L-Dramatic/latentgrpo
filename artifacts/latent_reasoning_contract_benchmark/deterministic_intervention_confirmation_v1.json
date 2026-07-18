@@ -1,0 +1,226 @@
+{
+  "decision": "PASS_CONFIRMATION",
+  "controls_pass": true,
+  "signal_pass": true,
+  "methods": {
+    "coconut_gpt2": {
+      "controls": {
+        "expected_prompt_count": true,
+        "condition_complete": true,
+        "finite_rate": 1.0,
+        "finite_rate_pass": true,
+        "native_replay_nll_absolute_error_max": 0.0,
+        "native_replay_nll_pass": true,
+        "native_replay_logit_absolute_error_max": 0.0,
+        "native_replay_logit_pass": true,
+        "exact_equal_depth_steps": true
+      },
+      "controls_pass": true,
+      "signal_conditions": [
+        "repeat_first",
+        "reverse_steps",
+        "zero_matched_depth",
+        "norm_matched_random"
+      ],
+      "signal_pass": true,
+      "effects": {
+        "native_replay": {
+          "mean_nll_delta": 0.0,
+          "median_nll_delta": 0.0,
+          "mean_absolute_nll_delta": 0.0,
+          "mean_nll_delta_bootstrap_95": [
+            0.0,
+            0.0
+          ],
+          "mean_teacher_forced_kl": 0.0,
+          "nonzero_nll_delta_fraction": 0.0
+        },
+        "repeat_first": {
+          "mean_nll_delta": 0.6528895331992359,
+          "median_nll_delta": 0.4372285008430481,
+          "mean_absolute_nll_delta": 1.2351669764591904,
+          "mean_nll_delta_bootstrap_95": [
+            0.15719624628118112,
+            1.1529998170887197
+          ],
+          "mean_teacher_forced_kl": 1.0080264632124454,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "reverse_steps": {
+          "mean_nll_delta": 0.2525747577181434,
+          "median_nll_delta": 0.054379045963287354,
+          "mean_absolute_nll_delta": 0.8340754406979656,
+          "mean_nll_delta_bootstrap_95": [
+            -0.2196726373963429,
+            0.7257702773044912
+          ],
+          "mean_teacher_forced_kl": 0.5484859566822706,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "zero_matched_depth": {
+          "mean_nll_delta": 0.7303267503137292,
+          "median_nll_delta": 1.0850728154182434,
+          "mean_absolute_nll_delta": 1.4600600162501038,
+          "mean_nll_delta_bootstrap_95": [
+            0.16262682738343415,
+            1.2503621347816534
+          ],
+          "mean_teacher_forced_kl": 1.571221244521439,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "norm_matched_random": {
+          "mean_nll_delta": 0.6568913627395929,
+          "median_nll_delta": 0.5883396863937378,
+          "mean_absolute_nll_delta": 1.159769827497989,
+          "mean_nll_delta_bootstrap_95": [
+            0.17622711709214656,
+            1.123363269802077
+          ],
+          "mean_teacher_forced_kl": 1.1454192291712388,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "no_latent": {
+          "mean_nll_delta": 0.4568456779214145,
+          "median_nll_delta": 0.6867957711219788,
+          "mean_absolute_nll_delta": 1.3412998015972377,
+          "mean_nll_delta_bootstrap_95": [
+            -0.19545985909093844,
+            1.01301552957608
+          ],
+          "mean_teacher_forced_kl": 1.254300706088543,
+          "nonzero_nll_delta_fraction": 1.0
+        }
+      }
+    },
+    "codi_gpt2": {
+      "controls": {
+        "expected_prompt_count": true,
+        "condition_complete": true,
+        "finite_rate": 1.0,
+        "finite_rate_pass": true,
+        "native_replay_nll_absolute_error_max": 0.0,
+        "native_replay_nll_pass": true,
+        "native_replay_logit_absolute_error_max": 0.0,
+        "native_replay_logit_pass": true,
+        "exact_equal_depth_steps": true
+      },
+      "controls_pass": true,
+      "signal_conditions": [
+        "repeat_first",
+        "reverse_steps",
+        "zero_matched_depth",
+        "norm_matched_random"
+      ],
+      "signal_pass": true,
+      "effects": {
+        "native_replay": {
+          "mean_nll_delta": 0.0,
+          "median_nll_delta": 0.0,
+          "mean_absolute_nll_delta": 0.0,
+          "mean_nll_delta_bootstrap_95": [
+            0.0,
+            0.0
+          ],
+          "mean_teacher_forced_kl": 0.0,
+          "nonzero_nll_delta_fraction": 0.0
+        },
+        "repeat_first": {
+          "mean_nll_delta": 0.3389724818703712,
+          "median_nll_delta": 0.12186688184738159,
+          "mean_absolute_nll_delta": 0.4959777624263211,
+          "mean_nll_delta_bootstrap_95": [
+            0.13070154123136035,
+            0.5653433032334192
+          ],
+          "mean_teacher_forced_kl": 0.47387322018631295,
+          "nonzero_nll_delta_fraction": 0.90625,
+          "clears_calibration_signal": true
+        },
+        "reverse_steps": {
+          "mean_nll_delta": 0.056323928342976615,
+          "median_nll_delta": 7.629365609318484e-05,
+          "mean_absolute_nll_delta": 0.1552401273357873,
+          "mean_nll_delta_bootstrap_95": [
+            -0.033304563843898904,
+            0.1642950579519038
+          ],
+          "mean_teacher_forced_kl": 0.14730403190347374,
+          "nonzero_nll_delta_fraction": 0.84375,
+          "clears_calibration_signal": true
+        },
+        "zero_matched_depth": {
+          "mean_nll_delta": 2.679053332311298,
+          "median_nll_delta": 2.8229360580444336,
+          "mean_absolute_nll_delta": 2.679053332311298,
+          "mean_nll_delta_bootstrap_95": [
+            2.3579007295078327,
+            2.985436365246187
+          ],
+          "mean_teacher_forced_kl": 2.880197085440159,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "norm_matched_random": {
+          "mean_nll_delta": 2.1241068650309103,
+          "median_nll_delta": 2.1856801584362984,
+          "mean_absolute_nll_delta": 2.1241068650309103,
+          "mean_nll_delta_bootstrap_95": [
+            1.8416730435646969,
+            2.3986298620124558
+          ],
+          "mean_teacher_forced_kl": 2.3511433638632298,
+          "nonzero_nll_delta_fraction": 1.0,
+          "clears_calibration_signal": true
+        },
+        "no_latent": {
+          "mean_nll_delta": 2.532989285540964,
+          "median_nll_delta": 2.6409741824718367,
+          "mean_absolute_nll_delta": 2.532989285540964,
+          "mean_nll_delta_bootstrap_95": [
+            2.2289320795038066,
+            2.8402494549525272
+          ],
+          "mean_teacher_forced_kl": 2.7365654185414314,
+          "nonzero_nll_delta_fraction": 1.0
+        }
+      }
+    }
+  },
+  "protocol_id": "lrc-deterministic-intervention-confirmation-v1-20260718",
+  "config_file_sha256": "b34b613681bdd3629f6fcefdac53f874be508fd28fe227fbe442cb720520e3b4",
+  "config_canonical_sha256": "3fc65cd0571b1b032ba2743e47652ae12994213a19018e8386f9777833ab4099",
+  "implementation_sha256": "f3ecb84a0d15c99ec67ae76c93b93f447217ac5e0f7428098eb8ebee8e6fa49c",
+  "prompt_manifest_sha256": "0ec53ccd19acbf5d2b1a4bd8fc0f512bc741c2d6b92c223712f7562c4dd2d1e7",
+  "stage": "deterministic_intervention_untouched_confirmation",
+  "split": "confirmation",
+  "record_count": 64,
+  "gpu_used": true,
+  "training_used": false,
+  "runtime": {
+    "methods": {
+      "coconut_gpt2": {
+        "seconds": 61.017991699998674,
+        "cuda_peak_allocated_mib": 681.90576171875
+      },
+      "codi_gpt2": {
+        "seconds": 68.72032649999892,
+        "cuda_peak_allocated_mib": 905.93408203125
+      }
+    },
+    "total_seconds_this_invocation": 131.34933039999305,
+    "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU"
+  },
+  "environment": {
+    "python": "3.10.9",
+    "torch": "2.5.1+cu124",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "scientific_evidence": "untouched_confirmation",
+  "next_required_action": "freeze stochastic trained-checkpoint contract-consequence preflight",
+  "base_a0_rule_decision": "PASS_A0_SIGNAL",
+  "confirmation_wrapper_sha256": "3452ba832490676253ee0f6bfe3860854b136393ab996ed92bee42723ac1a610"
+}

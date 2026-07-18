@@ -1,0 +1,25 @@
+{
+  "protocol_id": "lrc-deterministic-intervention-confirmation-v1-20260718",
+  "decision": "PASS_CONFIRMATION_AUDIT",
+  "controls": {
+    "exact_untouched_record_coverage": true,
+    "record_provenance": true,
+    "condition_coverage_and_finiteness": true,
+    "frozen_rule_recomputation": true,
+    "confirmation_mapping": true,
+    "wrapper_provenance": true,
+    "cuda_memory_bounded": true
+  },
+  "record_count": 64,
+  "config_sha256": "b34b613681bdd3629f6fcefdac53f874be508fd28fe227fbe442cb720520e3b4",
+  "runner_sha256": "f3ecb84a0d15c99ec67ae76c93b93f447217ac5e0f7428098eb8ebee8e6fa49c",
+  "wrapper_sha256": "3452ba832490676253ee0f6bfe3860854b136393ab996ed92bee42723ac1a610",
+  "records_sha256": "1d23ce1717d1c5b39331f61ebfa7e3d87bd2da5613e5e2e1cc1680e14f18c6e5",
+  "summary_sha256": "fce0e9b759b1b4918b4e7ae435d6c6c85e2d87b138ba60ca5d700008cfa9489d",
+  "cuda_peak_allocated_mib": {
+    "coconut_gpt2": 681.90576171875,
+    "codi_gpt2": 905.93408203125
+  },
+  "training_used": false,
+  "scientific_evidence": "integrity_audit_only"
+}
