@@ -1,6 +1,11 @@
 # Latent Reasoning Contract Benchmark (LRC-Bench)
 
-Status: `DETERMINISTIC CONFIRMATION PASS / STOCHASTIC THESIS PENDING`
+Status: `KILL_LRC_CURRENT_THESIS / ASSETS PRESERVED`
+
+The frozen stochastic branch has now been independently recomputed and triggers
+the permanent cross-family KILL condition in `CLAIM_CONTRACT.md`. See
+`CURRENT_THESIS_DECISION.md` and the machine-readable cross-family audit. No
+further training is authorized for this thesis.
 
 LRC-Bench is the current candidate direction after the optimizer and estimator
 branches in this repository failed their frozen gates. It asks whether a

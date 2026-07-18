@@ -1,0 +1,76 @@
+{
+  "audit_id": "lrc-cross-family-thesis-audit-v1-20260718",
+  "authorization": "NONE",
+  "controls": {
+    "all_frozen_hashes_match": true,
+    "assets_and_source_replay_pass": true,
+    "deterministic_confirmation_recomputes": true,
+    "exact_record_coverage": true,
+    "frozen_kill_clause_present": true,
+    "pcmc_decision_recomputes": true,
+    "pcmc_posthoc_recomputes": true
+  },
+  "decision": "KILL_LRC_CURRENT_THESIS",
+  "deterministic_evidence": {
+    "decision": "PASS_CONFIRMATION_AUDIT",
+    "interpretation": "reproducible intervention sensitivity; not unique paper thesis",
+    "record_count": 64
+  },
+  "hash_controls": {
+    "deterministic_audit": true,
+    "deterministic_config": true,
+    "deterministic_records": true,
+    "deterministic_summary": true,
+    "lrc_claim_contract": true,
+    "pcmc_asset_preflight": true,
+    "pcmc_decision": true,
+    "pcmc_latent_preflight": true,
+    "pcmc_posthoc": true,
+    "pcmc_protocol": true,
+    "pcmc_records": true,
+    "pcmc_soft_preflight": true
+  },
+  "integrity_pass": true,
+  "next_action": "archive current thesis; collision-audit a distinct method candidate",
+  "observed_sha256": {
+    "deterministic_audit": "3585a3524d32a3cbbd17b2d0532acdb1780a6179a62db0181a1fd9fb3e4045dc",
+    "deterministic_config": "b34b613681bdd3629f6fcefdac53f874be508fd28fe227fbe442cb720520e3b4",
+    "deterministic_records": "1d23ce1717d1c5b39331f61ebfa7e3d87bd2da5613e5e2e1cc1680e14f18c6e5",
+    "deterministic_summary": "fce0e9b759b1b4918b4e7ae435d6c6c85e2d87b138ba60ca5d700008cfa9489d",
+    "lrc_claim_contract": "de06e3a0108b9db6f048a6e151c2c95baf34ae22537871f1ddfece92557afbde",
+    "pcmc_asset_preflight": "8915c21701efb9a0b867f30c795a6f7ef2779da0902eb8764234a2b2760a0d28",
+    "pcmc_decision": "3b1fd475cf2cb8f2f3e23d830ef83484ea3de2816685c1ec0ac1edbc1ec77935",
+    "pcmc_latent_preflight": "81d3763a5214524ea0c992ab3feeeca556a8787578330feadde915da733ddc92",
+    "pcmc_posthoc": "ab4697e273af79312b369c906abfcdc29fbaf23e6adaa54fb208a7b9ac7feee4",
+    "pcmc_protocol": "67d1a6b952823337433888cbfebf7841cb3851739af57426e68fd184a4760085",
+    "pcmc_records": "69d0852e9e65408427fdf2d7271138193475eef6b8d79c755669dcc48ed765eb",
+    "pcmc_soft_preflight": "8198a55456b406bbd3f9ffa6efe2f36e7afc406dc954572f7cfce751779565be"
+  },
+  "permanent_kill_condition": {
+    "clause": "policy-contract findings occur only in Latent-GRPO and disappear in SofT-GRPO or another stochastic family",
+    "triggered": true
+  },
+  "stochastic_evidence": {
+    "family_specific": true,
+    "latent_grpo": {
+      "a0_decision": "ADVANCE_A1",
+      "calibration_q75_js_nats": 0.06385869346559048,
+      "median_effective_support": 4.426170058770437,
+      "median_js_nats": 0.030734633095562458,
+      "median_maximum_weight": 0.3640381991863251,
+      "top_token_disagreement_rate": 0.424
+    },
+    "overall_decision": "KILL_PCMC_GATE_A0",
+    "record_count": 1000,
+    "soft_effectively_discrete": true,
+    "soft_grpo": {
+      "a0_decision": "KILL_A0",
+      "calibration_q75_js_nats": 5.3718209436226516e-08,
+      "median_effective_support": 1.0000021457718162,
+      "median_js_nats": 2.4440067747377725e-08,
+      "median_maximum_weight": 0.999998927116394,
+      "top_token_disagreement_rate": 0
+    }
+  },
+  "training_used": false
+}
