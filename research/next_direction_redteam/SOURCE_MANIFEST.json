@@ -1,0 +1,19 @@
+{
+  "audit_date": "2026-07-18",
+  "frozen_repository_commit": "6f32fc37527f923e064927c8930c2c9a3d9f64a2",
+  "external_report": {
+    "source_path": "C:\\Users\\30620\\Downloads\\latentgrpo_next_direction_redteam_2026-07-18.md",
+    "archived_path": "research/next_direction_redteam/CHATGPT_PRO_REDTEAM_2026-07-18.md",
+    "sha256": "8DFF3F2165DF385162D5CAE6E0E1BE399D3FA76092C0A0C7E2EAE8796359410D"
+  },
+  "primary_literature": [
+    "https://arxiv.org/abs/2606.07190",
+    "https://zhiqix.github.io/pum-project-page/",
+    "https://arxiv.org/abs/2604.10701",
+    "https://arxiv.org/abs/2602.03584",
+    "https://arxiv.org/abs/2601.22718",
+    "https://proceedings.mlr.press/v48/jiang16.html",
+    "https://proceedings.mlr.press/v48/thomasa16.html",
+    "https://proceedings.mlr.press/v235/khan24b.html"
+  ]
+}
