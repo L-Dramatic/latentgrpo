@@ -1,0 +1,128 @@
+{
+  "protocol_id": "lrc-bench-four-method-checkpoint-smoke-v1-20260718",
+  "config_file_sha256": "1ba5be44bff4c929112edd88f59c4cab643b1a9db2a0a4ec306684ebebcb0977",
+  "config_canonical_sha256": "7a4134b2f446d1337afda7f3aa85f317a2a7d7fa266a59187be4a7e93dfc8fa3",
+  "implementation_sha256": "dd6dfe48cf7150f5ae51723631ad3ecb5dde3480b1c5c6c4b2c047f654a6aea2",
+  "stage": "four_method_checkpoint_smoke",
+  "gpu_used": true,
+  "training_used": false,
+  "status": "pass",
+  "decision": "PASS_CHECKPOINT_SMOKE",
+  "controls": {
+    "all_linked_evidence_valid": true,
+    "codi_checkpoint_smoke_pass": true,
+    "four_methods_covered": true
+  },
+  "linked_evidence": [
+    {
+      "methods": [
+        "coconut_gpt2"
+      ],
+      "path": "artifacts/coordinate_invariance/public_gpt2_coconut_smoke_v1.json",
+      "sha256_expected": "2dc7aebacb7552d97951cd6a40029b1ac09eb8fa6e88a62cc700fa25aef05a80",
+      "sha256_observed": "2dc7aebacb7552d97951cd6a40029b1ac09eb8fa6e88a62cc700fa25aef05a80",
+      "pass": true,
+      "failures": []
+    },
+    {
+      "methods": [
+        "latent_grpo_llama_1b",
+        "soft_grpo_qwen_1_5b"
+      ],
+      "path": "artifacts/policy_contract_audit/trained_checkpoint_smoke_v1.json",
+      "sha256_expected": "516530c977adc755edc07e8af07732440726c32e0a9a0a8d07bbda9f072b5ac2",
+      "sha256_observed": "516530c977adc755edc07e8af07732440726c32e0a9a0a8d07bbda9f072b5ac2",
+      "pass": true,
+      "failures": []
+    }
+  ],
+  "codi": {
+    "method_id": "codi_gpt2",
+    "status": "pass",
+    "failures": [],
+    "source_commit": "2c2314662c63e9f482ebc46614ffe9af17a241e5",
+    "checkpoint_sha256": "fd223b14932b8b66605c2a688e7d7193058ff2b40b2c6f6c1547c227d06d8417",
+    "checkpoint_revision": "fd641b3d3edc59e4f534b55588e906588c9e36bb",
+    "base_model_revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+    "base_files": [
+      {
+        "path": "config.json",
+        "sha256_expected": "0daed7749b4f02b8f76240d5444551d7b08712dab4d0adb8239c56ba823bb7b4",
+        "sha256_observed": "0daed7749b4f02b8f76240d5444551d7b08712dab4d0adb8239c56ba823bb7b4"
+      },
+      {
+        "path": "model.safetensors",
+        "sha256_expected": "248dfc3911869ec493c76e65bf2fcf7f615828b0254c12b473182f0f81d3a707",
+        "sha256_observed": "248dfc3911869ec493c76e65bf2fcf7f615828b0254c12b473182f0f81d3a707"
+      },
+      {
+        "path": "tokenizer.json",
+        "sha256_expected": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6",
+        "sha256_observed": "8414cab924d8b9b33013f0d221c5862f365ee9be39c5c2bfae8a5a9e970478a6"
+      }
+    ],
+    "versions": {
+      "peft": "0.15.2",
+      "transformers": "4.55.4",
+      "torch": "2.5.1+cu124"
+    },
+    "load": {
+      "missing_keys": [],
+      "unexpected_keys": [],
+      "seconds": 7.224805700003344
+    },
+    "prompt": {
+      "token_count": 9,
+      "minimum_id": 25,
+      "maximum_id": 50258,
+      "embedding_rows": 50260,
+      "ids_sha256": "db6233bac803ff4eae7690b721805382dfde4331cbbc50af3b7fcd406d4238b9"
+    },
+    "forward": {
+      "latent_step_count": 6,
+      "latent_hashes": [
+        "c39c1bd063bf8a5f00d4005d7c96fc93ed202816e4c8442fbc380d0ca7711272",
+        "e5ea5f95a975b8bbefb06e4a255ecb47ec9dc5a0e6b13d17c6c2dafda52e40e5",
+        "44ca8d6ccd222dd62ca0efa5a34d57b533242a6ba1137bebc42cee751471a852",
+        "cce8b241d2f63d620f83f3e25552e3cfb16158f549829e271ff1319fd170d154",
+        "ee258b91c1c538159c4b6f8f874d5f0b5b9b3e5cd0aa8485f2dfd4c08dbf0c41",
+        "d9b87e6947aa4de09c9dc543ed473f3f8b13209dedfb510a0c960017ed993c10"
+      ],
+      "logits_sha256": "cebb63275889fc7bd4b50a3ab3eeb17217bf700bfa12881d84975a88f552ba6a",
+      "top_token_ids": [
+        464,
+        383,
+        1858,
+        1212,
+        1026
+      ],
+      "top_logits": [
+        -134.0,
+        -148.0,
+        -149.0,
+        -149.0,
+        -149.0
+      ]
+    },
+    "runtime": {
+      "cuda_device": "NVIDIA GeForce RTX 4060 Laptop GPU",
+      "cuda_peak_allocated_mib": 331.3740234375,
+      "total_seconds": 8.62173260000418
+    },
+    "gates": {
+      "zero_missing_keys": true,
+      "zero_unexpected_keys": true,
+      "finite_logits": true,
+      "exact_repeatability": true,
+      "prompt_ids_in_range": true,
+      "exact_latent_step_count": true,
+      "cuda_memory_bounded": true
+    }
+  },
+  "environment": {
+    "python": "3.10.9",
+    "platform": "Windows-10-10.0.26200-SP0"
+  },
+  "scientific_evidence": false,
+  "next_required_action": "freeze tiny checkpoint-state intervention preflight"
+}

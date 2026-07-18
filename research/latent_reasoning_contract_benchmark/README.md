@@ -1,6 +1,6 @@
 # Latent Reasoning Contract Benchmark (LRC-Bench)
 
-Status: `GATE 0 PASS / FIXTURE CONFORMANCE ONLY`
+Status: `CHECKPOINT SMOKE PASS / ENGINEERING EVIDENCE ONLY`
 
 LRC-Bench is the current candidate direction after the optimizer and estimator
 branches in this repository failed their frozen gates. It asks whether a
@@ -84,4 +84,17 @@ effect has been inspected.
 _research_env/Scripts/python.exe -m `
   research.latent_reasoning_contract_benchmark.gate_zero `
   --output artifacts/latent_reasoning_contract_benchmark/gate_zero_fixtures_v1.json
+```
+
+The four-method checkpoint smoke also passes. Coconut, Latent-GRPO, and
+SofT-GRPO are linked by immutable prior engineering artifacts. The official
+CODI checkpoint loads with zero missing or unexpected keys and executes six
+repeatable latent steps under the official BF16 inference path. This remains a
+readiness result: no intervention effect, task accuracy, or paper claim has
+been measured.
+
+```powershell
+_research_env/Scripts/python.exe -m `
+  research.latent_reasoning_contract_benchmark.checkpoint_smoke `
+  --output artifacts/latent_reasoning_contract_benchmark/checkpoint_smoke_v1.json
 ```
