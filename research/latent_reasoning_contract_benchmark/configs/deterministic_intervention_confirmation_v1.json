@@ -1,0 +1,93 @@
+{
+  "schema_version": 1,
+  "protocol_id": "lrc-deterministic-intervention-confirmation-v1-20260718",
+  "source_manifest_sha256": "61e630ad769f7b8cfa548b418ed00e5ffec5d205e7420431ac3dc8a889eb7fe2",
+  "checkpoint_smoke": {
+    "path": "artifacts/latent_reasoning_contract_benchmark/checkpoint_smoke_v1.json",
+    "sha256": "e0c1a0baf20f7c91017f4b33d2b2e23680d489d3bd9431a8af15dc6ea4358198",
+    "required_decision": "PASS_CHECKPOINT_SMOKE"
+  },
+  "calibration_evidence": {
+    "config_path": "research/latent_reasoning_contract_benchmark/configs/deterministic_intervention_a0_v1.json",
+    "config_sha256": "3ba1656e68ca18202bef015a36164c0c70018a8e51a5f8d504c73bf33793760b",
+    "summary_path": "artifacts/latent_reasoning_contract_benchmark/deterministic_intervention_a0_v1.json",
+    "summary_sha256": "4f7bafe38bd0a41fe701c80a8dbb2a86336fbc0b7fbdd3cc7335a987dbbc4858",
+    "audit_path": "artifacts/latent_reasoning_contract_benchmark/deterministic_intervention_a0_v1_audit.json",
+    "audit_sha256": "6ccdf7fe41b6595671cfbf9a154fb4e6bedaf6693f25c93fd5cdad7a7230c205",
+    "required_decision": "PASS_A0_AUDIT"
+  },
+  "prompt_manifest": {
+    "path": "research/latent_reasoning_contract_benchmark/configs/gsm8k_prompt_manifest_v1.json",
+    "sha256": "0ec53ccd19acbf5d2b1a4bd8fc0f512bc741c2d6b92c223712f7562c4dd2d1e7",
+    "split": "confirmation",
+    "count": 32
+  },
+  "methods": {
+    "coconut_gpt2": {
+      "source_path": "_external/coconut",
+      "source_commit": "27273cb8cca4bb763c041a63b036d0c3b7cbbb48",
+      "checkpoint_path": "_models/gpt2-gsm8k-coconut/checkpoint_33",
+      "checkpoint_sha256": "f7a9b5fda7c5c2afa972aaa22ac9aef13d6f083e202fe8a09649d810e3593213",
+      "base_model_id": "openai-community/gpt2",
+      "base_model_revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+      "base_model_cache": "_models/hf_home/hub",
+      "latent_steps": 6,
+      "model_seed": 0,
+      "target_template": "### {answer}",
+      "dtype": "float32"
+    },
+    "codi_gpt2": {
+      "source_path": "_external/codi",
+      "source_commit": "2c2314662c63e9f482ebc46614ffe9af17a241e5",
+      "checkpoint_path": "_models/CODI-gpt2/pytorch_model.bin",
+      "checkpoint_sha256": "fd223b14932b8b66605c2a688e7d7193058ff2b40b2c6f6c1547c227d06d8417",
+      "checkpoint_revision": "fd641b3d3edc59e4f534b55588e906588c9e36bb",
+      "base_model_path": "_models/hf_home/hub/models--openai-community--gpt2/snapshots/607a30d783dfa663caf39e06633721c8d4cfcd7e",
+      "base_model_revision": "607a30d783dfa663caf39e06633721c8d4cfcd7e",
+      "latent_steps": 6,
+      "model_seed": 11,
+      "target_template": "The answer is: {answer}",
+      "dtype": "bfloat16",
+      "lora_r": 128,
+      "lora_alpha": 32,
+      "lora_dropout": 0.1,
+      "target_modules": ["c_attn", "c_proj", "c_fc"],
+      "projection_dim": 768
+    }
+  },
+  "conditions": [
+    "native_live",
+    "native_replay",
+    "repeat_first",
+    "reverse_steps",
+    "zero_matched_depth",
+    "norm_matched_random",
+    "no_latent"
+  ],
+  "equal_depth_effect_conditions": [
+    "repeat_first",
+    "reverse_steps",
+    "zero_matched_depth",
+    "norm_matched_random"
+  ],
+  "random_seed": 718301,
+  "bootstrap_seed": 718302,
+  "bootstrap_replicates": 5000,
+  "controls": {
+    "maximum_native_replay_nll_absolute_error": 0.000001,
+    "maximum_native_replay_logit_absolute_error": 0.0001,
+    "require_finite_rate": 1.0,
+    "require_target_token_identity": true,
+    "require_exact_equal_depth_steps": 6,
+    "maximum_cuda_peak_allocated_mib": 2500
+  },
+  "calibration_signal_gates": {
+    "minimum_absolute_mean_nll_delta": 0.01,
+    "minimum_mean_teacher_forced_kl": 0.0001,
+    "minimum_nonzero_nll_delta_fraction": 0.75,
+    "nonzero_nll_delta_epsilon": 0.0001,
+    "require_signal_in_both_methods": true
+  },
+  "decision_rule": "HOLD on any source or numerical control failure. With controls passing, PASS_CONFIRMATION only if at least one frozen equal-depth condition clears the unchanged three signal gates independently in both methods; otherwise KILL_DETERMINISTIC_EFFECT_BRANCH. No confirmation output may change prompts, target formats, conditions, controls, thresholds, seeds, or aggregation.",
+  "scientific_scope": "untouched deterministic confirmation only; no training, no raw cross-method accuracy comparison, and no standalone novelty claim"
+}
