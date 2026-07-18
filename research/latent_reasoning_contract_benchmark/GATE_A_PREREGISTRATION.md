@@ -1,8 +1,9 @@
 # Gate 0 and Gate A Preregistration
 
-Status: frozen design skeleton after Gate -1. Exact prompt hashes are frozen
-only after CODI checkpoint acquisition and before any intervention effect is
-read.
+Status: design skeleton retained for the full four-method gate. The exact
+deterministic calibration protocol and prompt hashes are now frozen in
+`DETERMINISTIC_INTERVENTION_A0_PREREGISTRATION.md` before any intervention
+effect was read.
 
 ## Gate 0: source-native fixture replay
 
@@ -40,8 +41,10 @@ use one replay per prompt. Report paired prompt-cluster uncertainty.
 - `contract_specific`: alter stored/scored state while preserving executed
   state, or vice versa, only when the source exposes that distinction.
 
-An intervention that changes token count, answer decoding, prompt text, or
-final-answer budget relative to its paired native run is invalid.
+An equal-depth intervention that changes latent count, answer decoding, prompt
+text, target tokens, or final-answer budget relative to its paired native run
+is invalid. `no_latent` is an explicitly separate depth baseline and is not a
+matched intervention.
 
 ### Outcomes
 
